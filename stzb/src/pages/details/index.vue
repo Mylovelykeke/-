@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
         <div class="nav">
             <div class="back">
                 <i class="iconfont icon-fanhui" @click="back"></i>
@@ -56,14 +56,37 @@
                 {{brief}}
             </div>
         </div>
+        <div class="shadow">
+
+        </div>
+        <div class="notice"  v-for="v in 100 " :key="v">
+            <div class="notice-title">
+                <span>租房须知</span>
+                <i class="iconfont icon-youjiantou"></i>
+            </div>
+            <span>若房东向您索要中介费，你可举报！</span>
+            <div class="report">
+                <i class="iconfont icon-jubao"></i>
+                <span>举报</span>
+            </div>
+        </div>
+        <div>
+            <chat-common />
+        </div>
+        <!-- 广告 -->
+        <!-- <div>
+            <SwiperImg :swiper="swiper" :images='images'/>
+        </div> -->
   </div>
 </template>
 
 <script>
-import SwiperImg from "@/components/swiper";
+import ChatCommon from "@/components/chat/index";
+import SwiperImg from "@/components/swiper/index";
 export default {
     data(){
         return{
+            swiper:"swiper",
             payment:'',
             title:'中国水水倒萨大零秒十六点三顶顶顶顶顶了多少水水水水水水水水水水水水',
             userInfo:{
@@ -86,6 +109,7 @@ export default {
         }
     },
     components: {
+        ChatCommon,
         SwiperImg
      },
      methods:{

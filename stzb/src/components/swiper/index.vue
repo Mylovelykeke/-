@@ -1,5 +1,5 @@
 <template>
-    <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+    <swiper :class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
         <block v-for="(item, index) in images" :key="index">
             <swiper-item>
                 <image :src="item.url" class="slide-image" mode="aspectFill"/>
@@ -13,6 +13,9 @@ export default {
   props: {
     images: {
       type: Array
+    },
+    swiper:{
+      
     }
   },
   data() {
@@ -26,9 +29,9 @@ export default {
 };
 </script>
 
-<style lang ="scss" scoped>
+<style lang ="scss">
 .swiper {
-  height: 240!important;
+  height: 120px !important;
   box-sizing: border-box;
   padding:0 20rpx;
   image {
