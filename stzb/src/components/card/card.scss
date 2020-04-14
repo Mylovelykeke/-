@@ -6,9 +6,9 @@
     box-sizing: border-box;
     border-bottom: 1px solid #f1f1ff;
     border-top: 1px solid #f1f1ff;
-    box-shadow: 1px 1px 1px 1px #eeeded;
+    box-shadow: 1px 1px 1px #eeeded;
     .card-title{
-        font-weight: 600;
+        font-weight: bolder;
         line-height: 20px;
     }
     .card-main{
@@ -23,7 +23,7 @@
             p{
                 display: inline;
                 font-size: 12px;
-                font-weight: 600;
+                font-weight: bolder;
                 color: rgb(54, 53, 53)
             }
         }
@@ -43,7 +43,27 @@
         overflow : hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
+    }
+}
+.footer{
+    display: flex;
+    line-height: 32px;
+    justify-content: space-between;
+    div{
+      i{
+        letter-spacing:20px;
+        font-size: 22px;
+        display: inline-block;
+      }
+      i:last-child{
+          font-size: 16px;
+          color: #666666;
+      }
+    }
+    div:last-child{
+        font-size: 12px;
+        color: #999;
     }
 }

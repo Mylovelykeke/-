@@ -1,18 +1,19 @@
 {
   "pages": [
     "pages/home/main",
+    "pages/details/main",
     "pages/mine/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "打卡助手",
+    "navigationBarTitleText": "个人房源",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color": "#999",
+    "color": "#000",
     "backgroundColor": "#fafafa",
-    "selectedColor": "#333",
+    "selectedColor": "#000",
     "borderStyle": "white",
 
     "list": [{
@@ -23,8 +24,8 @@
     }, {
       "text": "我的",
       "pagePath": "pages/mine/main",
-      "iconPath": "static/tabs/orders.png",
-      "selectedIconPath": "static/tabs/orders-active.png"
+      "iconPath": "static/tabs/mine.png",
+      "selectedIconPath": "static/tabs/mine-active.png"
     }],
 
     "items": [{
@@ -35,8 +36,8 @@
     }, {
       "name": "我的",
       "pagePath": "pages/mine/main",
-      "icon": "static/tabs/orders.png",
-      "activeIcon": "static/tabs/orders-active.png"
+      "icon": "static/tabs/mine.png",
+      "activeIcon": "static/tabs/mine-active.png"
     }],
     "position": "bottom"
   }
