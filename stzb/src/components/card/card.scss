@@ -1,0 +1,49 @@
+.content{
+    font-size: 14px;
+    width: 100%;
+    min-height: 50px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f1f1ff;
+    border-top: 1px solid #f1f1ff;
+    box-shadow: 1px 1px 1px 1px #eeeded;
+    .card-title{
+        font-weight: 600;
+        line-height: 20px;
+    }
+    .card-main{
+        .card-ide{
+            margin-bottom: 5px;
+            img{
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                vertical-align: top;
+            }
+            p{
+                display: inline;
+                font-size: 12px;
+                font-weight: 600;
+                color: rgb(54, 53, 53)
+            }
+        }
+    }
+    .showImg{
+        width: 300px;
+        height:150px;
+        img { 
+            width: 200px;
+            height: 100%;
+            object-position: 50% 50%;
+        }
+    }
+    .card-msg{
+        font-size: 14px;
+        line-height: 20px;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+}
