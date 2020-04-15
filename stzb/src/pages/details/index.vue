@@ -56,6 +56,9 @@
                 {{brief}}
             </div>
             <div class="content-footer">
+                <div>
+                    发表于 2012-19-20 08:27
+                </div>
                 <div class="content-phone">
                     <div>
                         <i class="iconfont icon-dianhua"></i>
@@ -63,9 +66,6 @@
                         <span class="content-count">200人咨询</span>
                     </div>
                     <span>获取</span>
-                </div>
-                <div>
-                    发表于 2012-19-20 08:27
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
         </div>
         <div class="all-commonents">
             <div class="commonents-title">全部评论</div>
-            <commonentItem />
+            <commonentItem :comment='comment'/>
         </div>
         <!-- 广告 -->
         <!-- <div>
@@ -122,7 +122,36 @@ export default {
                 url:'../../static/images/fz.jpg'
                 }
             ],
-            num:'356人'
+            num:'356人',
+            comment: [
+                {
+                    responder: "有毒的黄同学",
+                    reviewers:'',
+                    time: "2016-08-17",
+                    content: "好,讲得非常好，good",
+                    reply: [
+                        {
+                            responder: "有毒的黄同学",
+                            reviewers: "傲娇的",
+                            time: "2016-09-05",
+                            content: "你说得对"
+                        },
+                        {
+                            responder: "傲娇的",
+                            reviewers: "有毒的黄同学",
+                            time: "2016-09-05",
+                            content: "很强"
+                        }
+                    ]
+                },
+                {
+                    responder: "Freedom小黄",
+                    reviewers:'',
+                    time: "2016-08-17",
+                    content: "好,讲得非常好，good",
+                    reply: []
+                }
+            ]
         }
     },
     components: {

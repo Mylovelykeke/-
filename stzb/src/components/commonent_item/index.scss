@@ -1,9 +1,16 @@
+.child-bg{
+    background-color: #f1f1f1;
+}
 .common-content{
+    &.common-content-child{
+        padding: 10px 5px;
+    }
     position: relative;
     display: flex;
     padding: 10px 0;
     overflow: hidden;
     .common-author{
+        vertical-align: top;
         img{
             width: 40px;
             height: 40px;
@@ -14,7 +21,7 @@
         flex: 1;
         width: 0;
         padding-left: 10px;
-        div:first-child{
+        >div:first-child{
             display: flex;
             align-items: center;
             i{
@@ -22,17 +29,23 @@
             }
         }
         .authorname,.otherone{
-            font-weight: bold;
-            font-size: 16px;
+            font-weight: 600;
+            font-size: 14px;
         }
         .content{
             overflow-wrap: break-word;
             word-wrap: break-word;
         }
         .common-time{
-            padding: 10px 0;
+            padding: 5px 0;
             font-size: 14px;
             color: #666;
+        }
+        .commentes{
+            display: flex;
+            color: #666;
+            padding: 0 0 5px 10px;
+            font-size: 12px;
         }
     }
     .common-like{

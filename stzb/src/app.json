@@ -2,7 +2,8 @@
   "pages": [
     "pages/home/main",
     "pages/details/main",
-    "pages/mine/main"
+    "pages/mine/main",
+    "pages/common_item_detail/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
