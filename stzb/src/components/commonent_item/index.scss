@@ -1,0 +1,52 @@
+.common-content{
+    position: relative;
+    display: flex;
+    padding: 10px 0;
+    overflow: hidden;
+    .common-author{
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+    }
+    .common-main{
+        flex: 1;
+        width: 0;
+        padding-left: 10px;
+        div:first-child{
+            display: flex;
+            align-items: center;
+            i{
+                color: #666;
+            }
+        }
+        .authorname,.otherone{
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .content{
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+        .common-time{
+            padding: 10px 0;
+            font-size: 14px;
+            color: #666;
+        }
+    }
+    .common-like{
+        position: absolute;
+        top: 14px;
+        right: 20px;
+        span{
+            font-size: 14px;
+            color: #666;
+        }
+        i{
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 18px;
+        }
+    }
+}

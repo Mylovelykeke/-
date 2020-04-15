@@ -1,3 +1,6 @@
+.main{
+    padding-bottom: 60px;
+}
 .back{
     position: fixed;
     font-size: 50px !important;
@@ -94,7 +97,43 @@ swiper{
     .article{
         line-height: 24px;
     }
-    
+    .content-footer{
+        line-height: 60px;
+        .content-phone{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            >div{
+                span{
+                    font-weight: bold;
+                    margin-left: 8px;
+                    &.content-count{
+                        font-weight: normal;
+                        font-size: 12px;
+                        color: #666;
+                    }
+                }
+            }
+            >span{
+                width: 80px;
+                font-size: 16px;
+                border-radius: 5px;
+                text-align: center;
+                line-height: 30px;
+                color: #409eff;
+                border: 1px solid #409eff;
+            }
+            i{
+                display: inline-block;
+                font-size: 24px;
+                color: #67c23a;
+            }
+        }
+        >div:last-child{
+            font-size: 14px;
+            color: #666;
+        }
+    }
 }
 .shadow{
     height: 3px;
@@ -133,4 +172,12 @@ swiper{
         font-size: 10px;
     }
    }
+}
+.all-commonents{
+    padding:10px;
+    box-sizing: border-box;
+    .commonents-title{
+        font-weight: bolder;
+        margin-bottom: 10px;
+    }
 }

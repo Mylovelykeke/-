@@ -55,11 +55,22 @@
             <div class="article">
                 {{brief}}
             </div>
+            <div class="content-footer">
+                <div class="content-phone">
+                    <div>
+                        <i class="iconfont icon-dianhua"></i>
+                        <span>联系电话</span>
+                        <span class="content-count">200人咨询</span>
+                    </div>
+                    <span>获取</span>
+                </div>
+                <div>
+                    发表于 2012-19-20 08:27
+                </div>
+            </div>
         </div>
-        <div class="shadow">
-
-        </div>
-        <div class="notice"  v-for="v in 100 " :key="v">
+        <div class="shadow"></div>
+        <div class="notice">
             <div class="notice-title">
                 <span>租房须知</span>
                 <i class="iconfont icon-youjiantou"></i>
@@ -73,6 +84,10 @@
         <div>
             <chat-common />
         </div>
+        <div class="all-commonents">
+            <div class="commonents-title">全部评论</div>
+            <commonentItem />
+        </div>
         <!-- 广告 -->
         <!-- <div>
             <SwiperImg :swiper="swiper" :images='images'/>
@@ -83,6 +98,7 @@
 <script>
 import ChatCommon from "@/components/chat/index";
 import SwiperImg from "@/components/swiper/index";
+import commonentItem from "@/components/commonent_item/index";
 export default {
     data(){
         return{
@@ -106,11 +122,13 @@ export default {
                 url:'../../static/images/fz.jpg'
                 }
             ],
+            num:'356人'
         }
     },
     components: {
         ChatCommon,
-        SwiperImg
+        SwiperImg,
+        commonentItem
      },
      methods:{
          back(){
