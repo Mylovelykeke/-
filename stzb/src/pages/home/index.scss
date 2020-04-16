@@ -61,13 +61,13 @@
     width: 45px;
     height: 45px;
     background:#f0d264;
-    border-radius: 5px;
+    border-radius: 15px;
     transform:rotate(45deg);
-    box-shadow: 0 0 4px rgb(170, 170, 170);
+    box-shadow: 0 0 4px #f1f1f1;
     text-align: center;
     line-height: 45px;
     i{
-        font-size: 22px;
+        font-size: 20px;
         color: white;
         transform: rotate(45deg);
     }

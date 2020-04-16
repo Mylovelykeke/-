@@ -46,7 +46,7 @@
       </swiper>
     </div>
     <!-- 拖拽区域 -->
-    <div class="publish">
+    <div class="publish" @click="OnReleaseArticle">
         <div class="">
             <i class="iconfont icon-fabu"></i>
         </div>
@@ -139,6 +139,11 @@
       getViewDetail() {
         wx.navigateTo({
           url: "/pages/details/main",
+        })
+      },
+      OnReleaseArticle(){
+        wx.navigateTo({
+          url: "/pages/write/main",
         })
       }
     }
