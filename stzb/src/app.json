@@ -1,12 +1,12 @@
 {
   "pages": [
     "pages/home/main",
-    "pages/details/main",
     "pages/mine/main",
+    "pages/details/main",
     "pages/common_item_detail/main"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "个人房源",
     "navigationBarTextStyle": "black"
