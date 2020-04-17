@@ -1,39 +1,46 @@
 <template>
   <div>
+        <i-modal :visible='flag' action-mode='vertical' :show-cancel='false' :show-ok='false'>
+            <div v-for="(val,index) in actions" class="modalItem" :key="index" @click="handleClick(val)">
+                {{val.name}}
+            </div>
+        </i-modal>
       <!-- 选项 -->
-      <div class="header">
+        <div class="header">
             <div class="header-title" @click="selectType">
                 <span>
-                    出租房子
+                    {{name}}
                 </span>
                 <i class="iconfont icon-xiala"></i>
             </div>
-      </div>
+            <div class="headerInput">
+                 <input type="text" placeholder="加个标题哟~">
+            </div>
+        </div>
       <!-- input -->
       <div class="main">
-          <input type="text" placeholder="加个标题哟~">
           <textarea name="" placeholder="尽情发挥吧 ~"></textarea>
       </div>
       <!-- 其他信息 -->
-      <div style="overflow:hidden">
-        <div class="ShowImg" v-for="v in 2 " :key="v">
-            <div class="uploadImg">
-                <i class="iconfont icon-tianjia"></i>
-            </div>
-        </div>
-      </div>
+      <wx-imgPicker />
       <div>
-          <i-button bind:click="handleClick" type="primary"  size="small">发布</i-button>
+          <i-button  type="primary" size="small" i-class='publish'>发布</i-button>
       </div>
   </div>
 </template>
 
 <script>
+import WxImgPicker from '../../components/imgPicker' 
 export default {
+    components:{
+        WxImgPicker
+    },
     data(){
         return{
+            ImgArray:[],
+            name:'',
             flag:false,
-            actions4: [
+            actions: [
                 {
                     name: '出租房子'
                 },
@@ -47,12 +54,16 @@ export default {
         }
     },
     methods:{
-        handleClick(e){
-            console.log(e)
+        handleClick({name}){
+            this.name = name
+            this.flag = false
         },
         selectType(){
             this.flag = true
-        }
+        },
+    },
+    mounted(){
+        this.name = this.actions[0].name
     }
 }
 </script>
