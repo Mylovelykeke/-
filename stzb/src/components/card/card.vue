@@ -15,9 +15,9 @@
 
             </div>
           </div>
-          <!-- <div class="showImg">
-                        <img :src="userInfo.headerImg" alt="">
-                    </div> -->
+          <div class="showImg" >
+              <img :src="val.ImgArray[0].url" mode='heightFix' alt="">
+          </div>
           <div class="card-msg">
             <div>
               {{val.brief}}

@@ -25,7 +25,7 @@
       <wx-imgPicker />
       <div>
         <i-cell-group>
-            <i-cell title="位置" value='小区名称或地址' is-link  url="/pages/search/main"></i-cell>
+            <i-cell title="位置" :value='val.title  ' is-link  url="/pages/search/main"></i-cell>
         </i-cell-group>
       </div>
       <div>
@@ -42,6 +42,7 @@ export default {
     },
     data(){
         return{
+            val:'小区名称或地址',
             ImgArray:[],
             name:'',
             flag:false,
@@ -58,6 +59,12 @@ export default {
             ],
         }
     },
+     onShow(){
+        this.$bus.$on('updateData',res=>{
+            console.log(res)
+           this.val = res
+        });
+    },
     methods:{
         handleClick({name}){
             this.name = name
@@ -65,6 +72,9 @@ export default {
         },
         selectType(){
             this.flag = true
+        },
+        changData(val){
+            this.val = val
         }
     },
     mounted(){
