@@ -4,6 +4,8 @@
         "i-tabs": "../../static/dist/tabs/index",
         "i-tab": "../../static/dist/tab/index",
         "i-button": "../../static/dist/button/index",
-        "i-modal": "../../static/dist/modal/index"
+        "i-modal": "../../static/dist/modal/index",
+        "i-cell-group": "../../static/dist/cell-group/index",
+        "i-cell": "../../static/dist/cell/index"
     }
 }

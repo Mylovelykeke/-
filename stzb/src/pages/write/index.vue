@@ -24,6 +24,11 @@
       <!-- 其他信息 -->
       <wx-imgPicker />
       <div>
+        <i-cell-group>
+            <i-cell title="位置" value='小区名称或地址' is-link  url="/pages/search/main"></i-cell>
+        </i-cell-group>
+      </div>
+      <div>
           <i-button  type="primary" size="small" i-class='publish'>发布</i-button>
       </div>
   </div>
@@ -60,7 +65,7 @@ export default {
         },
         selectType(){
             this.flag = true
-        },
+        }
     },
     mounted(){
         this.name = this.actions[0].name

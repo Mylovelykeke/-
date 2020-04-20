@@ -1,0 +1,30 @@
+.search-bar{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    .search-content{
+        position: relative;
+        display: flex;
+        flex: 1;
+        background-color: #eceaea;
+        padding: 5px 30px 5px 5px;
+        border-radius: 5px;
+        align-items: center;
+        .icon-search{
+            padding: 0 5px;
+        }
+        input{
+            width: 100%;
+        }
+        .close{
+            position: absolute;
+            right: 5px;
+            top: 8px;
+            color: #666666;
+            z-index: 1000;
+        }
+    }
+    .cancel{
+        padding: 0 10px;
+    }
+}
