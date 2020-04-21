@@ -1,10 +1,11 @@
 {
   "pages": [
-    "pages/home/main",
-    "pages/searchpage/main",
     "pages/write/main",
-    "pages/search/main",
+    "pages/home/main",
     "pages/mine/main",
+    "pages/search/main",
+    "pages/searchpage/main",
+    "pages/showdetail/main",
     "pages/details/main",
     "pages/common_item_detail/main"
   ],

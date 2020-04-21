@@ -10,16 +10,16 @@
               <icon  class="icon-search" size="14" type="search" role="img"></icon>
               <input confirm-type="search"  :placeholder="tip" v-model="value" @confirm="search">
               <div class="close" v-show="value"  @click="remove"> 
-                <i class="iconfont icon-guanbi" ref="input"></i>
+                  <slot name='icon'></slot>
               </div>
           </div>
           <div class="cancel" @click="cancel">
               取消
           </div>
       </div>
-      <div v-if="type">
+      <div v-if="type&&!value" >
         <i-cell-group>
-            <i-cell :title="v" v-for="(v,key) in historyArray" :key="key">
+            <i-cell :title="v" v-for="(v,key) in historyArray" :key="key" @click="hSearchItem(v)">
                  <div slot='icon'>
                     <i class="iconfont icon-lishi"></i>
                  </div>
@@ -41,6 +41,10 @@ export default {
 
     },
     props:{
+        value:{
+            type:String,
+            default:''
+        },
         type:{
            type:Boolean,
            default:true 
@@ -56,7 +60,7 @@ export default {
     },
     data(){
        return{
-           value:'',
+           value:this.value,
            historyArray:[]
        } 
     },
@@ -64,19 +68,23 @@ export default {
         if(wx.getStorageSync("search")){
             let str = wx.getStorageSync("search")
             this.historyArray = str.split(',')
+            console.log(this.historyArray)
         }
     },
     methods:{
+        hSearchItem(value){
+            console.log(value)
+        },
         search(){
-            if(wx.getStorageSync("search")){
-                let arr = wx.getStorageSync("search")
-                arr =  this.value + ',' +  arr 
-                this.historyArray = arr.split(',')
-                wx.setStorageSync('search',arr)
-            }else{
-                let arr =this.value
-                this.historyArray = [arr]
-                wx.setStorageSync('search',arr)
+            if(this.type){
+                if(wx.getStorageSync("search")){
+                    let arr = wx.getStorageSync("search")
+                    arr =  this.value + ',' +  arr 
+                    wx.setStorageSync('search',arr)
+                }else{
+                    let arr =this.value
+                    wx.setStorageSync('search',arr)
+                }
             }
             this.$emit('confirmResult',this.value)
         }, 
@@ -84,7 +92,7 @@ export default {
             this.value = ''
         },
         cancel(){
-            wx.navigateBack({
+            wx.navigateBack({  
                 delta: 1
             })
         },

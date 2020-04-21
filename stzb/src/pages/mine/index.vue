@@ -1,20 +1,26 @@
 <template>
   <div>
     <div class="header">
-      <div class="item_msg">
-        <div class="item_img">
-          <img :src="imgUrls" alt="">
-        </div>
-        <div class="item_name">
-          <div>暂无小主信息</div>
-          <div>暂无学校信息</div>
-        </div>
+      <div class="header_main" v-if="userInfo">
+          <div class="item_msg">
+            <div class="item_img">
+              <img :src="userInfo.avatarUrl" alt="">
+            </div>
+            <div class="item_name">
+              <div>{{userInfo.nickName}}</div>
+              <div>{{userInfo.country+userInfo&&userInfo.city}}</div>
+            </div>
+          </div>
+          <div class="item_right">
+            <div>信用分</div>
+            <span>30</span>
+          </div>
       </div>
-      <div class="item_right">
-        <div>信用分</div>
-        <span>30</span>
+      <div class="align" v-else>
+          <button type="primary" open-type= 'getUserInfo' @getuserinfo='onGotUserInfo'> 获取微信授权</button>
       </div>
     </div>
+    
     <!-- 余额 -->
     <div class="main-radius"> 
       <titleBar :titleColor='"rgb(255, 218, 68)"' :title="title" />
@@ -80,10 +86,37 @@
         title: "我的报名",
         logs: [],
         imgUrls: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
+        userInfo:null
       }
     },
-
-    created() {}
+    methods:{
+      onGotUserInfo(e){
+        if(e){
+          this.userInfo = e.target.userInfo
+        }
+      }
+    },
+    created() {},
+    mounted(){
+      let that = this
+      wx.getSetting({
+        success: (res) => {
+          if(res.authSetting['scope.userInfo']){
+            wx.getUserInfo({
+              success: function(res) {
+                that.userInfo = res.userInfo
+              }
+            })
+          }
+          /*
+          * res.authSetting = {
+          *   "scope.userInfo": true,
+          *   "scope.userLocation": true
+          * }
+          */
+        }
+      })
+    }
   }
 </script>
 

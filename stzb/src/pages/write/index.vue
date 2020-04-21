@@ -14,22 +14,22 @@
                 <i class="iconfont icon-xiala"></i>
             </div>
             <div class="headerInput">
-                 <input type="text" placeholder="加个标题哟~">
+                 <input type="text" placeholder="加个标题哟~" v-model="title">
             </div>
         </div>
       <!-- input -->
       <div class="main">
-          <textarea name="" placeholder="尽情发挥吧 ~"></textarea>
+          <textarea name="" placeholder="尽情发挥吧 ~"  v-model="content"></textarea>
       </div>
       <!-- 其他信息 -->
       <wx-imgPicker />
       <div>
         <i-cell-group>
-            <i-cell title="位置" :value='val.title  ' is-link  url="/pages/search/main"></i-cell>
+            <i-cell title="位置" :value='val.title' is-link  url="/pages/search/main"></i-cell>
         </i-cell-group>
       </div>
       <div>
-          <i-button  type="primary" size="small" i-class='publish'>发布</i-button>
+          <i-button  type="primary" size="small" i-class='publish' @click="edit">发布</i-button>
       </div>
   </div>
 </template>
@@ -45,6 +45,8 @@ export default {
             val:'小区名称或地址',
             ImgArray:[],
             name:'',
+            content:'',
+            title:'',
             flag:false,
             actions: [
                 {
@@ -75,6 +77,21 @@ export default {
         },
         changData(val){
             this.val = val
+        },
+        edit(){
+            let openid = wx.getStorageSync('openid')
+            this.$httpWX.post({
+                url: 'http://localhost:3000/articles/edit',
+                data: {
+                    'openid': openid,
+                    'title': this.title,
+                    'content': this.content,
+                    'locationinfo': this.val,
+                    'ImgArray':this.ImgArray
+                },
+            }).then(res => {
+            console.log(res)
+            })
         }
     },
     mounted(){

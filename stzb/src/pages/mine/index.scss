@@ -2,9 +2,18 @@
     padding: 90px 20px 30px 20px;
     box-sizing: border-box;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    min-height: 90px;
     background: #f0d264;
+    .header_main{
+      display: flex;
+      justify-content: space-between;
+    }
+    .align{
+      box-sizing: border-box;
+      width: 100%;
+      text-align: center;
+      padding: 20px;
+    }
     .item_msg {
       display: flex;
 
@@ -13,7 +22,7 @@
         height: 60px;
         border-radius: 50%;
         overflow: hidden;
-
+        
         img {
           width: 100%;
           height: 100%;

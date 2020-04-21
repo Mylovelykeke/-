@@ -1,6 +1,10 @@
 <template>
   <div>
-      <search-input :region='region' :type='false' @confirmResult='search'/>
+      <search-input :region='region' :type='false' @confirmResult='search'>
+         <div slot="icon">
+                <i class="iconfont icon-guanbi"></i>
+          </div>
+      </search-input>
       <div class="main">
         <i-cell-group i-class ='main-border'>
           <i-cell v-for="(val,index) in searchArray" :title="val.title" :label='val.address' :key="index" @click="bindAddressItem(val)"></i-cell>

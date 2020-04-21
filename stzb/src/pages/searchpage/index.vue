@@ -1,6 +1,10 @@
 <template>
     <div>
-        <search-post tip='请输入关键词搜索'></search-post>
+        <search-post tip='请输入关键词搜索' @confirmResult='search'>
+            <div slot="icon">
+                <i class="iconfont icon-guanbi"></i>
+            </div>
+        </search-post>
     </div>
 </template>
 
@@ -11,8 +15,10 @@ export default {
         searchPost
     },
     methods:{
-        search(){
-            console.log(1)
+        search(val){
+            wx.navigateTo({
+                url:'/pages/showdetail/main?search='+val,
+            })
         }
     }
 }

@@ -15,7 +15,7 @@
 
             </div>
           </div>
-          <div class="showImg" >
+          <div class="showImg"  v-if="val.ImgArray.length>0">
               <img :src="val.ImgArray[0].url" mode='heightFix' alt="">
           </div>
           <div class="card-msg">
