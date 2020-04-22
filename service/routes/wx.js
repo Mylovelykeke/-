@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../helper/config')
+var {config} = require('../helper/config')
 var request = require('request')
 let AppID = config.AppID
 let AppSecret = config.AppSecret

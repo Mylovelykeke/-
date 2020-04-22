@@ -133,6 +133,11 @@
           }
         }
       })
+      this.$httpWX.get({
+            url: 'http://localhost:3000/articles',
+        }).then(res => {
+           console.log(res)
+        })
     },
     components: {
       vueCard

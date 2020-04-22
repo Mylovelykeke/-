@@ -74,11 +74,7 @@
           sizeType: self.sizeType,
           sourceType: self.sourceType,
           success: async (res) => {
-            // // tempFilePath可以作为img标签的src属性显示图片
-            // const tempFilePaths = res.tempFilePaths
-            // console.log(tempFilePaths)
-            // that.imgList.push(...tempFilePaths)
-            var tempFilePath = [];
+            var tempFilePath = self.imgList;
             for (var i = 0; i < res.tempFilePaths.length; i++) {
               let fileSize = parseInt(res.tempFiles[i].size / 1024)
               if (self.maxSize && res.tempFiles[i] && self.maxSize < fileSize) {
@@ -116,7 +112,8 @@
                 url: res.tempFilePaths[i]
               });
             }
-            this.imgList = tempFilePath
+            // self.imgList = tempFilePath
+            console.log(self.imgList)
           }
         })
       },

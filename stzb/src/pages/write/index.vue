@@ -22,14 +22,14 @@
           <textarea name="" placeholder="尽情发挥吧 ~"  v-model="content"></textarea>
       </div>
       <!-- 其他信息 -->
-      <wx-imgPicker />
+      <wx-imgPicker :imgList='ImgArray'/>
       <div>
         <i-cell-group>
             <i-cell title="位置" :value='val.title' is-link  url="/pages/search/main"></i-cell>
         </i-cell-group>
       </div>
       <div>
-          <i-button  type="primary" size="small" i-class='publish' @click="edit">发布</i-button>
+          <i-button  type="primary" size="small" i-class='publish' form-type='submit' @click="edit">发布</i-button>
       </div>
   </div>
 </template>
@@ -84,15 +84,58 @@ export default {
                 url: 'http://localhost:3000/articles/edit',
                 data: {
                     'openid': openid,
+                    "type":this.name,
                     'title': this.title,
                     'content': this.content,
-                    'locationinfo': this.val,
-                    'ImgArray':this.ImgArray
+                    'locationinfo': this.val
                 },
             }).then(res => {
-            console.log(res)
+                if(res.code == 0){
+                    if(this.ImgArray.length>0){
+                        this.upLoad(this.ImgArray,0,this.ImgArray.length,res.data.articleid)
+                    }
+                }
             })
-        }
+        },
+        upLoad(imgPath,i,upLength,articleid){
+            let that = this;
+            //上传文件
+            wx.uploadFile({
+                url: 'http://localhost:3000/articles/upload',
+                filePath: imgPath[i].url,
+                name: 'file',
+                formData: {
+                    method: 'POST',  //请求方式
+                    articleid:articleid
+                },
+                success: function (res) {
+                    console.log('上传成功' + i);
+                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                // that.files = that.files.concat(imgPath[i]);		//合并图片显示数组
+                // let imgData = JSON.parse(res.data);
+                // that.upImg.push(imgData.data);
+                    console.log(res,'???????');
+                },
+                fail: function (res) {
+                    console.log(res);
+                    // wx.hideLoading();
+                    // wx.showModal({
+                    //     title: '错误提示',
+                    //     content: '上传图片失败',
+                    //     showCancel: false,
+                    //     success: function (res) { }
+                    // })
+                },
+                complete: function(){
+                    i++;
+                    if(i == upLength){
+                        wx.hideLoading();    //上传结束，隐藏loading
+                    }else{
+                        that.upLoad(imgPath,i,upLength,articleid)
+                    }
+                }
+            });
+        },
     },
     mounted(){
         this.name = this.actions[0].name

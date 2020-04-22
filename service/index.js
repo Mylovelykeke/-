@@ -10,9 +10,6 @@ var wxLogin = require('./routes/wx');
 var articlestRouter =  require('./routes/articles');
 var app = express();
 
-var bodyParser = require('body-parser');/*post方法*/
-app.use(bodyParser.json());// 添加json解析
-app.use(bodyParser.urlencoded({extended: false}));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
