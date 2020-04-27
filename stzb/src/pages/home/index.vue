@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="msg">
-      <i-notice-bar icon="systemprompt" loop>
+      <i-notice-bar icon="systemprompt">
         点击"•●•"添加到我的小程序，快速寻找
       </i-notice-bar>
     </div>
@@ -21,29 +21,35 @@
         </view>
       </div>
       <i-tabs :current="current" @change="handleChange">
-        <i-tab key="0" title="求租广场" count="3"></i-tab>
+        <i-tab key="0" title="求租广场"></i-tab>
         <i-tab key="1" title="房源"></i-tab>
       </i-tabs>
     </div>
     <!-- swiper 滑动页 -->
     <div class="swiperAuto">
-      <swiper :current='swiperIndex' :style="{height:clientHeight?clientHeight+'px':'auto'}" @change="swiperChange"
+      <!-- <swiper :current='swiperIndex' :style="{height:clientHeight?clientHeight+'px':'auto'}" @change="swiperChange"
         @transition="swipertransition">
         <swiper-item item-id='2'>
           <scroll-view :scroll-y="true" :style="{height: clientHeight?clientHeight+'px':'auto'}">
             <div class="home-card" :key="index" :val=val>
-              <vue-card @getViewDetail="getViewDetail" :content='content' />
+              <vue-card @getViewDetail="getViewDetail"  :content='content' />
             </div>
           </scroll-view>
-        </swiper-item>
-        <swiper-item item-id='2'>
+        </swiper-item> -->
+        <!-- <swiper-item item-id='2'>
           <scroll-view :scroll-y="true" :style="{height: clientHeight?clientHeight+'px':'auto'}">
             <div class="home-card" :key="index" :val=val>
               <vue-card @getViewDetail="getViewDetail" />
             </div>
           </scroll-view>
         </swiper-item>
-      </swiper>
+      </swiper> -->
+      <div v-if="current==0">
+        <vue-card @getViewDetail="getViewDetail"  :content='content' />
+      </div>
+      <div v-else-if="current==1">
+        <vue-card @getViewDetail="getViewDetail" />
+      </div>
     </div>
     <!-- 拖拽区域 -->
     <div class="publish" @click="OnReleaseArticle">
@@ -114,30 +120,30 @@
           that.clientHeight = res.windowHeight
         }
       })
-      wx.login({
-        success (res) {
-          if (res.code) {
-            //发起网络请求
-            wx.request({
-              url: 'http://localhost:3000/wxLogin',
-              data: {
-                code: res.code
-              },
-              success(res){
-                console.log(res.data.data.openid)
-                wx.setStorageSync('openid',res.data.data.openid)
-              }
-            })
-          } else {
-            console.log('登录失败！' + res.errMsg)
-          }
-        }
-      })
-      this.$httpWX.get({
-            url: 'http://localhost:3000/articles',
-        }).then(res => {
-           console.log(res)
-        })
+      // wx.login({
+      //   success (res) {
+      //     if (res.code) {
+      //       //发起网络请求
+      //       wx.request({
+      //         url: 'http://localhost:3000/wxLogin',
+      //         data: {
+      //           code: res.code
+      //         },
+      //         success(res){
+      //           console.log(res.data.data.openid)
+      //           wx.setStorageSync('openid',res.data.data.openid)
+      //         }
+      //       })
+      //     } else {
+      //       console.log('登录失败！' + res.errMsg)
+      //     }
+      //   }
+      // })
+      // this.$httpWX.get({
+      //       url: 'http://localhost:3000/articles',
+      //   }).then(res => {
+      //      console.log(res)
+      //   })
     },
     components: {
       vueCard

@@ -25,11 +25,11 @@
     <div class="main-radius"> 
       <titleBar :titleColor='"rgb(255, 218, 68)"' :title="title" />
       <div class="history_order">
-        <div>
+        <div @click="toPostings">
           <i>24</i>
           我的帖子
         </div>
-        <div>
+        <div @click="tofavorite">
           <i>0</i>
           收藏夹
         </div>
@@ -90,6 +90,16 @@
       }
     },
     methods:{
+      toPostings(){
+        wx.navigateTo({
+          url: "/pages/mine/post/main",
+        })
+      },
+      tofavorite(){
+        wx.navigateTo({
+          url: "/pages/mine/favorite/main",
+        })
+      },
       onGotUserInfo(e){
         if(e){
           this.userInfo = e.target.userInfo

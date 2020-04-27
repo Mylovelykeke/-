@@ -6,7 +6,7 @@
           {{val.title}}
         </div>
         <div class="card-main">
-          <div class="card-ide">
+          <div class="card-ide" v-if="userflag">
             <img :src="val.userInfo.avatar" alt="">
             <p>
               {{val.userInfo.name}}
@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <div class="footer">
+      <div class="footer" v-if="footer">
         <div>
           <i class="iconfont icon-share"></i>
           <i class="iconfont icon-xx"></i>
@@ -44,6 +44,14 @@
     props:{
         content:{
             default:[]
+        },
+        userflag:{
+          type:Boolean,
+          default:true
+        },
+        footer:{
+          type:Boolean,
+          default:true
         }
     },
     data() {
