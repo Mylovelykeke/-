@@ -1,11 +1,12 @@
 <template>
   <div>
+    <div class="content">
         <i-modal :visible='flag' action-mode='vertical' :show-cancel='false' :show-ok='false'>
             <div v-for="(val,index) in actions" class="modalItem" :key="index" @click="handleClick(val)">
                 {{val.name}}
             </div>
         </i-modal>
-      <!-- 选项 -->
+    <!-- 选项 -->
         <div class="header">
             <div class="header-title" @click="selectType">
                 <span>
@@ -14,20 +15,21 @@
                 <i class="iconfont icon-xiala"></i>
             </div>
             <div class="headerInput">
-                 <input type="text" placeholder="加个标题哟~" v-model="title">
+                <input type="text" placeholder="加个标题哟~" v-model="title">
             </div>
         </div>
-      <!-- input -->
-      <div class="main">
-          <textarea name="" placeholder="尽情发挥吧 ~"  v-model="content"></textarea>
-      </div>
-      <!-- 其他信息 -->
-      <wx-imgPicker :imgList='ImgArray'/>
-      <div>
+    <!-- input -->
+    <div class="main">
+        <textarea name="" placeholder="尽情发挥吧 ~"  v-model="content"></textarea>
+    </div>
+    <!-- 其他信息 -->
+    <wx-imgPicker :imgList='ImgArray'/>
+    <div>
         <i-cell-group>
             <i-cell title="位置" :value='val.title' is-link  url="/pages/search/main"></i-cell>
         </i-cell-group>
-      </div>
+    </div>
+    </div>
       <div>
           <i-button  type="primary" size="small" i-class='publish' form-type='submit' @click="edit">发布</i-button>
       </div>

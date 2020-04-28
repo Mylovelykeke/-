@@ -1,15 +1,19 @@
 {
   "pages": [
-    "pages/msg/main",
-    "pages/mine/post/main",
     "pages/home/main",
-    "pages/mine/main",
-    "pages/mine/favorite/main",
     "pages/showdetail/main",
+    "pages/searchpage/main",
     "pages/write/main",
     "pages/search/main",
-    "pages/searchpage/main",
+    "pages/msg/systeminfo/main",
+    "pages/msg/likeinfo/main",
+    "pages/mine/main",
+    "pages/mine/communities/main",
     "pages/details/main",
+    "pages/mine/post/main",
+    "pages/mine/contactme/main",
+    "pages/msg/main",
+    "pages/mine/favorite/main",
     "pages/common_item_detail/main"
   ],
   "window": {

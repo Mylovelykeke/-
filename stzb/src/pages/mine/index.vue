@@ -23,7 +23,7 @@
     
     <!-- 余额 -->
     <div class="main-radius"> 
-      <titleBar :titleColor='"rgb(255, 218, 68)"' :title="title" />
+      <!-- <titleBar :titleColor='"rgb(255, 218, 68)"' :title="title" /> -->
       <div class="history_order">
         <div @click="toPostings">
           <i>24</i>
@@ -42,15 +42,15 @@
     <!-- 详细列表 -->
     <div>
       <i-cell-group>
-        <i-cell title="打卡计划" is-link>
+        <i-cell title="社区建设" is-link url="/pages/mine/communities/main">
           <div slot="icon">
             <i class="iconfont icon-daqia"></i>
           </div>
           <span slot="footer" class="tag">
-            好习惯养成记
+            举报及处罚示例
           </span>
         </i-cell>
-        <i-cell title="联系客服" is-link>
+        <i-cell title="联系客服" is-link url="/pages/mine/contactme/main">
           <div slot="icon">
             <i class="iconfont icon-lianxikefu"></i>
           </div>
@@ -65,11 +65,11 @@
             <i class="iconfont icon-hezuo-tianchong"></i>
           </div>
         </i-cell>
-        <i-cell title="用户设置" is-link>
+        <!-- <i-cell title="用户设置" is-link>
           <div slot="icon">
             <i class="iconfont icon-shezhi"></i>
           </div>
-        </i-cell>
+        </i-cell> -->
       </i-cell-group>
     </div>
   </div>

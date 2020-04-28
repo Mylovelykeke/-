@@ -69,7 +69,6 @@
                 </div>
             </div>
         </div>
-        <div class="shadow"></div>
         <div class="notice">
             <div class="notice-title">
                 <span>租房须知</span>

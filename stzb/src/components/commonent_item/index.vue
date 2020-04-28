@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content">
         <div class="common-content" v-for="(v,index) in comment" :key="index" >
             <div class="common-author">
                 <img :src="headeImg" alt="">

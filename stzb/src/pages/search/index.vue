@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
       <search-input :region='region' :type='false' @confirmResult='search'>
          <div slot="icon">
                 <i class="iconfont icon-guanbi"></i>
