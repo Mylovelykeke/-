@@ -1,0 +1,20 @@
+<template name="118aada6">
+  <view class="_div data-v-8ec56d38">
+    <view class="_div data-v-8ec56d38 header"><label class="_span data-v-8ec56d38">仲裁大厅</label> <label class="_span data-v-8ec56d38">切换至最新</label></view>
+    <view class="_div data-v-8ec56d38 content">
+      <view class="_div data-v-8ec56d38 main">
+        <view class="_div data-v-8ec56d38 title">评论被举报为(包含不友善内容)</view>
+        <view class="_div data-v-8ec56d38 rep">
+          <view class="_div data-v-8ec56d38 img">
+            <image src="https://profile.csdnimg.cn/C/9/6/3_eva3288" alt class="_img data-v-8ec56d38"></image>
+          </view>
+          <view class="_div data-v-8ec56d38 repcontent">
+            <view class="_div data-v-8ec56d38 author">大肆夸奖打瞌睡的卡上</view>
+            <view class="_div data-v-8ec56d38 violation"> 实打实的和卡仕达卡仕达看见1111111111111111111111111111哈萨克接电话大苏打实打实大苏打实打实打算 </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-8ec56d38"></view>
+  </view>
+</template>

@@ -1,0 +1,23 @@
+@import "../../../common/vendor.wxss";
+
+.content .datemodel {
+  display: flex;
+}
+.content .datemodel .dateTime {
+  width: 200rpx;
+  padding: 20rpx;
+}
+.content .datemodel .dateTime :first-child {
+  color: #666;
+}
+.content .datemodel .dateTime .rule {
+  position: relative;
+  top: 10rpx;
+  font-size: 40rpx;
+}
+.content .datemodel .dateTime :last-child {
+  position: relative;
+  top: 30rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+}

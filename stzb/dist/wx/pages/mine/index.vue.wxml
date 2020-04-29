@@ -1,0 +1,58 @@
+<template name="7ad5eac3">
+  <view class="_div data-v-19006a74">
+    <view class="_div data-v-19006a74 header">
+      <view class="_div data-v-19006a74 header_main" wx:if="{{userInfo}}">
+        <view class="_div data-v-19006a74 item_msg">
+          <view class="_div data-v-19006a74 item_img">
+            <image src="{{userInfo.avatarUrl}}" alt class="_img data-v-19006a74"></image>
+          </view>
+          <view class="_div data-v-19006a74 item_name">
+            <view class="_div data-v-19006a74">{{userInfo.nickName}}</view>
+            <view class="_div data-v-19006a74">{{userInfo.country+userInfo&&userInfo.city}}</view>
+          </view>
+        </view>
+        <view class="_div data-v-19006a74 item_right">
+          <view class="_div data-v-19006a74">信用分</view> <label class="_span data-v-19006a74">30</label>
+        </view>
+      </view>
+      <view class="_div data-v-19006a74 align" wx:else><button type="primary" open-type="getUserInfo" bindgetuserinfo="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_button data-v-19006a74"> 获取微信授权</button></view>
+    </view>
+    <view class="_div data-v-19006a74 main-radius">
+      <view class="_div data-v-19006a74 history_order">
+        <view bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_div data-v-19006a74">
+          <view class="_i data-v-19006a74">24</view> 我的帖子
+        </view>
+        <view bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}" class="_div data-v-19006a74">
+          <view class="_i data-v-19006a74">0</view> 收藏夹
+        </view>
+        <view class="_div data-v-19006a74">
+          <view class="_i data-v-19006a74">0</view> 最近浏览
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-19006a74">
+      <i-cell-group class="_i-cell-group data-v-19006a74">
+        <i-cell title="社区建设" is-link url="/pages/mine/communities/main" class="_i-cell data-v-19006a74">
+          <view slot="icon" class="_div data-v-19006a74">
+            <view class="_i data-v-19006a74 iconfont icon-daqia"></view>
+          </view> <label slot="footer" class="_span data-v-19006a74 tag"> 举报及处罚示例 </label>
+        </i-cell>
+        <i-cell title="联系客服" is-link url="/pages/mine/contactme/main" class="_i-cell data-v-19006a74">
+          <view slot="icon" class="_div data-v-19006a74">
+            <view class="_i data-v-19006a74 iconfont icon-lianxikefu"></view>
+          </view>
+        </i-cell>
+        <i-cell title="意见反馈" is-link class="_i-cell data-v-19006a74">
+          <view slot="icon" class="_div data-v-19006a74">
+            <view class="_i data-v-19006a74 iconfont icon-yijianfankui"></view>
+          </view>
+        </i-cell>
+        <i-cell title="商务合作" is-link url="/pages/work/main" class="_i-cell data-v-19006a74">
+          <view slot="icon" class="_div data-v-19006a74">
+            <view class="_i data-v-19006a74 iconfont icon-hezuo-tianchong"></view>
+          </view>
+        </i-cell>
+      </i-cell-group>
+    </view>
+  </view>
+</template>

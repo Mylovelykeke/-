@@ -1,0 +1,60 @@
+.header{
+    padding: 10px;
+    padding-bottom: 0;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    :last-child{
+        font-size: 14px;
+        color: #666;
+    }
+}
+.content{
+    padding: 10px;
+    .main{
+        padding: 20px 10px;
+        background-color: white;
+        border-radius: 5px;
+        .title{
+            font-size: 14px;
+            font-weight: bolder;
+            color: #353434;
+        }
+        .rep{
+            display: flex;
+            padding: 10px 5px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            .img{
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .repcontent{
+                font-size: 14px;
+                margin-left: 10px;
+                flex:1;
+                overflow:hidden;
+                word-wrap:break-word;
+                word-break:break-all;
+                .author{
+                    font-weight: bolder;
+                }
+                .violation{
+                    color: #686666;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    -webkit-box-orient: vertical;
+                }
+            }
+        }
+    }
+}

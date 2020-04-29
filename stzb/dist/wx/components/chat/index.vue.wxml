@@ -1,0 +1,6 @@
+<template name="66390922">
+  <view class="_div data-v-834d075e chat-footer">
+    <view class="_div data-v-834d075e chat-inp"><input type="text" placeholder="我也说一句。。。。" class="_input data-v-834d075e" /></view>
+    <view class="_div data-v-834d075e btn-send"> 发送 </view>
+  </view>
+</template>

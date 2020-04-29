@@ -1,0 +1,37 @@
+@import "../../common/vendor.wxss";
+
+.notice.data-v-550d05d6 {
+  border-bottom: 20rpx solid #f1f1f1;
+}
+.i-swipeout-image.data-v-550d05d6 {
+  width: 80rpx;
+  float: left;
+  color: #f3ad5d;
+}
+.i-swipeout-image ._img.data-v-550d05d6 {
+  width: 70rpx;
+  height: 70rpx;
+}
+.i-swipeout-des-h2.data-v-550d05d6 {
+  display: flex;
+  justify-content: space-between;
+}
+.i-swipeout-des-h2.data-v-550d05d6 :first-child {
+  font-size: 28rpx;
+  font-weight: bolder;
+}
+.i-swipeout-des-h2.data-v-550d05d6 :last-child {
+  font-size: 24rpx;
+  color: #666666;
+}
+.notice-img.data-v-550d05d6 {
+  width: 80rpx;
+  height: 80rpx;
+  padding: 0;
+  border: 0;
+}
+.notice-img.dy.data-v-550d05d6 {
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: -10rpx;
+}

@@ -1,0 +1,10 @@
+@import "../../../common/vendor.wxss";
+
+.content.data-v-482a1bb4 {
+  margin: 10rpx 0;
+}
+.footer.data-v-482a1bb4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,7 @@
+<import src="/components/card/card.vue.wxml" /><template name="c4e8bd16">
+  <view class="_div data-v-3e3965f1 content">
+    <view class="_div data-v-3e3965f1 datemodel">
+      <view class="_div data-v-3e3965f1 dateTime"><label class="_span data-v-3e3965f1">4</label> <label class="_span data-v-3e3965f1 rule">/</label> <label class="_span data-v-3e3965f1">27</label></view> <template data="{{...$root[$kk+'0'], $root}}" is="f4626190"></template>
+    </view>
+  </view>
+</template>

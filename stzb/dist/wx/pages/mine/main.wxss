@@ -1,0 +1,159 @@
+@import "../../common/vendor.wxss";
+
+.header.data-v-19006a74 {
+  padding: 180rpx 40rpx 60rpx 40rpx;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 180rpx;
+  background: #f0d264;
+}
+.header .header_main.data-v-19006a74 {
+  display: flex;
+  justify-content: space-between;
+}
+.header .align.data-v-19006a74 {
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  padding: 40rpx;
+}
+.header .item_msg.data-v-19006a74 {
+  display: flex;
+}
+.header .item_msg .item_img.data-v-19006a74 {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.header .item_msg .item_img ._img.data-v-19006a74 {
+  width: 100%;
+  height: 100%;
+  vertical-align: center;
+}
+.header .item_msg .item_name.data-v-19006a74 {
+  padding-left: 20rpx;
+  vertical-align: top;
+}
+.header .item_msg .item_name.data-v-19006a74 :first-child {
+  line-height: 80rpx;
+  font-weight: bolder;
+}
+.header .item_msg .item_name.data-v-19006a74 :last-child {
+  font-size: 24rpx;
+  color: white;
+}
+.header .item_msg .item_img.data-v-19006a74,
+.header .item_msg .item_name.data-v-19006a74 {
+  display: inline-block;
+}
+.header .item_right.data-v-19006a74 {
+  text-align: right;
+}
+.header .item_right.data-v-19006a74 :first-child {
+  line-height: 60rpx;
+  font-size: 24rpx;
+}
+.header .item_right.data-v-19006a74 :last-child {
+  padding: 4rpx 30rpx;
+  border-radius: 10rpx;
+  color: white;
+  font-weight: 600;
+  background: #ffda44;
+}
+.main-radius.data-v-19006a74 {
+  position: relative;
+  width: 100%;
+  top: -30rpx;
+  padding-top: 40rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 -2rpx 0 #f1f1f1;
+}
+.history_order.data-v-19006a74 {
+  display: flex;
+}
+.history_order ._div.data-v-19006a74 {
+  flex: 1;
+  margin: 20rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 72rpx;
+  color: #5c5858;
+}
+.history_order ._div ._i.data-v-19006a74 {
+  color: black;
+  font-size: 40rpx;
+  font-weight: bolder;
+}
+.history_order .iconfont.data-v-19006a74 {
+  color: #17e29e;
+  font-size: 52rpx;
+}
+.icon-daqia.data-v-19006a74 {
+  color: #450dad;
+}
+.icon-lianxikefu.data-v-19006a74 {
+  color: #13af35;
+}
+.icon-yijianfankui.data-v-19006a74 {
+  color: #0cadc2;
+}
+.icon-hezuo-tianchong.data-v-19006a74 {
+  color: #f8652b;
+}
+.icon-shezhi.data-v-19006a74 {
+  color: #9b9990;
+}
+.tag.data-v-19006a74 {
+  color: #aca9a9;
+  font-size: 24rpx;
+  vertical-align: top;
+}
+.price.data-v-19006a74 {
+  display: flex;
+  padding: 20rpx;
+}
+.price ._div.data-v-19006a74 {
+  flex: 1;
+  line-height: 52rpx;
+  text-align: center;
+}
+.price .price_line.data-v-19006a74 {
+  border-right: 2rpx solid #eeeeee;
+}
+.price .price_big.data-v-19006a74 {
+  color: #ffda44;
+  font-weight: bolder;
+  font-size: 40rpx;
+}
+.price ._span.data-v-19006a74 {
+  color: #ccc;
+  font-size: 28rpx;
+}
+.title.data-v-54d381de {
+  position: relative;
+}
+.title ._span.data-v-54d381de {
+  display: inline-block;
+}
+.title .title_block.data-v-54d381de {
+  width: 10rpx;
+  height: 32rpx;
+  display: inline-block;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  vertical-align: -2rpx;
+}
+.title .title_text.data-v-54d381de {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.title .title-right.data-v-54d381de {
+  position: absolute;
+  right: 30rpx;
+  top: 4rpx;
+  color: #777;
+  font-size: 28rpx;
+}

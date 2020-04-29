@@ -1,0 +1,63 @@
+<import src="/components/chat/index.vue.wxml" />
+<import src="/components/commonent_item/index.vue.wxml" /><template name="45dcf635">
+  <view class="_div data-v-c0ff5b1a main">
+    <view class="_div data-v-c0ff5b1a nav">
+      <view class="_div data-v-c0ff5b1a back">
+        <view class="_i data-v-c0ff5b1a iconfont icon-fanhui" bindtap="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}"></view>
+      </view>
+      <swiper class="_swiper data-v-c0ff5b1a swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <swiper-item class="_swiper-item data-v-c0ff5b1a">
+          <block><video autoplay="{{false}}" loop class="_video data-v-c0ff5b1a swiper-item" show-play-btn="{{true}}" controls="{{true}}" objectFit="fill" show-mute-btn="{{false}}" poster="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574066857005&di=27dc7334bc80c4336d3443e8ecde3160&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F17%2F02%2F06%2Fed0c0ddc6271b0717ca64ffdf847eab6.jpg" show-center-play-btn="{{true}}" vslide-gesture-in-fullscreen="{{true}}" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"></video></block>
+        </swiper-item>
+        <swiper-item wx:key="index" key="{{index}}" wx:for="{{images}}" wx:for-index="index" wx:for-item="item" class="_swiper-item data-v-c0ff5b1a">
+          <image src="{{item.url}}" data-src="{{item.url}}" class="_image data-v-c0ff5b1a slide-image" mode="aspectFill" bindtap="handleProxy" data-eventid="{{'1_'+index}}" data-comkey="{{$k}}"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="_div data-v-c0ff5b1a detail_userinfo">
+      <image src="{{userInfo.avatar}}" alt class="_img data-v-c0ff5b1a"></image> <label class="_span data-v-c0ff5b1a user-name">{{userInfo.name}}</label> <label class="_span data-v-c0ff5b1a attest">
+        <view class="_i data-v-c0ff5b1a iconfont icon-shimingrenzheng"></view>
+      </label> <label class="_span data-v-c0ff5b1a flower" wx:key="count" key="{{count}}" wx:for="{{5}}" wx:for-index="index" wx:for-item="count">
+        <view class="_i data-v-c0ff5b1a iconfont icon-icon-test"></view>
+      </label>
+    </view>
+    <view class="_div data-v-c0ff5b1a content">
+      <view class="_div data-v-c0ff5b1a detail-item">
+        <view class="_div data-v-c0ff5b1a title">
+          {{title}}
+        </view>
+      </view>
+      <view class="_div data-v-c0ff5b1a location">
+        <view class="_div data-v-c0ff5b1a location-info">
+          <view class="_i data-v-c0ff5b1a iconfont icon-zb"></view> 南京经理撒大苏打顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶
+        </view>
+        <view class="_div data-v-c0ff5b1a location-right">
+          <view class="_i data-v-c0ff5b1a iconfont icon-youjiantou"></view>
+        </view>
+      </view>
+      <view class="_div data-v-c0ff5b1a article">
+        {{brief}}
+      </view>
+      <view class="_div data-v-c0ff5b1a content-footer">
+        <view class="_div data-v-c0ff5b1a"> 发表于 2012-19-20 08:27 </view>
+        <view class="_div data-v-c0ff5b1a content-phone">
+          <view class="_div data-v-c0ff5b1a">
+            <view class="_i data-v-c0ff5b1a iconfont icon-dianhua"></view> <label class="_span data-v-c0ff5b1a">联系电话</label> <label class="_span data-v-c0ff5b1a content-count">200人咨询</label>
+          </view> <label class="_span data-v-c0ff5b1a">获取</label>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-c0ff5b1a notice">
+      <view class="_div data-v-c0ff5b1a notice-title"><label class="_span data-v-c0ff5b1a">租房须知</label>
+        <view class="_i data-v-c0ff5b1a iconfont icon-youjiantou"></view>
+      </view> <label class="_span data-v-c0ff5b1a">若房东向您索要中介费，你可举报！</label>
+      <view class="_div data-v-c0ff5b1a report" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+        <view class="_i data-v-c0ff5b1a iconfont icon-jubao"></view> <label class="_span data-v-c0ff5b1a">举报</label>
+      </view>
+    </view>
+    <view class="_div data-v-c0ff5b1a"><template data="{{...$root[$kk+'2'], $root}}" is="66390922"></template></view>
+    <view class="_div data-v-c0ff5b1a all-commonents">
+      <view class="_div data-v-c0ff5b1a commonents-title">全部评论</view> <template data="{{...$root[$kk+'3'], $root}}" is="5c5e5f1c"></template>
+    </view>
+  </view>
+</template>

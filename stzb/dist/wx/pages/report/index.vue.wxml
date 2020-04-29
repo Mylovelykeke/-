@@ -1,0 +1,12 @@
+<import src="/components/card/card.vue.wxml" /><template name="4756d438">
+  <view class="_div data-v-032f1c95">
+    <view class="_div data-v-032f1c95 report"><label class="_span data-v-032f1c95 title">帖子信息</label>
+      <view class="_div data-v-032f1c95"><template data="{{...$root[$kk+'0'], $root}}" is="f4626190"></template></view>
+    </view>
+    <view class="_div data-v-032f1c95 report_type"><label class="_span data-v-032f1c95 title">举报类型</label>
+      <view class="_div data-v-032f1c95 type_arr clearfix">
+        <view bindtap="handleProxy" wx:key="index" key="{{index}}" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}" wx:for="{{list}}" wx:for-index="index" wx:for-item="val" class="_div data-v-032f1c95 {{index === ITEM ? 'line' : ''}}">{{val}}</view>
+      </view>
+    </view>
+    <view class="_div data-v-032f1c95 report_account"><label class="_span data-v-032f1c95 title">请填写举报理由(选填)</label>
+      <view class="_div data-v-032f1c95 content"><textarea maxlength="200" bindinput="handleProxy" value="{{value}}" rows="1" placeholder="描述理由请不要超过200字" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_textarea data-v-032f1c95" /> <view class="_div data-v-032f1c95 scope">{{sum}}/200</view></view></view> <view class="_div data-v-032f1c95 submit"><i-button bind:click="handleClick" type="primary" disabled class="_i-button data-v-032f1c95">提交</i-button></view></view></template>

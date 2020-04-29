@@ -1,0 +1,15 @@
+@import "../../../common/vendor.wxss";
+
+.arb {
+  margin: 10rpx 10rpx;
+  overflow: hidden;
+  border-radius: 10rpx;
+}
+.arb .arb-group {
+  border-radius: 10rpx;
+}
+.arb1 {
+  margin: 10rpx 20rpx;
+  overflow: hidden;
+  border-radius: 20rpx;
+}

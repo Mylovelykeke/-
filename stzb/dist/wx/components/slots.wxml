@@ -1,0 +1,16 @@
+<import src="/components/commonent_item/index.vue.wxml" />
+<import src="/components/chat/index.vue.wxml" />
+<import src="/components/chat/index.vue.wxml" />
+<import src="/components/commonent_item/index.vue.wxml" />
+<import src="/components/searchInput/index.vue.wxml" />
+<import src="/components/card/card.vue.wxml" />
+<import src="/components/searchInput/index.vue.wxml" />
+<import src="/components/card/card.vue.wxml" />
+<import src="/components/imgPicker/index.vue.wxml" /><template name="data-v-5b546f3c-default-0"></template>
+<template name="data-v-5b546f3c-icon-0">
+  <view class="_i data-v-5b546f3c iconfont icon-guanbi"></view>
+</template>
+<template name="data-v-458c9f7e-default-0"></template>
+<template name="data-v-458c9f7e-icon-0">
+  <view class="_i data-v-458c9f7e iconfont icon-guanbi"></view>
+</template>

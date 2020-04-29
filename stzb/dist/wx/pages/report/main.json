@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "举报",
+    "usingComponents": {
+        "i-button": "../../static/dist/button/index"
+    }
+}

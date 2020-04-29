@@ -1,0 +1,62 @@
+@import "../../common/vendor.wxss";
+
+.report_account.data-v-032f1c95,
+.report_type.data-v-032f1c95,
+.report.data-v-032f1c95 {
+  background-color: white;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+}
+.report_account .title.data-v-032f1c95,
+.report_type .title.data-v-032f1c95,
+.report .title.data-v-032f1c95 {
+  color: #666666;
+}
+.report_account .content.data-v-032f1c95,
+.report_type .content.data-v-032f1c95,
+.report .content.data-v-032f1c95 {
+  position: relative;
+  padding: 20rpx 0;
+}
+.report_account .content .scope.data-v-032f1c95,
+.report_type .content .scope.data-v-032f1c95,
+.report .content .scope.data-v-032f1c95 {
+  position: absolute;
+  bottom: 40rpx;
+  right: 10rpx;
+  color: #666666;
+}
+.report_account ._textarea.data-v-032f1c95,
+.report_type ._textarea.data-v-032f1c95,
+.report ._textarea.data-v-032f1c95 {
+  padding: 10rpx;
+  box-sizing: border-box;
+  width: 100%;
+  height: 180rpx;
+  border: 2rpx solid #f1f1f1;
+}
+.type_arr.data-v-032f1c95 {
+  padding: 20rpx 0;
+}
+.type_arr ._div.data-v-032f1c95 {
+  float: left;
+  margin: 0 0 20rpx 20rpx;
+  padding: 14rpx 20rpx;
+  border: 2rpx solid #f1f1f1;
+  font-size: 28rpx;
+}
+.type_arr .line.data-v-032f1c95 {
+  border: 2rpx solid #195ef3;
+  color: #195ef3;
+}
+.clearfix.data-v-032f1c95:after,
+.clearfix.data-v-032f1c95:before {
+  content: "";
+  display: table;
+}
+.clearfix.data-v-032f1c95:after {
+  clear: both;
+}
+.clearfix.data-v-032f1c95 {
+  zoom: 1;
+}

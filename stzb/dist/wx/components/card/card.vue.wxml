@@ -1,0 +1,39 @@
+<template name="f4626190">
+  <view class="_div data-v-1d4bba29">
+    <view class="_div data-v-1d4bba29 content" wx:key="index" key="{{index}}" wx:for="{{content}}" wx:for-index="index" wx:for-item="val">
+      <view bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}" class="_div data-v-1d4bba29">
+        <view class="_div data-v-1d4bba29 card-title">
+          {{val.title}}
+        </view>
+        <view class="_div data-v-1d4bba29 card-main">
+          <view class="_div data-v-1d4bba29 card-ide" wx:if="{{userflag}}">
+            <image src="{{val.userInfo.avatar}}" alt class="_img data-v-1d4bba29"></image>
+            <view class="_p data-v-1d4bba29">
+              {{val.userInfo.name}}
+            </view>
+            <view class="_div data-v-1d4bba29"></view>
+          </view>
+          <view class="_div data-v-1d4bba29 showImg" wx:if="{{val.ImgArray.length>0}}">
+            <image src="{{val.ImgArray[0].url}}" mode="heightFix" alt class="_img data-v-1d4bba29"></image>
+          </view>
+          <view class="_div data-v-1d4bba29 card-msg">
+            <view class="_div data-v-1d4bba29">
+              {{val.brief}}
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="_div data-v-1d4bba29 footer" wx:if="{{footer}}">
+        <view class="_div data-v-1d4bba29 btn"><button open-type="share" class="_button data-v-1d4bba29">
+            <view class="_i data-v-1d4bba29 iconfont icon-share" style="font-size:22px"></view>
+          </button>
+          <view class="_i data-v-1d4bba29 iconfont icon-xx"></view>
+          <view class="_i data-v-1d4bba29 iconfont icon-qita"></view>
+        </view>
+        <view class="_div data-v-1d4bba29">
+          {{val.time}}
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,42 @@
+<template name="5c5e5f1c">
+  <view class="_div data-v-355ca06a content">
+    <view class="_div data-v-355ca06a common-content" wx:key="index" key="{{index}}" wx:for="{{comment}}" wx:for-index="index" wx:for-item="v">
+      <view class="_div data-v-355ca06a common-author">
+        <image src="{{headeImg}}" alt class="_img data-v-355ca06a"></image>
+      </view>
+      <view class="_div data-v-355ca06a common-main">
+        <view class="_div data-v-355ca06a"><label class="_span data-v-355ca06a authorname">{{v.responder}}</label>
+          <view class="_i data-v-355ca06a iconfont icon-jiantou" wx:if="{{v.reviewers}}"></view> <label class="_span data-v-355ca06a otherone">{{v.reviewers}}</label>
+        </view>
+        <view class="_div data-v-355ca06a common-time"><label class="_span data-v-355ca06a">{{v.time}}</label></view>
+        <view class="_div data-v-355ca06a content">
+          {{v.content}}
+        </view>
+        <view class="_div data-v-355ca06a child-bg">
+          <view class="_div data-v-355ca06a common-content common-content-child" wx:key="key" key="{{key}}" wx:for="{{v.reply}}" wx:for-index="key" wx:for-item="val">
+            <view class="_div data-v-355ca06a common-author">
+              <image src="{{headeImg}}" alt class="_img data-v-355ca06a"></image>
+            </view>
+            <view class="_div data-v-355ca06a common-main">
+              <view class="_div data-v-355ca06a"><label class="_span data-v-355ca06a authorname">{{val.reviewers}}</label>
+                <view class="_i data-v-355ca06a iconfont icon-jiantou"></view> <label class="_span data-v-355ca06a otherone">{{val.responder}}</label>
+              </view>
+              <view class="_div data-v-355ca06a common-time"><label class="_span data-v-355ca06a">{{val.time}}</label></view>
+              <view class="_div data-v-355ca06a content">
+                {{val.content}}
+              </view>
+            </view>
+            <view class="_div data-v-355ca06a common-like"><label class="_span data-v-355ca06a">{{likenum}}</label>
+              <view class="_i data-v-355ca06a iconfont icon-like"></view>
+            </view>
+          </view>
+          <view class="_div data-v-355ca06a commentes" wx:if="{{v.reply&&v.reply.length>1}}" bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}"> 查看全部{{v.reply&&v.reply.length}}评论 <view class="_i data-v-355ca06a iconfont icon-youjiantou"></view>
+          </view>
+        </view>
+      </view>
+      <view class="_div data-v-355ca06a common-like"><label class="_span data-v-355ca06a">{{likenum}}</label>
+        <view class="_i data-v-355ca06a iconfont icon-like"></view>
+      </view>
+    </view>
+  </view>
+</template>

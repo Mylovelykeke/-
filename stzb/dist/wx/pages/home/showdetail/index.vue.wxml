@@ -1,0 +1,7 @@
+<import src="/components/searchInput/index.vue.wxml" />
+<import src="/components/card/card.vue.wxml" /><template name="4f2fa697">
+  <view class="_div data-v-d68b885a">
+    <view class="_div data-v-d68b885a header"><template data="{{...$root[$kk+'0'], $root}}" is="60ff0454"></template></view>
+    <view class="_div data-v-d68b885a content"><template data="{{...$root[$kk+'1'], $root}}" is="f4626190"></template></view>
+  </view>
+</template>

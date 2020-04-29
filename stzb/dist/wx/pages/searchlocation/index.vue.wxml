@@ -1,0 +1,9 @@
+<import src="/components/searchInput/index.vue.wxml" /><template name="b2e90666">
+  <view class="_div data-v-458c9f7e content"><template bindconfirmResult="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'0'], $root, $for:{default:'data-v-458c9f7e-default-0',icon:'data-v-458c9f7e-icon-0'},$slotdefault:'data-v-458c9f7e-default-0',$sloticon:'data-v-458c9f7e-icon-0'}}" is="60ff0454"></template>
+    <view class="_div data-v-458c9f7e main">
+      <i-cell-group i-class="main-border" class="_i-cell-group data-v-458c9f7e">
+        <i-cell title="{{val.title}}" label="{{val.address}}" wx:key="index" key="{{index}}" bindtap="handleProxy" data-eventid="{{'1_'+index}}" data-comkey="{{$k}}" wx:for="{{searchArray}}" wx:for-index="index" wx:for-item="val" class="_i-cell data-v-458c9f7e"></i-cell>
+      </i-cell-group>
+    </view>
+  </view>
+</template>
