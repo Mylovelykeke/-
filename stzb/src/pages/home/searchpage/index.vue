@@ -17,7 +17,7 @@ export default {
     methods:{
         search(val){
             wx.navigateTo({
-                url:'/pages/showdetail/main?search='+val,
+                url:'/pages/home/showdetail/main?search='+val,
             })
         }
     }

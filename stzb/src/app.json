@@ -1,20 +1,21 @@
 {
   "pages": [
     "pages/home/main",
-    "pages/showdetail/main",
-    "pages/searchpage/main",
-    "pages/write/main",
-    "pages/search/main",
+    "pages/home/write/main",
+    "pages/report/main",
+    "pages/common_item_detail/main",
+    "pages/searchlocation/main",
+    "pages/home/details/main",
+    "pages/home/searchpage/main",
+    "pages/home/showdetail/main",
     "pages/msg/systeminfo/main",
     "pages/msg/likeinfo/main",
     "pages/mine/main",
     "pages/mine/communities/main",
-    "pages/details/main",
     "pages/mine/post/main",
     "pages/mine/contactme/main",
     "pages/msg/main",
-    "pages/mine/favorite/main",
-    "pages/common_item_detail/main"
+    "pages/mine/favorite/main"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -26,8 +26,10 @@
         </div>
       </div>
       <div class="footer" v-if="footer">
-        <div>
-          <i class="iconfont icon-share"></i>
+        <div class="btn">
+          <button open-type='share'>
+             <i class="iconfont icon-share" style="font-size:22px"></i>
+          </button>
           <i class="iconfont icon-xx"></i>
           <i class="iconfont icon-qita"></i>
         </div>
@@ -62,6 +64,9 @@
     methods: {
       ViewDetail() {
         this.$emit('getViewDetail', '调用url')
+      },
+      share(){
+         this.$emit('getViewShare', '调用url')
       }
     }
   }

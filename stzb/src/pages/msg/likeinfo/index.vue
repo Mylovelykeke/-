@@ -63,7 +63,7 @@ export default {
     methods:{
       handleItem(){
         wx.navigateTo({
-            url:"/pages/details/main"
+            url:"/pages/home/details/main"
         })
       }
     }

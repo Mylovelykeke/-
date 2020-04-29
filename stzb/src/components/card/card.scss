@@ -5,10 +5,12 @@
     padding: 10px;
     margin: 5px 0;
     box-sizing: border-box;
+    box-shadow: 0 1px 2px #cfcfcf;
     background-color: white;
     .card-title{
         font-weight: bolder;
-        line-height: 20px;
+        font-size: 16px;
+        line-height: 30px;
     }
     .card-main{
         .card-ide{
@@ -16,7 +18,7 @@
             img{
                 width: 25px;
                 height: 25px;
-                border-radius: 50%;
+                border-radius: 50%; 
                 vertical-align: top;
             }
             p{
@@ -50,15 +52,33 @@
     line-height: 32px;
     justify-content: space-between;
     div{
-      i{
-        letter-spacing:20px;
-        font-size: 22px;
-        display: inline-block;
-      }
-      i:last-child{
-          font-size: 16px;
-          color: #666666;
-      }
+        &.btn{
+            display: flex;
+            align-items:flex-start; 
+        }
+        button{
+            position: static;
+            background-color: white;
+            // overflow: visible;
+            padding: 0;
+            line-height:30px;
+            i{
+                font-size:22px;
+            }
+        }
+        button:after {
+            width: 0;
+            height: 0;
+        } 
+        i{
+            letter-spacing:20px;
+            font-size: 22px;
+            display: inline-block;
+        }
+        i:last-child{
+            font-size: 16px;
+            color: #666666;
+        }
     }
     div:last-child{
         font-size: 12px;

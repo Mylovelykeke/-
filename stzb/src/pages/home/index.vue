@@ -45,7 +45,7 @@
         </swiper-item>
       </swiper> -->
       <div v-if="current==0">
-        <vue-card @getViewDetail="getViewDetail"  :content='content' />
+        <vue-card @getViewDetail="getViewDetail" @getViewShare='OnclickShare' :content='content' />
       </div>
       <div v-else-if="current==1">
         <vue-card @getViewDetail="getViewDetail" />
@@ -69,9 +69,7 @@
           name: '丁香医生',
           avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai'
         },
-        ImgArray:[{
-          url:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587399769120&di=ea07b7cd3e84d194881f99db45caafb4&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn05%2F137%2Fw602h335%2F20181101%2F35fd-hnfikve0635159.jpg'
-        }],
+        ImgArray:[],
         title: '安静速度快快的经开是哪个出售！！！！！',
         brief: 'tip: 如果在 bindchange 的事件回调函数中使用 setData 改变 current 值，则有可能导致 setData 被不停地调用，因而通常情况下请在改变 current 值前检测 source 字段来判断是否是由于用户触摸引起。'
       }
@@ -174,18 +172,49 @@
       },
       getViewDetail() {
         wx.navigateTo({
-          url: "/pages/details/main",
+          url: "/pages/home/details/main",
         })
       },
       OnReleaseArticle(){
         wx.navigateTo({
-          url: "/pages/write/main",
+          url: "/pages/home/write/main",
         })
       },
       showInput(){
         wx.navigateTo({
-          url: "/pages/searchpage/main",
+          url: "/pages/home/searchpage/main",
         })
+      },
+      OnclickShare(){
+        this.onShareAppMessage()
+      }
+    },
+    onShareAppMessage(){
+      console.log(11111111)
+      let that =this;
+      return {
+        title: '简直走别拐弯', // 转发后 所显示的title
+        path: "/pages/home/details/main", // 相对的路径
+        success: (res)=>{    // 成功后要做的事情
+          console.log(res.shareTickets[0])
+          // console.log
+        
+          wx.getShareInfo({
+            shareTicket: res.shareTickets[0],
+            success: (res)=> { 
+              that.setData({
+                isShow:true
+              }) 
+              console.log(that.setData.isShow)
+            },
+            fail: function (res) { console.log(res) },
+            complete: function (res) { console.log(res) }
+          })
+        },
+        fail: function (res) {
+          // 分享失败
+          console.log(res)
+        }
       }
     }
   }

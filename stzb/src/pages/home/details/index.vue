@@ -75,7 +75,7 @@
                 <i class="iconfont icon-youjiantou"></i>
             </div>
             <span>若房东向您索要中介费，你可举报！</span>
-            <div class="report">
+            <div class="report" @click="OnclickReport"> 
                 <i class="iconfont icon-jubao"></i>
                 <span>举报</span>
             </div>
@@ -115,10 +115,10 @@ export default {
             duration: 500,
             images: [
                 {
-                url:'../../static/images/fz.jpg'
+                url:'../../../static/images/fz.jpg'
                 },
                 {
-                url:'../../static/images/fz.jpg'
+                url:'../../../static/images/fz.jpg'
                 }
             ],
             num:'356人',
@@ -159,6 +159,11 @@ export default {
         commonentItem
      },
      methods:{
+         OnclickReport(){
+            wx.navigateTo({
+                url:"/pages/report/main"
+            })
+         },
          back(){
             wx.navigateBack({
                 delta:1

@@ -26,7 +26,7 @@
     <wx-imgPicker :imgList='ImgArray'/>
     <div>
         <i-cell-group>
-            <i-cell title="位置" :value='val.title' is-link  url="/pages/search/main"></i-cell>
+            <i-cell title="位置" :value='val.title' is-link  url="/pages/searchlocation/main"></i-cell>
         </i-cell-group>
     </div>
     </div>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import WxImgPicker from '../../components/imgPicker' 
+import WxImgPicker from '../../../components/imgPicker' 
 export default {
     components:{
         WxImgPicker
