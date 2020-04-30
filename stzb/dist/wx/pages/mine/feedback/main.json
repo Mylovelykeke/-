@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "反馈详情",
+    "usingComponents": {
+       "i-button": "../../static/dist/button/index"
+    }
+  }
+  

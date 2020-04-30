@@ -55,7 +55,7 @@
             <i class="iconfont icon-lianxikefu"></i>
           </div>
         </i-cell>
-        <i-cell title="意见反馈" is-link>
+        <i-cell title="意见反馈" is-link url="/pages/mine/feedback/main">
           <div slot="icon">
             <i class="iconfont icon-yijianfankui"></i>
           </div>

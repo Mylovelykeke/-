@@ -42,7 +42,7 @@
             <view class="_i data-v-19006a74 iconfont icon-lianxikefu"></view>
           </view>
         </i-cell>
-        <i-cell title="意见反馈" is-link class="_i-cell data-v-19006a74">
+        <i-cell title="意见反馈" is-link url="/pages/mine/feedback/main" class="_i-cell data-v-19006a74">
           <view slot="icon" class="_div data-v-19006a74">
             <view class="_i data-v-19006a74 iconfont icon-yijianfankui"></view>
           </view>

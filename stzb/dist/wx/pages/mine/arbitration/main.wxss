@@ -12,13 +12,17 @@
   font-size: 28rpx;
   color: #666;
 }
+.header .icon-qiehuan.data-v-8ec56d38 {
+  display: inline-block;
+}
 .content.data-v-8ec56d38 {
   padding: 20rpx;
 }
 .content .main.data-v-8ec56d38 {
-  padding: 40rpx 20rpx;
+  padding: 40rpx 20rpx 20rpx 20rpx;
   background-color: white;
   border-radius: 10rpx;
+  margin-bottom: 20rpx;
 }
 .content .main .title.data-v-8ec56d38 {
   font-size: 28rpx;
@@ -59,4 +63,26 @@
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
+}
+.content .main .pro_text.data-v-8ec56d38 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20rpx;
+  font-weight: bold;
+}
+.content .main .pro_text.data-v-8ec56d38 :first-child {
+  color: #3385ff;
+}
+.content .main .pro_text.data-v-8ec56d38 :last-child {
+  color: red;
+}
+.content .main .footer.data-v-8ec56d38 {
+  font-size: 28rpx;
+  text-align: center;
+  padding: 20rpx;
+  font-weight: bold;
+  color: #54566b;
+}
+.content .main .footer ._i.data-v-8ec56d38 {
+  display: inline-block;
 }

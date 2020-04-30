@@ -3,9 +3,9 @@
     <view class="_div data-v-38482dac content">
       <view class="_div data-v-38482dac arb">
         <i-cell-group i-class="arb" class="_i-cell-group data-v-38482dac">
-          <i-cell title="仲裁大厅" url="/pages/mine/arbitration/main" value="举报处罚管理" is-link class="_i-cell data-v-38482dac">
-            <view slot="icon" class="_div data-v-38482dac">
-              <view class="_i data-v-38482dac iconfont icon-dianhua"></view>
+          <i-cell i-class="arbtext" title="仲裁大厅" url="/pages/mine/arbitration/main" value="举报处罚管理" is-link class="_i-cell data-v-38482dac">
+            <view class="_div data-v-38482dac arb-img" slot="icon">
+              <image width="30" src="/static/images/wg.png" alt class="_img data-v-38482dac"></image>
             </view>
           </i-cell>
         </i-cell-group>

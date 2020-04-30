@@ -4,9 +4,9 @@
         <div  class="content">
             <div class="arb">
                 <i-cell-group i-class='arb' >
-                    <i-cell  title="仲裁大厅" url="/pages/mine/arbitration/main" value='举报处罚管理' is-link>
-                        <div slot='icon'>
-                            <i class="iconfont icon-dianhua"></i>
+                    <i-cell i-class='arbtext'  title="仲裁大厅" url="/pages/mine/arbitration/main" value='举报处罚管理' is-link>
+                        <div class='arb-img' slot='icon'>
+                            <img width="30" src="../../../../static/images/wg.png" alt="">
                         </div>
                     </i-cell>
                 </i-cell-group>

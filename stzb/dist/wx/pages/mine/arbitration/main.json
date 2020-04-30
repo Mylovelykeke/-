@@ -1,7 +1,7 @@
 {
     "navigationBarTitleText": "仲裁大厅",
     "usingComponents": {
-
+      "i-progress": "../../static/dist/progress/index"
     }
   }
   

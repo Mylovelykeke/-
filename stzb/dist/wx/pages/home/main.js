@@ -1,15 +1,15 @@
 require("../../common/manifest.js")
 require("../../common/vendor.js")
-global.webpackJsonpMpvue([17],{
+global.webpackJsonpMpvue([19],{
 
-/***/ 105:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(107);
 
 
 
@@ -18,16 +18,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 106:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_3f0bfc00_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_3f0bfc00_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(113);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(107)
+  __webpack_require__(108)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -72,18 +72,23 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 107:
+/***/ 108:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 108:
+/***/ 109:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_card_card__ = __webpack_require__(16);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -191,6 +196,43 @@ if (false) {(function () {
         },
         title: '中国水水倒萨大零秒十六点三顶顶顶顶顶了多少水水水水水水水水水水水水',
         brief: '的撒顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你的撒顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你'
+      }],
+      list: [{
+        avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
+        username: '大黄和搭勾',
+        extra: '赞了我的帖子',
+        title: '南京地区哪儿有租房子的呀',
+        content: '是的撒大苏打大苏打u回到家撒会卡顿是多少空间狄拉克111111111111111111111111111111111111111就'
+      }, {
+        avatar: 'https://i.loli.net/2017/08/21/599a521472424.jpg',
+        username: '大黄和搭勾',
+        extra: '赞了我的帖子',
+        title: '南京地区哪儿有租房子的呀',
+        content: '是的撒大苏打大苏打u回到家撒会卡顿是多少空间狄拉克就'
+      }, {
+        avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
+        username: '大黄和搭勾',
+        extra: '赞了我的回复',
+        title: '南京地区哪儿有租房子的呀',
+        content: '垃圾垃圾的东西'
+      }, {
+        avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
+        username: '大黄和搭勾',
+        extra: '赞了我的帖子',
+        title: '南京地区哪儿有租房子的呀',
+        content: '是的撒大苏打大苏打u回到家撒会卡顿是多少空间狄拉克111111111111111111111111111111111111111就'
+      }, {
+        avatar: 'https://i.loli.net/2017/08/21/599a521472424.jpg',
+        username: '大黄和搭勾',
+        extra: '赞了我的帖子',
+        title: '南京地区哪儿有租房子的呀',
+        content: '是的撒大苏打大苏打u回到家撒会卡顿是多少空间狄拉克就'
+      }, {
+        avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
+        username: '大黄和搭勾',
+        extra: '赞了我的回复',
+        title: '南京地区哪儿有租房子的呀',
+        content: '垃圾垃圾的东西'
       }]
     };
   },
@@ -309,7 +351,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 112:
+/***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -379,15 +421,34 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "getViewDetail": _vm.getViewDetail,
       "getViewShare": _vm.OnclickShare
     }
-  })], 1) : (_vm.current == 1) ? _c('div', [_c('vue-card', {
-    attrs: {
-      "eventid": '3',
-      "mpcomid": '5'
-    },
-    on: {
-      "getViewDetail": _vm.getViewDetail
-    }
-  })], 1) : _vm._e()]), _vm._v(" "), _c('div', {
+  })], 1) : (_vm.current == 1) ? _c('div', _vm._l((_vm.list), function(val, index) {
+    return _c('div', {
+      key: index,
+      staticClass: "headstream"
+    }, [_c('i-card', {
+      attrs: {
+        "i-class": "card-small",
+        "full": true,
+        "title": val.username,
+        "thumb": val.avatar,
+        "eventid": '3_' + index,
+        "mpcomid": '5_' + index
+      },
+      on: {
+        "click": function($event) {
+          _vm.handleItem(val)
+        }
+      }
+    }, [_c('view', {
+      staticStyle: {
+        "font-weight": "bold"
+      },
+      slot: "content"
+    }, [_vm._v(_vm._s(val.title))]), _vm._v(" "), _c('view', {
+      staticClass: "footer",
+      slot: "footer"
+    }, [_vm._v(_vm._s(val.content))])])], 1)
+  })) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "publish",
     attrs: {
       "eventid": '4'
@@ -412,4 +473,4 @@ if (false) {
 
 /***/ })
 
-},[105]);
+},[106]);

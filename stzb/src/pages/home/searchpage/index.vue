@@ -16,7 +16,7 @@ export default {
     },
     methods:{
         search(val){
-            wx.navigateTo({
+            wx.redirectTo({
                 url:'/pages/home/showdetail/main?search='+val,
             })
         }

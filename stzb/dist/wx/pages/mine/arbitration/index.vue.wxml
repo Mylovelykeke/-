@@ -1,8 +1,10 @@
 <template name="118aada6">
   <view class="_div data-v-8ec56d38">
-    <view class="_div data-v-8ec56d38 header"><label class="_span data-v-8ec56d38">仲裁大厅</label> <label class="_span data-v-8ec56d38">切换至最新</label></view>
+    <view class="_div data-v-8ec56d38 header"><label class="_span data-v-8ec56d38">仲裁大厅</label> <label class="_span data-v-8ec56d38">
+        <view class="_i data-v-8ec56d38 iconfont icon-qiehuan"></view> 切换至最新
+      </label></view>
     <view class="_div data-v-8ec56d38 content">
-      <view class="_div data-v-8ec56d38 main">
+      <view class="_div data-v-8ec56d38 main" wx:key="index" key="{{index}}" wx:for="{{10}}" wx:for-index="index" wx:for-item="val">
         <view class="_div data-v-8ec56d38 title">评论被举报为(包含不友善内容)</view>
         <view class="_div data-v-8ec56d38 rep">
           <view class="_div data-v-8ec56d38 img">
@@ -13,8 +15,16 @@
             <view class="_div data-v-8ec56d38 violation"> 实打实的和卡仕达卡仕达看见1111111111111111111111111111哈萨克接电话大苏打实打实大苏打实打实打算 </view>
           </view>
         </view>
+        <view class="_div data-v-8ec56d38">
+          <view class="_div data-v-8ec56d38 pro_text">
+            <view class="_div data-v-8ec56d38">62%不违规</view>
+            <view class="_div data-v-8ec56d38">38%不违规</view>
+          </view>
+          <i-progress percent="25" strokeWidth="12" hide-info class="_i-progress data-v-8ec56d38"></i-progress>
+        </view>
+        <view class="_div data-v-8ec56d38 footer" bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}"> 前往围观 <view class="_i data-v-8ec56d38 iconfont icon-youjiantou"></view>
+        </view>
       </view>
     </view>
-    <view class="_div data-v-8ec56d38"></view>
   </view>
 </template>

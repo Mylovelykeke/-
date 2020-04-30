@@ -67,3 +67,6 @@
   color: white;
   transform: rotate(45deg);
 }
+.headstream.data-v-3f0bfc00 {
+  margin: 10rpx 0;
+}

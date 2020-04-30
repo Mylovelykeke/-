@@ -23,7 +23,14 @@
     </view>
     <view class="_div data-v-3f0bfc00 swiperAuto">
       <view wx:if="{{current==0}}" class="_div data-v-3f0bfc00"><template bindgetViewDetail="handleProxy" bindgetViewShare="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'4'], $root}}" is="f4626190"></template></view>
-      <view wx:elif="{{current==1}}" class="_div data-v-3f0bfc00"><template bindgetViewDetail="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'5'], $root}}" is="f4626190"></template></view>
+      <view wx:elif="{{current==1}}" class="_div data-v-3f0bfc00">
+        <view class="_div data-v-3f0bfc00 headstream" wx:key="index" key="{{index}}" wx:for="{{list}}" wx:for-index="index" wx:for-item="val">
+          <i-card i-class="card-small" full="{{true}}" title="{{val.username}}" thumb="{{val.avatar}}" bindtap="handleProxy" data-eventid="{{'3_'+index}}" data-comkey="{{$k}}" class="_i-card data-v-3f0bfc00">
+            <view slot="content" style="font-weight:bold;" class="_view data-v-3f0bfc00">{{val.title}}</view>
+            <view slot="footer" class="_view data-v-3f0bfc00 footer">{{val.content}}</view>
+          </i-card>
+        </view>
+      </view>
     </view>
     <view class="_div data-v-3f0bfc00 publish" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}">
       <view class="_div data-v-3f0bfc00">

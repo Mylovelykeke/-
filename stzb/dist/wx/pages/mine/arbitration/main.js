@@ -1,15 +1,15 @@
 require("../../../common/manifest.js")
 require("../../../common/vendor.js")
-global.webpackJsonpMpvue([14],{
+global.webpackJsonpMpvue([15],{
 
-/***/ 139:
+/***/ 144:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(145);
 
 
 
@@ -18,16 +18,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 140:
+/***/ 145:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_8ec56d38_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_8ec56d38_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(148);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(141)
+  __webpack_require__(146)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -72,14 +72,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 141:
+/***/ 146:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 142:
+/***/ 147:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -111,28 +111,69 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["a"] = ({});
+/* harmony default export */ __webpack_exports__["a"] = ({
+    methods: {
+        Onlookers: function Onlookers() {
+            wx.navigateTo({
+                url: "/pages/mine/arbitration_item/main"
+            });
+        }
+    }
+});
 
 /***/ }),
 
-/***/ 143:
+/***/ 148:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
     staticClass: "header"
-  }, [_c('span', [_vm._v("仲裁大厅")]), _vm._v(" "), _c('span', [_vm._v("切换至最新")])]), _vm._v(" "), _c('div', {
+  }, [_c('span', [_vm._v("仲裁大厅")]), _vm._v(" "), _c('span', [_c('i', {
+    staticClass: "iconfont icon-qiehuan"
+  }), _vm._v("\n            切换至最新\n        ")], 1)]), _vm._v(" "), _c('div', {
     staticClass: "content"
-  }, [_c('div', {
-    staticClass: "main"
-  }, [_c('div', {
-    staticClass: "title"
-  }, [_vm._v("评论被举报为(包含不友善内容)")]), _vm._v(" "), _c('div', {
+  }, _vm._l((10), function(val, index) {
+    return _c('div', {
+      key: index,
+      staticClass: "main"
+    }, [_c('div', {
+      staticClass: "title"
+    }, [_vm._v("评论被举报为(包含不友善内容)")]), _vm._v(" "), _vm._m(0, true), _vm._v(" "), _c('div', [_vm._m(1, true), _vm._v(" "), _c('i-progress', {
+      attrs: {
+        "percent": "25",
+        "strokeWidth": "12",
+        "hide-info": "",
+        "mpcomid": '0_' + index
+      }
+    })], 1), _vm._v(" "), _c('div', {
+      staticClass: "footer",
+      attrs: {
+        "eventid": '0_' + index
+      },
+      on: {
+        "click": _vm.Onlookers
+      }
+    }, [_vm._v(" \n                前往围观\n                "), _c('i', {
+      staticClass: "iconfont icon-youjiantou"
+    })], 1)])
+  }))])
+}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "rep"
   }, [_c('div', {
     staticClass: "img"
@@ -147,7 +188,11 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
     staticClass: "author"
   }, [_vm._v("大肆夸奖打瞌睡的卡上")]), _vm._v(" "), _c('div', {
     staticClass: "violation"
-  }, [_vm._v("\n                     实打实的和卡仕达卡仕达看见1111111111111111111111111111哈萨克接电话大苏打实打实大苏打实打实打算\n                   ")])])])])]), _vm._v(" "), _c('div', {})])
+  }, [_vm._v("\n                     实打实的和卡仕达卡仕达看见1111111111111111111111111111哈萨克接电话大苏打实打实大苏打实打实打算\n                   ")])])])
+},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "pro_text"
+  }, [_c('div', [_vm._v("62%不违规")]), _vm._v(" "), _c('div', [_vm._v("38%不违规")])])
 }]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
@@ -161,4 +206,4 @@ if (false) {
 
 /***/ })
 
-},[139]);
+},[144]);

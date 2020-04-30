@@ -1,12 +1,15 @@
 @import "../../common/vendor.wxss";
 
 .main.data-v-ce39e26c {
-  background-color: white;
+  padding-bottom: 120rpx;
 }
 .main .responder.data-v-ce39e26c {
-  padding: 20rpx;
+  margin-bottom: 20rpx;
+  padding: 0 20rpx;
+  background-color: white;
   box-shadow: 0 20rpx 0 #f1f1f1;
 }
 .main .reviewers.data-v-ce39e26c {
-  padding: 40rpx 20rpx 120rpx 20rpx;
+  background-color: white;
+  padding: 20rpx 20rpx 40rpx 20rpx;
 }

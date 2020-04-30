@@ -2,10 +2,13 @@
     <div>
         <div class="header">
             <span>仲裁大厅</span>
-            <span>切换至最新</span>
+            <span>
+                <i class="iconfont icon-qiehuan"></i>
+                切换至最新
+            </span>
         </div>
         <div class="content">
-            <div class="main"> 
+            <div class="main" v-for="(val,index) in 10" :key="index"> 
                 <div class="title">评论被举报为(包含不友善内容)</div>
                 <div class="rep">
                     <div class="img">
@@ -18,17 +21,31 @@
                        </div>
                     </div>
                 </div>
+                <div>
+                    <div class="pro_text">
+                        <div>62%不违规</div>
+                        <div>38%不违规</div>
+                    </div>
+                    <i-progress percent="25"  strokeWidth='12' hide-info></i-progress>
+                </div>
+                <div class="footer" @click="Onlookers"> 
+                    前往围观
+                    <i class="iconfont icon-youjiantou"></i>
+                </div>
             </div>
-        </div>
-        <div class="">
-
         </div>
     </div>
 </template>
 
 <script>
 export default {
-
+    methods:{
+        Onlookers(){
+            wx.navigateTo({
+                url:"/pages/mine/arbitration_item/main"
+            })
+        }
+    }
 }
 </script>
 

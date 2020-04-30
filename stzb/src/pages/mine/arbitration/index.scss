@@ -9,13 +9,17 @@
         font-size: 14px;
         color: #666;
     }
+    .icon-qiehuan{
+        display: inline-block;
+    }
 }
 .content{
     padding: 10px;
     .main{
-        padding: 20px 10px;
+        padding: 20px 10px 10px 10px;
         background-color: white;
         border-radius: 5px;
+        margin-bottom: 10px;
         .title{
             font-size: 14px;
             font-weight: bolder;
@@ -54,6 +58,28 @@
                     text-overflow: ellipsis;
                     -webkit-box-orient: vertical;
                 }
+            }
+        }
+        .pro_text{
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: bold;
+            :first-child{
+                color: #3385ff;
+            }
+            :last-child{
+                color: red;
+            }
+        }
+        .footer{
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            color: #54566b;
+            i{
+                display: inline-block;
             }
         }
     }

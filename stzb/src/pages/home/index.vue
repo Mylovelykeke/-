@@ -48,7 +48,12 @@
         <vue-card @getViewDetail="getViewDetail" @getViewShare='OnclickShare' :content='content' />
       </div>
       <div v-else-if="current==1">
-        <vue-card @getViewDetail="getViewDetail" />
+          <div class="headstream" v-for="(val,index) in list" :key="index">
+            <i-card i-class='card-small' :full='true' :title="val.username"  :thumb="val.avatar" @click="handleItem(val)">
+                <view slot="content" style="font-weight:bold;">{{val.title}}</view>
+                <view slot="footer" class="footer">{{val.content}}</view>
+            </i-card>
+          </div>
       </div>
     </div>
     <!-- 拖拽区域 -->
@@ -109,6 +114,50 @@
             },
             title: '中国水水倒萨大零秒十六点三顶顶顶顶顶了多少水水水水水水水水水水水水',
             brief: '的撒顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你的撒顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你'
+          }
+        ],
+         list:[
+          {
+            avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
+            username:'大黄和搭勾',
+            extra:'赞了我的帖子',
+            title:'南京地区哪儿有租房子的呀',
+            content:'是的撒大苏打大苏打u回到家撒会卡顿是多少空间狄拉克111111111111111111111111111111111111111就'
+          },
+          {
+            avatar: 'https://i.loli.net/2017/08/21/599a521472424.jpg',
+            username:'大黄和搭勾',
+            extra:'赞了我的帖子',
+            title:'南京地区哪儿有租房子的呀',
+            content:'是的撒大苏打大苏打u回到家撒会卡顿是多少空间狄拉克就'
+          },
+          {
+            avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
+            username:'大黄和搭勾',
+            extra:'赞了我的回复',
+            title:'南京地区哪儿有租房子的呀',
+            content:'垃圾垃圾的东西'
+          },
+           {
+            avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
+            username:'大黄和搭勾',
+            extra:'赞了我的帖子',
+            title:'南京地区哪儿有租房子的呀',
+            content:'是的撒大苏打大苏打u回到家撒会卡顿是多少空间狄拉克111111111111111111111111111111111111111就'
+          },
+          {
+            avatar: 'https://i.loli.net/2017/08/21/599a521472424.jpg',
+            username:'大黄和搭勾',
+            extra:'赞了我的帖子',
+            title:'南京地区哪儿有租房子的呀',
+            content:'是的撒大苏打大苏打u回到家撒会卡顿是多少空间狄拉克就'
+          },
+          {
+            avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
+            username:'大黄和搭勾',
+            extra:'赞了我的回复',
+            title:'南京地区哪儿有租房子的呀',
+            content:'垃圾垃圾的东西'
           }
         ]
       }
