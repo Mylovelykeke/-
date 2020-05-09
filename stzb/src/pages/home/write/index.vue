@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="content">
+    <div class="content" id="toast">
         <i-modal :visible='flag' action-mode='vertical' :show-cancel='false' :show-ok='false'>
             <div v-for="(val,index) in actions" class="modalItem" :key="index" @click="handleClick(val)">
                 {{val.name}}
@@ -33,6 +33,7 @@
       <div>
           <i-button  type="primary" size="small" i-class='publish' form-type='submit' @click="edit">发布</i-button>
       </div>
+      <i-message id="message" />
   </div>
 </template>
 
@@ -81,63 +82,46 @@ export default {
             this.val = val
         },
         edit(){
-            let openid = wx.getStorageSync('openid')
+            if(!this.title){
+                this.$Message({
+                    content: '至少输入文章标题',
+                    type: 'warning',
+                });
+                return
+            }
+            if(this.content.length<15){
+                this.$Message({
+                    content: '至少输入15个字',
+                    type: 'warning',
+                });
+                return
+            }
+            let files =''
+            if (Array.isArray(this.ImgArray)) {
+                try {
+                    files = this.ImgArray.map((t) => t.id).join(',');
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            let openid = '11111111111111111111'
             this.$httpWX.post({
-                url: 'http://localhost:3000/articles/edit',
+                url: 'http://localhost:4000/api/article',
                 data: {
                     'openid': openid,
-                    "type":this.name,
+                    "summary":this.name,
                     'title': this.title,
                     'content': this.content,
-                    'locationinfo': this.val
+                    'locationinfo': this.val,
+                    'files':files
                 },
             }).then(res => {
                 if(res.code == 0){
-                    if(this.ImgArray.length>0){
-                        this.upLoad(this.ImgArray,0,this.ImgArray.length,res.data.articleid)
-                    }
+                   
                 }
             })
         },
-        upLoad(imgPath,i,upLength,articleid){
-            let that = this;
-            //上传文件
-            wx.uploadFile({
-                url: 'http://localhost:3000/articles/upload',
-                filePath: imgPath[i].url,
-                name: 'file',
-                formData: {
-                    method: 'POST',  //请求方式
-                    articleid:articleid
-                },
-                success: function (res) {
-                    console.log('上传成功' + i);
-                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-                // that.files = that.files.concat(imgPath[i]);		//合并图片显示数组
-                // let imgData = JSON.parse(res.data);
-                // that.upImg.push(imgData.data);
-                    console.log(res,'???????');
-                },
-                fail: function (res) {
-                    console.log(res);
-                    // wx.hideLoading();
-                    // wx.showModal({
-                    //     title: '错误提示',
-                    //     content: '上传图片失败',
-                    //     showCancel: false,
-                    //     success: function (res) { }
-                    // })
-                },
-                complete: function(){
-                    i++;
-                    if(i == upLength){
-                        wx.hideLoading();    //上传结束，隐藏loading
-                    }else{
-                        that.upLoad(imgPath,i,upLength,articleid)
-                    }
-                }
-            });
-        },
+        
     },
     mounted(){
         this.name = this.actions[0].name

@@ -5,6 +5,7 @@
         "i-notice-bar": "../../static/dist/notice-bar/index",
         "i-tabs": "../../static/dist/tabs/index",
         "i-tab": "../../static/dist/tab/index",
-        "i-card": "../../static/dist/card/index"
+        "i-card": "../../static/dist/card/index",
+        "i-message": "../../static/dist/message/index"
     }
 }

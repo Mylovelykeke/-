@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/home/write/main",
     "pages/home/main",
     "pages/common_item_detail/main",
     "pages/mine/main",
-    "pages/home/write/main",
     "pages/mine/feedback/main",
     "pages/mine/arbitration/main",
     "pages/mine/arbitration_item/main",
@@ -73,5 +73,5 @@
     ],
     "position": "bottom"
   },
-  "sitemapLocation": "sitemap70.json"
+  "sitemapLocation": "sitemap.json"
 }

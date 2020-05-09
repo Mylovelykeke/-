@@ -74,48 +74,70 @@
           sizeType: self.sizeType,
           sourceType: self.sourceType,
           success: async (res) => {
-            var tempFilePath = self.imgList;
+            
+            let tempFilePath =[];
+            
             for (var i = 0; i < res.tempFilePaths.length; i++) {
               let fileSize = parseInt(res.tempFiles[i].size / 1024)
+              
               if (self.maxSize && res.tempFiles[i] && self.maxSize < fileSize) {
                 let maxSizeStr = self.maxSize + 'kb'
                 if (self.maxSize >= 1024) maxSizeStr = parseFloat((self.maxSize / 1024).toFixed(2)) + "M"
-                wx.showToast({
-                  title: "上传图片不能大于" + maxSizeStr,
-                  icon: 'none',
-                  duration: 2000
-                })
+                  wx.showToast({
+                    title: "上传图片不能大于" + maxSizeStr,
+                    icon: 'none',
+                    duration: 2000
+                  })
+                  
                 return
               }
-
-              if (self.maxWidth || self.maxHeight) {
-                let tempInfo = await self.getImageInfo(res.tempFilePaths[i])
-                if (self.maxWidth && tempInfo.width > self.maxWidth) {
-                  wx.showToast({
-                    title: "上传图片宽度不能大于" + self.maxWidth + "px",
-                    icon: 'none',
-                    duration: 2000
-                  })
-                  return
-                }
-                if (self.maxHeight && tempInfo.height > self.maxHeight) {
-                  wx.showToast({
-                    title: "上传图片高度不能大于" + self.maxHeight + "px",
-                    icon: 'none',
-                    duration: 2000
-                  })
-                  return
-                }
-              }
-
               tempFilePath.push({
-                url: res.tempFilePaths[i]
-              });
+                  url: res.tempFilePaths[i]
+              });   
             }
-            // self.imgList = tempFilePath
-            console.log(self.imgList)
+            
+            self.upLoad(tempFilePath,0,tempFilePath.length)
           }
         })
+      },
+      upLoad(imgPath,i,upLength){
+            let that = this;
+            //上传文件
+            wx.uploadFile({
+                url: 'http://localhost:4000/api/file/upload',
+                filePath: imgPath[i].url,
+                name: 'file',
+                formData: {
+                    method: 'POST',  //请求方式
+                },
+                success: function (res) {
+                    console.log('上传成功' + i);
+                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                // that.files = that.files.concat(imgPath[i]);		//合并图片显示数组
+                  let imgData = JSON.parse(res.data);
+                // that.upImg.push(imgData.data);
+                   that.imgList.push(imgData.data)
+                   console.log(that.imgList)
+                },
+                fail: function (res) {
+                    console.log(res);
+                    wx.hideLoading();
+                    wx.showModal({
+                        title: '错误提示',
+                        content: '上传图片失败',
+                        showCancel: false,
+                        success: function (res) { }
+                    })
+                },
+                complete: function(){
+                    i++;
+                    if(i == upLength){
+                        wx.hideLoading();    //上传结束，隐藏loading
+                    }else{
+                        that.upLoad(imgPath,i,upLength)
+                    }
+                }
+            });
       },
       previewImage(item, index) {
         if (this.preview) {

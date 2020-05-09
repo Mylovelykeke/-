@@ -74,7 +74,9 @@
           name: '丁香医生',
           avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai'
         },
-        ImgArray:[],
+        ImgArray:[{
+          url:'http://localhost:4000/public/7.png'
+        }],
         title: '安静速度快快的经开是哪个出售！！！！！',
         brief: 'tip: 如果在 bindchange 的事件回调函数中使用 setData 改变 current 值，则有可能导致 setData 被不停地调用，因而通常情况下请在改变 current 值前检测 source 字段来判断是否是由于用户触摸引起。'
       }

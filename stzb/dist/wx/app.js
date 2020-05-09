@@ -14,6 +14,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_iconfont_iconfont_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__static_iconfont_iconfont_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_wx_request__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_bus__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__static_dist_base_index__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__static_dist_base_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__static_dist_base_index__);
 
 
 
@@ -22,9 +24,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.prototype.$bus = __WEBPACK_IMPORTED_MODULE_4__utils_bus__["a" /* default */];
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.prototype.$httpWX = __WEBPACK_IMPORTED_MODULE_3__utils_wx_request__["a" /* default */];
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.prototype.$Message = __WEBPACK_IMPORTED_MODULE_5__static_dist_base_index__["$Message"];
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
 __WEBPACK_IMPORTED_MODULE_1__App__["a" /* default */].mpType = 'app';
-
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a(__WEBPACK_IMPORTED_MODULE_1__App__["a" /* default */]);
 app.$mount();
 
@@ -198,6 +200,50 @@ function post(obj) {
 
 var Bus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 /* harmony default export */ __webpack_exports__["a"] = (Bus);
+
+/***/ }),
+
+/***/ 86:
+/***/ (function(module, exports) {
+
+function getCtx (selector) {
+    const pages = getCurrentPages();
+    const ctx = pages[pages.length - 1];
+
+    const componentCtx = ctx.selectComponent(selector);
+
+    if (!componentCtx) {
+        console.error('无法找到对应的组件，请按文档说明使用组件');
+        return null;
+    }
+    return componentCtx;
+}
+
+function Toast(options) {
+    const { selector = '#toast' } = options;
+    console.log(options)
+    const ctx = getCtx(selector);
+
+    ctx.handleShow(options);
+}
+
+Toast.hide = function (selector = '#toast') {
+    const ctx = getCtx(selector);
+
+    ctx.handleHide();
+};
+
+function Message(options) {
+    const { selector = '#message' } = options;
+    const ctx = getCtx(selector);
+
+    ctx.handleShow(options);
+}
+
+module.exports = {
+    $Toast: Toast,
+    $Message: Message
+};
 
 /***/ })
 

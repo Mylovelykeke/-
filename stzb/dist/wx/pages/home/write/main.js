@@ -2,14 +2,14 @@ require("../../../common/manifest.js")
 require("../../../common/vendor.js")
 global.webpackJsonpMpvue([16],{
 
-/***/ 127:
+/***/ 128:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(129);
 
 
 
@@ -18,16 +18,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 128:
+/***/ 129:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_7d3df560_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_7d3df560_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(139);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(129)
+  __webpack_require__(130)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -72,18 +72,19 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 129:
+/***/ 130:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 130:
+/***/ 131:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_imgPicker__ = __webpack_require__(42);
+//
 //
 //
 //
@@ -168,63 +169,43 @@ if (false) {(function () {
             this.val = val;
         },
         edit: function edit() {
-            var _this2 = this;
-
-            var openid = wx.getStorageSync('openid');
+            if (!this.title) {
+                this.$Message({
+                    content: '至少输入文章标题',
+                    type: 'warning'
+                });
+                return;
+            }
+            if (this.content.length < 15) {
+                this.$Message({
+                    content: '至少输入15个字',
+                    type: 'warning'
+                });
+                return;
+            }
+            var files = '';
+            if (Array.isArray(this.ImgArray)) {
+                try {
+                    files = this.ImgArray.map(function (t) {
+                        return t.id;
+                    }).join(',');
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            var openid = '11111111111111111111';
             this.$httpWX.post({
-                url: 'http://localhost:3000/articles/edit',
+                url: 'http://localhost:4000/api/article',
                 data: {
                     'openid': openid,
-                    "type": this.name,
+                    "summary": this.name,
                     'title': this.title,
                     'content': this.content,
-                    'locationinfo': this.val
+                    'locationinfo': this.val,
+                    'files': files
                 }
             }).then(function (res) {
-                if (res.code == 0) {
-                    if (_this2.ImgArray.length > 0) {
-                        _this2.upLoad(_this2.ImgArray, 0, _this2.ImgArray.length, res.data.articleid);
-                    }
-                }
-            });
-        },
-        upLoad: function upLoad(imgPath, i, upLength, articleid) {
-            var that = this;
-            //上传文件
-            wx.uploadFile({
-                url: 'http://localhost:3000/articles/upload',
-                filePath: imgPath[i].url,
-                name: 'file',
-                formData: {
-                    method: 'POST', //请求方式
-                    articleid: articleid
-                },
-                success: function success(res) {
-                    console.log('上传成功' + i);
-                    // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-                    // that.files = that.files.concat(imgPath[i]);		//合并图片显示数组
-                    // let imgData = JSON.parse(res.data);
-                    // that.upImg.push(imgData.data);
-                    console.log(res, '???????');
-                },
-                fail: function fail(res) {
-                    console.log(res);
-                    // wx.hideLoading();
-                    // wx.showModal({
-                    //     title: '错误提示',
-                    //     content: '上传图片失败',
-                    //     showCancel: false,
-                    //     success: function (res) { }
-                    // })
-                },
-                complete: function complete() {
-                    i++;
-                    if (i == upLength) {
-                        wx.hideLoading(); //上传结束，隐藏loading
-                    } else {
-                        that.upLoad(imgPath, i, upLength, articleid);
-                    }
-                }
+                if (res.code == 0) {}
             });
         }
     },
@@ -235,13 +216,16 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 138:
+/***/ 139:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
-    staticClass: "content"
+    staticClass: "content",
+    attrs: {
+      "id": "toast"
+    }
   }, [_c('i-modal', {
     attrs: {
       "visible": _vm.flag,
@@ -350,7 +334,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "click": _vm.edit
     }
-  }, [_vm._v("发布")])], 1)])
+  }, [_vm._v("发布")])], 1), _vm._v(" "), _c('i-message', {
+    attrs: {
+      "id": "message",
+      "mpcomid": '5'
+    }
+  })], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -365,4 +354,4 @@ if (false) {
 
 /***/ })
 
-},[127]);
+},[128]);
