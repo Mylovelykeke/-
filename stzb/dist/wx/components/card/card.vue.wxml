@@ -1,4 +1,4 @@
-<template name="f4626190">
+<template name="11cfbf3a">
   <view class="_div data-v-1d4bba29">
     <view class="_div data-v-1d4bba29 content" wx:key="index" key="{{index}}" wx:for="{{content}}" wx:for-index="index" wx:for-item="val">
       <view bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}" class="_div data-v-1d4bba29">
@@ -7,18 +7,18 @@
         </view>
         <view class="_div data-v-1d4bba29 card-main">
           <view class="_div data-v-1d4bba29 card-ide" wx:if="{{userflag}}">
-            <image src="{{val.userInfo.avatar}}" alt class="_img data-v-1d4bba29"></image>
+            <image src="{{val.userInfo&&val.userInfo.avatar || 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai'}}" alt class="_img data-v-1d4bba29"></image>
             <view class="_p data-v-1d4bba29">
-              {{val.userInfo.name}}
+              {{val.userInfo&&val.userInfo.name || '访客'}}
             </view>
             <view class="_div data-v-1d4bba29"></view>
           </view>
-          <view class="_div data-v-1d4bba29 showImg" wx:if="{{val.ImgArray.length>0}}">
-            <image src="{{val.ImgArray[0].url}}" mode="heightFix" alt class="_img data-v-1d4bba29"></image>
+          <view class="_div data-v-1d4bba29 showImg" wx:if="{{val.files.length>0}}">
+            <image src="{{val.files[0].url}}" mode="heightFix" alt class="_img data-v-1d4bba29"></image>
           </view>
           <view class="_div data-v-1d4bba29 card-msg">
             <view class="_div data-v-1d4bba29">
-              {{val.brief}}
+              {{val.content}}
             </view>
           </view>
         </view>
@@ -31,7 +31,7 @@
           <view class="_i data-v-1d4bba29 iconfont icon-qita"></view>
         </view>
         <view class="_div data-v-1d4bba29">
-          {{val.time}}
+          {{val.createAt}}
         </view>
       </view>
     </view>

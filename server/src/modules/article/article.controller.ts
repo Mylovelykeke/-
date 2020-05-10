@@ -33,7 +33,7 @@ export class ArticleController {
    * 创建文章
    * @param article
    */
-  @Post()
+  @Post('created')
   // @Roles('admin')
   // @UseGuards(JwtAuthGuard)
   create(@Body() article) {
@@ -46,6 +46,7 @@ export class ArticleController {
   @Get()
   @HttpCode(HttpStatus.OK)
   findAll(@Query() queryParams) {
+    console.log(1)
     return this.articleService.findAll(queryParams);
   }
 
@@ -91,6 +92,7 @@ export class ArticleController {
    */
   @Get(':id')
   async findById(@Request() req, @Param('id') id, @Query('status') status) {
+    console.log(id)
     let token = req.headers.authorization;
 
     if (/Bearer/.test(token)) {

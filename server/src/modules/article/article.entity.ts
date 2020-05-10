@@ -12,7 +12,6 @@ import { File } from '../file/file.entity'
 import { Tag } from '../tag/tag.entity';
 import { Category } from '../category/category.entity';
 
-console.log(Tag)
 @Entity()
 export class Article {
   @PrimaryGeneratedColumn('uuid')

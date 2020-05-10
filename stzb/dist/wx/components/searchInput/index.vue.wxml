@@ -1,4 +1,4 @@
-<import src="/components/slots" /><template name="60ff0454">
+<import src="/components/slots" /><template name="3d98d256">
   <view class="_div data-v-1b5191ff"><template name="icon"></template>
     <view class="_div data-v-1b5191ff search-bar">
       <view class="_div data-v-1b5191ff search-address" wx:if="{{region}}">

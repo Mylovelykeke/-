@@ -1,26 +1,26 @@
 <template>
   <div >
     <div class="content" v-for="(val,index) in content" :key="index">
-      <div @click="ViewDetail">
+      <div @click="ViewDetail(val.id)">
         <div class="card-title">
           {{val.title}}
         </div>
         <div class="card-main">
           <div class="card-ide" v-if="userflag">
-            <img :src="val.userInfo.avatar" alt="">
+            <img :src="val.userInfo&&val.userInfo.avatar || 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai'" alt="">
             <p>
-              {{val.userInfo.name}}
+              {{val.userInfo&&val.userInfo.name || '访客'}}
             </p>
             <div>
 
             </div>
           </div>
-          <div class="showImg"  v-if="val.ImgArray.length>0">
-              <img :src="val.ImgArray[0].url" mode='heightFix' alt="">
+          <div class="showImg"  v-if="val.files.length>0">
+              <img :src="val.files[0].url" mode='heightFix' alt="">
           </div>
           <div class="card-msg">
             <div>
-              {{val.brief}}
+              {{val.content}}
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
           <i class="iconfont icon-qita"></i>
         </div>
         <div>
-          {{val.time}}
+          {{val.createAt}}
         </div>
       </div>
     </div>
@@ -62,8 +62,8 @@
       }
     },
     methods: {
-      ViewDetail() {
-        this.$emit('getViewDetail', '调用url')
+      ViewDetail(id) {
+        this.$emit('getViewDetail', id)
       },
       share(){
          this.$emit('getViewShare', '调用url')

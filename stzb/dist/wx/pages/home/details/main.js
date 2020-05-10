@@ -13,9 +13,12 @@ global.webpackJsonpMpvue([2],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_chat_index__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_swiper_index__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_commonent_item_index__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chat_index__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_swiper_index__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_commonent_item_index__ = __webpack_require__(47);
+
 //
 //
 //
@@ -119,56 +122,128 @@ global.webpackJsonpMpvue([2],{
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
         return {
+            hostId: '',
+            parentCommentId: '',
+            focus: false,
+            plaVal: '我也说一句。。。。',
+            replyUserName: '',
+            itemInfo: '',
+            location: '',
             swiper: "swiper",
             payment: '',
             title: '中国水水倒萨大零秒十六点三顶顶顶顶顶了多少水水水水水水水水水水水水',
             userInfo: {
-                name: '丁香医生',
+                name: '访客',
                 avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai'
             },
-            brief: '的撒顶顶顶顶顶顶顶顶顶顶顶顶顶顶             顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你的撒顶顶顶顶顶顶顶顶顶顶顶顶           顶顶顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你',
+            content: '的撒顶顶顶顶顶顶顶顶顶顶顶顶顶顶             顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你的撒顶顶顶顶顶顶顶顶顶顶顶顶           顶顶顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你',
             indicatorDots: false,
             autoplay: false,
             interval: 3000,
             duration: 500,
-            images: [{
+            files: [{
                 url: '../../../static/images/fz.jpg'
             }, {
                 url: '../../../static/images/fz.jpg'
             }],
             num: '356人',
             comment: [{
-                responder: "有毒的黄同学",
-                reviewers: '',
-                time: "2016-08-17",
+                name: "有毒的黄同学",
+                replyUserName: '',
+                createAt: "2016-08-17",
                 content: "好,讲得非常好，good",
-                reply: [{
-                    responder: "有毒的黄同学",
-                    reviewers: "傲娇的",
+                children: [{
+                    name: "有毒的黄同学",
+                    replyUserName: "傲娇的",
                     time: "2016-09-05",
                     content: "你说得对"
                 }, {
-                    responder: "傲娇的",
-                    reviewers: "有毒的黄同学",
+                    name: "傲娇的",
+                    replyUserName: "有毒的黄同学",
                     time: "2016-09-05",
                     content: "很强"
                 }]
             }, {
-                responder: "Freedom小黄",
-                reviewers: '',
-                time: "2016-08-17",
+                name: "Freedom小黄",
+                replyUserName: '',
+                createAt: "2016-08-17",
                 content: "好,讲得非常好，good",
-                reply: []
+                children: []
             }]
         };
     },
 
     components: {
-        ChatCommon: __WEBPACK_IMPORTED_MODULE_0__components_chat_index__["a" /* default */],
-        SwiperImg: __WEBPACK_IMPORTED_MODULE_1__components_swiper_index__["a" /* default */],
-        commonentItem: __WEBPACK_IMPORTED_MODULE_2__components_commonent_item_index__["a" /* default */]
+        ChatCommon: __WEBPACK_IMPORTED_MODULE_1__components_chat_index__["a" /* default */],
+        SwiperImg: __WEBPACK_IMPORTED_MODULE_2__components_swiper_index__["a" /* default */],
+        commonentItem: __WEBPACK_IMPORTED_MODULE_3__components_commonent_item_index__["a" /* default */]
     },
+    onLoad: function onLoad(options) {
+        console.log(options);
+        var hostId = '17c08ec5-6f27-443f-879a-7cf134073272' || options.id;
+        this.OnGetItemDetail(hostId);
+        this.OnGetCommonList(hostId);
+    },
+
     methods: {
+        OnClickReplyName: function OnClickReplyName(val) {
+            console.log(val);
+            this.focus = true;
+            this.replyUserName = val.name;
+            this.plaVal = '@' + val.name;
+            this.parentCommentId = val.id;
+        },
+        sendMsg: function sendMsg(val) {
+            var that = this;
+            this.$httpWX.post({
+                url: 'http://localhost:4000/api/comment',
+                data: {
+                    hostId: that.hostId,
+                    name: '垃圾人呀',
+                    replyUserName: that.replyUserName,
+                    email: '1115796788',
+                    content: val,
+                    parentCommentId: that.parentCommentId,
+                    createByAdmin: true
+                }
+            }).then(function (res) {
+                console.log(res);
+            });
+        },
+        OnGetItemDetail: function OnGetItemDetail(id) {
+            var _this = this;
+
+            this.hostId = id;
+            this.$httpWX.get({
+                url: 'http://localhost:4000/api/article/' + id
+            }).then(function (res) {
+                console.log(res.data);
+                var _res$data = res.data,
+                    title = _res$data.title,
+                    content = _res$data.content,
+                    files = _res$data.files,
+                    locationinfo = _res$data.locationinfo,
+                    createAt = _res$data.createAt;
+
+                _this.itemInfo = res.data;
+                _this.title = title;
+                _this.content = content;
+                _this.files = files;
+                _this.location = JSON.parse(locationinfo);
+            });
+        },
+        OnGetCommonList: function OnGetCommonList(id) {
+            var _this2 = this;
+
+            this.$httpWX.get({
+                url: 'http://localhost:4000/api/comment/host/' + id
+            }).then(function (res) {
+                var _comment;
+
+                console.log(res.data);
+                (_comment = _this2.comment).push.apply(_comment, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(res.data[0]));
+            });
+        },
         OnclickReport: function OnclickReport() {
             wx.navigateTo({
                 url: "/pages/report/main"
@@ -351,7 +426,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "click": _vm.back
     }
-  })], 1), _vm._v(" "), _c('swiper', {
+  })], 1), _vm._v(" "), (_vm.files && _vm.files.length > 0) ? _c('swiper', {
     staticClass: "swiper",
     attrs: {
       "indicator-dots": _vm.indicatorDots,
@@ -359,29 +434,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "interval": _vm.interval,
       "duration": _vm.duration
     }
-  }, [_c('swiper-item', {
-    attrs: {
-      "mpcomid": '0'
-    }
-  }, [_c('block', [_c('video', {
-    staticClass: "swiper-item",
-    attrs: {
-      "autoplay": false,
-      "loop": "",
-      "show-play-btn": true,
-      "controls": true,
-      "objectFit": "fill",
-      "show-mute-btn": false,
-      "poster": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574066857005&di=27dc7334bc80c4336d3443e8ecde3160&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F17%2F02%2F06%2Fed0c0ddc6271b0717ca64ffdf847eab6.jpg",
-      "show-center-play-btn": true,
-      "vslide-gesture-in-fullscreen": true,
-      "src": "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
-    }
-  })])], 1), _vm._v(" "), _vm._l((_vm.images), function(item, index) {
+  }, _vm._l((_vm.files), function(item, index) {
     return _c('swiper-item', {
       key: index,
       attrs: {
-        "mpcomid": '1_' + index
+        "mpcomid": '0_' + index
       }
     }, [_c('image', {
       staticClass: "slide-image",
@@ -397,8 +454,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     })])
-  })], 2)], 1), _vm._v(" "), _c('div', {
-    staticClass: "detail_userinfo"
+  })) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "detail_userinfo",
+    style: ({
+      'padding-top': _vm.files && _vm.files.length > 0 ? '' : '80px'
+    })
   }, [_c('img', {
     attrs: {
       "src": _vm.userInfo.avatar,
@@ -418,26 +478,37 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       staticClass: "iconfont icon-icon-test"
     })], 1)
   })], 2), _vm._v(" "), _c('div', {
-    staticClass: "content"
+    staticClass: "content",
+    attrs: {
+      "eventid": '2'
+    },
+    on: {
+      "click": function($event) {
+        _vm.OnClickReplyName({
+          id: 1,
+          name: '访客'
+        })
+      }
+    }
   }, [_c('div', {
     staticClass: "detail-item"
   }, [_c('div', {
     staticClass: "title"
-  }, [_vm._v("\n                  " + _vm._s(_vm.title) + "\n              ")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                  " + _vm._s(_vm.title) + "\n              ")])]), _vm._v(" "), (_vm.location) ? _c('div', {
     staticClass: "location"
   }, [_c('div', {
     staticClass: "location-info"
   }, [_c('i', {
     staticClass: "iconfont icon-zb"
-  }), _vm._v("\n                  南京经理撒大苏打顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶\n              ")], 1), _vm._v(" "), _c('div', {
+  }), _vm._v("\n                  " + _vm._s(_vm.location && _vm.location.address) + "\n              ")], 1), _vm._v(" "), _c('div', {
     staticClass: "location-right"
   }, [_c('i', {
     staticClass: "iconfont icon-youjiantou"
-  })], 1)]), _vm._v(" "), _c('div', {
+  })], 1)]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "article"
-  }, [_vm._v("\n              " + _vm._s(_vm.brief) + "\n          ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n              " + _vm._s(_vm.content) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "content-footer"
-  }, [_c('div', [_vm._v("\n                  发表于 2012-19-20 08:27\n              ")]), _vm._v(" "), _c('div', {
+  }, [_c('div', [_vm._v("\n                  发表于 " + _vm._s(_vm.itemInfo && _vm.itemInfo.createAt) + "\n              ")]), _vm._v(" "), _c('div', {
     staticClass: "content-phone"
   }, [_c('div', [_c('i', {
     staticClass: "iconfont icon-dianhua"
@@ -452,7 +523,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   })], 1), _vm._v(" "), _c('span', [_vm._v("若房东向您索要中介费，你可举报！")]), _vm._v(" "), _c('div', {
     staticClass: "report",
     attrs: {
-      "eventid": '2'
+      "eventid": '3'
     },
     on: {
       "click": _vm.OnclickReport
@@ -461,7 +532,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "iconfont icon-jubao"
   }), _vm._v(" "), _c('span', [_vm._v("举报")])], 1)]), _vm._v(" "), _c('div', [_c('chat-common', {
     attrs: {
-      "mpcomid": '2'
+      "plaVal": _vm.plaVal,
+      "focus": _vm.focus,
+      "eventid": '4',
+      "mpcomid": '1'
+    },
+    on: {
+      "sendMsg": _vm.sendMsg
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "all-commonents"
@@ -470,7 +547,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._v("全部评论")]), _vm._v(" "), _c('commonentItem', {
     attrs: {
       "comment": _vm.comment,
-      "mpcomid": '3'
+      "eventid": '5',
+      "mpcomid": '2'
+    },
+    on: {
+      "ReplyName": _vm.OnClickReplyName
     }
   })], 1)])
 }

@@ -23,7 +23,6 @@ export class FileService {
     const { originalname, mimetype, size, buffer } = file;
     // FIXME: 使用 uuid ，无法管理，改成相应资源包名
     const filename = `${originalname}`;
-    console.log(filename,'?????')
     // const {
     //   ossRegion,
     //   ossAccessKeyId,
@@ -41,7 +40,6 @@ export class FileService {
     //   bucket: ossBucket,
     //   secure: ossHttps,
     // });
-    console.log(path.join( '../../public', `${filename}`),'?..........')
     const writeImage = createWriteStream(path.join( 'public', `${filename}`))
     writeImage.write(buffer)
     const  url  ='http://localhost:4000/public/' + filename ;

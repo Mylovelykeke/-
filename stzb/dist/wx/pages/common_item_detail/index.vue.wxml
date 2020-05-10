@@ -1,10 +1,10 @@
 <import src="/components/commonent_item/index.vue.wxml" />
-<import src="/components/chat/index.vue.wxml" /><template name="931dc3ce">
+<import src="/components/chat/index.vue.wxml" /><template name="586118ca">
   <view class="_div data-v-ce39e26c main">
-    <view class="_div data-v-ce39e26c responder"><template data="{{...$root[$kk+'0'], $root}}" is="5c5e5f1c"></template></view>
+    <view class="_div data-v-ce39e26c responder"><template data="{{...$root[$kk+'0'], $root}}" is="2a6a8c4c"></template></view>
     <view class="_div data-v-ce39e26c reviewers">
-      <view class="_div data-v-ce39e26c review-title">{{reviewersItem.length}}条回复</view> <template data="{{...$root[$kk+'1'], $root}}" is="5c5e5f1c"></template>
+      <view class="_div data-v-ce39e26c review-title">{{reviewersItem.length}}条回复</view> <template data="{{...$root[$kk+'1'], $root}}" is="2a6a8c4c"></template>
     </view>
-    <view class="_div data-v-ce39e26c"><template data="{{...$root[$kk+'2'], $root}}" is="66390922"></template></view>
+    <view class="_div data-v-ce39e26c"><template data="{{...$root[$kk+'2'], $root}}" is="5a561960"></template></view>
   </view>
 </template>

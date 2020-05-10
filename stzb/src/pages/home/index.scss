@@ -3,15 +3,14 @@
         background-color: black !important;
     }
 }
-.msg{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 36px;
-    z-index: 1000;
-}
+// .msg{
+//     position: fixed;
+//     top: 0;
+//     width: 100%;
+//     height: 36px;
+//     z-index: 1000;
+// }
 .searchhead{
-    margin-top: 36px;
     // height: 60px;
     z-index: 1000;
     background-color: white;
@@ -19,11 +18,10 @@
 .head{
     .search-bar__box{
         position:relative;
-        padding: 10px 10px 10px 10px;
+        padding: 0px 10px 0px 10px;
         width:100%;
         box-sizing:border-box;
         z-index:1;
-        border-bottom: 1px solid #f1f1ff;
     }
   .search-bar__label{
       position: relative;;
@@ -35,14 +33,12 @@
       border-radius:50px;
       padding-left: 20px;
       color:rgba(0,0,0,.5);
-      background:#f9f9f8;
-      line-height:32px;
+      background:#f1f1f1;
   }
   .icon-search{
       margin-right:8px;
       font-size:14px;
-      vertical-align:top;
-      margin-top:.64em;
+      margin-top:.68em;
       height:1em;
       line-height:1em;
   }

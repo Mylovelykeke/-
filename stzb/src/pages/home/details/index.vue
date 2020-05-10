@@ -4,8 +4,8 @@
             <div class="back">
                 <i class="iconfont icon-fanhui" @click="back"></i>
             </div>
-            <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-                <swiper-item>
+            <swiper v-if="files&&files.length>0" class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+                <!-- <swiper-item>
                     <block >
                         <video
                         :autoplay='false' 
@@ -21,13 +21,13 @@
                         src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" 
                         ></video>
                     </block>
-                </swiper-item>
-                <swiper-item v-for="(item, index) in images" :key="index">
+                </swiper-item> -->
+                <swiper-item v-for="(item, index) in files" :key="index">
                     <image :src="item.url"  :data-src='item.url' class="slide-image" mode="aspectFill" @click='previewImage(item)' />
                 </swiper-item>
             </swiper>
         </div>
-        <div class="detail_userinfo">
+        <div class="detail_userinfo" :style="{'padding-top':files&&files.length>0?'':'80px'}">
             <img :src="userInfo.avatar" alt="">
             <span class="user-name">{{userInfo.name}}</span>
             <span class="attest">
@@ -37,27 +37,27 @@
                 <i class="iconfont icon-icon-test" ></i>
             </span>
         </div>
-        <div class="content">
+        <div class="content" @click="OnClickReplyName({id:1,name:'访客'})">
             <div class="detail-item">
                 <div class="title">
                     {{title}}
                 </div>
             </div>
-            <div class="location">
+            <div class="location" v-if='location'>
                 <div class="location-info">
                     <i class="iconfont icon-zb"></i>
-                    南京经理撒大苏打顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶
+                    {{location&&location.address}}
                 </div>
                 <div class="location-right">
                     <i class="iconfont icon-youjiantou"></i>
                 </div>
             </div>
             <div class="article">
-                {{brief}}
+                {{content}}
             </div>
             <div class="content-footer">
                 <div>
-                    发表于 2012-19-20 08:27
+                    发表于 {{itemInfo&&itemInfo.createAt}}
                 </div>
                 <div class="content-phone">
                     <div>
@@ -81,11 +81,11 @@
             </div>
         </div>
         <div>
-            <chat-common />
+            <chat-common :plaVal='plaVal' :focus='focus' @sendMsg='sendMsg'/>
         </div>
         <div class="all-commonents">
             <div class="commonents-title">全部评论</div>
-            <commonentItem :comment='comment'/>
+            <commonentItem @ReplyName='OnClickReplyName' :comment='comment'/>
         </div>
         <!-- 广告 -->
         <!-- <div>
@@ -101,19 +101,26 @@ import commonentItem from "@/components/commonent_item/index";
 export default {
     data(){
         return{
+            hostId:'',
+            parentCommentId:'',
+            focus:false,
+            plaVal:'我也说一句。。。。',
+            replyUserName:'',
+            itemInfo:'',
+            location:'',
             swiper:"swiper",
             payment:'',
             title:'中国水水倒萨大零秒十六点三顶顶顶顶顶了多少水水水水水水水水水水水水',
             userInfo:{
-                name:'丁香医生',
+                name:'访客',
                 avatar:'https://profile.csdnimg.cn/9/2/9/3_xiasohuai'
             },
-            brief:'的撒顶顶顶顶顶顶顶顶顶顶顶顶顶顶             顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你的撒顶顶顶顶顶顶顶顶顶顶顶顶           顶顶顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你',
+            content:'的撒顶顶顶顶顶顶顶顶顶顶顶顶顶顶             顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你的撒顶顶顶顶顶顶顶顶顶顶顶顶           顶顶顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你',
             indicatorDots: false,
             autoplay: false,
             interval: 3000,
             duration: 500,
-            images: [
+            files: [
                 {
                 url:'../../../static/images/fz.jpg'
                 },
@@ -124,31 +131,31 @@ export default {
             num:'356人',
             comment: [
                 {
-                    responder: "有毒的黄同学",
-                    reviewers:'',
-                    time: "2016-08-17",
+                    name: "有毒的黄同学",
+                    replyUserName:'',
+                    createAt: "2016-08-17",
                     content: "好,讲得非常好，good",
-                    reply: [
+                    children: [
                         {
-                            responder: "有毒的黄同学",
-                            reviewers: "傲娇的",
+                            name: "有毒的黄同学",
+                            replyUserName: "傲娇的",
                             time: "2016-09-05",
                             content: "你说得对"
                         },
                         {
-                            responder: "傲娇的",
-                            reviewers: "有毒的黄同学",
+                            name: "傲娇的",
+                            replyUserName: "有毒的黄同学",
                             time: "2016-09-05",
                             content: "很强"
                         }
                     ]
                 },
                 {
-                    responder: "Freedom小黄",
-                    reviewers:'',
-                    time: "2016-08-17",
+                    name: "Freedom小黄",
+                    replyUserName:'',
+                    createAt: "2016-08-17",
                     content: "好,讲得非常好，good",
-                    reply: []
+                    children: []
                 }
             ]
         }
@@ -158,7 +165,59 @@ export default {
         SwiperImg,
         commonentItem
      },
+     onLoad(options){
+         console.log(options)
+         let hostId =  '17c08ec5-6f27-443f-879a-7cf134073272'|| options.id
+         this.OnGetItemDetail(hostId)
+         this.OnGetCommonList(hostId)
+     },
      methods:{
+        OnClickReplyName(val) {
+            console.log(val)
+            this.focus = true
+            this.replyUserName = val.name
+            this.plaVal = '@'+ val.name
+            this.parentCommentId = val.id
+        },
+        sendMsg(val){
+            let that = this
+            this.$httpWX.post({
+                url: 'http://localhost:4000/api/comment',
+                data:{
+                    hostId:that.hostId,
+                    name: '垃圾人呀',
+                    replyUserName:that.replyUserName,
+                    email:'1115796788',
+                    content:val,
+                    parentCommentId:that.parentCommentId,
+                    createByAdmin:true
+                }
+            }).then(res => {
+                console.log(res)
+            })
+        },
+        OnGetItemDetail(id){
+            this.hostId = id
+            this.$httpWX.get({
+                url: 'http://localhost:4000/api/article/'+id,
+            }).then(res => {
+                console.log(res.data)
+               let {title,content,files,locationinfo,createAt} = res.data
+               this.itemInfo = res.data
+               this.title = title
+               this.content = content
+               this.files = files
+               this.location =JSON.parse(locationinfo)
+            })
+        },
+        OnGetCommonList(id){
+            this.$httpWX.get({
+                url: 'http://localhost:4000/api/comment/host/'+id,
+            }).then(res => {
+                console.log(res.data)
+                this.comment.push(...res.data[0])
+            })
+        },
          OnclickReport(){
             wx.navigateTo({
                 url:"/pages/report/main"

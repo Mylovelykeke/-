@@ -25,7 +25,7 @@ export class TransformInterceptor<T>
         const response = ctx.getResponse();
         const request = ctx.getRequest();
 
-        const statusCode = response.statusCode;
+        const statusCode = 200;
         const url = request.originalUrl;
         const res = {
           statusCode,

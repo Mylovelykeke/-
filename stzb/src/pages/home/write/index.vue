@@ -26,7 +26,7 @@
     <wx-imgPicker :imgList='ImgArray'/>
     <div>
         <i-cell-group>
-            <i-cell title="位置" :value='val.title' is-link  url="/pages/searchlocation/main"></i-cell>
+            <i-cell title="位置" :value='locationinfo.title' is-link  url="/pages/searchlocation/main"></i-cell>
         </i-cell-group>
     </div>
     </div>
@@ -45,7 +45,7 @@ export default {
     },
     data(){
         return{
-            val:'小区名称或地址',
+            locationinfo:'小区名称或地址',
             ImgArray:[],
             name:'',
             content:'',
@@ -67,7 +67,7 @@ export default {
      onShow(){
         this.$bus.$on('updateData',res=>{
             console.log(res)
-           this.val = res
+           this.locationinfo = res
         });
     },
     methods:{
@@ -105,19 +105,25 @@ export default {
                 }
             }
             let openid = '11111111111111111111'
+            let location = JSON.stringify(this.locationinfo)
             this.$httpWX.post({
-                url: 'http://localhost:4000/api/article',
+                url: 'http://localhost:4000/api/article/created',
                 data: {
                     'openid': openid,
                     "summary":this.name,
                     'title': this.title,
                     'content': this.content,
-                    'locationinfo': this.val,
+                    'locationinfo': location,
                     'files':files
                 },
             }).then(res => {
-                if(res.code == 0){
-                   
+                if(res.statusCode == 200){
+                   wx.switchTab({
+                        url:'/pages/home/main',
+                        success:function(){}, //接口调用成功的回调函数
+                        fail:function(){}, //接口调用失败的回调函数
+                        complete:function(){} //接口调用结束的回调函数（调用成功、失败都会执行）
+                    })
                 }
             })
         },

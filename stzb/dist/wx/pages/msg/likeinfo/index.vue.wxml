@@ -1,4 +1,4 @@
-<template name="f055a220">
+<template name="49fa4df2">
   <view class="_div data-v-482a1bb4">
     <view class="_div data-v-482a1bb4 content" wx:key="index" key="{{index}}" wx:for="{{list}}" wx:for-index="index" wx:for-item="val">
       <i-card i-class="card-small" full="{{true}}" title="{{val.username}}" extra="{{val.extra}}" thumb="{{val.avatar}}" bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}" class="_i-card data-v-482a1bb4">

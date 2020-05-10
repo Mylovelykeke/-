@@ -24,13 +24,11 @@ export class ArticleService {
   async create(article: Partial<Article>): Promise<Article> {
     const { title } = article;
 
-    console.log(article)
+    // const exist = await this.articleRepository.findOne({ where: { title } });
 
-    const exist = await this.articleRepository.findOne({ where: { title } });
-
-    if (exist) {
-      throw new HttpException('文章标题已存在', HttpStatus.BAD_REQUEST);
-    }
+    // if (exist) {
+    //   throw new HttpException('文章标题已存在', HttpStatus.BAD_REQUEST);
+    // }
 
     let { tags, files, category, status } = article;
 
@@ -50,7 +48,8 @@ export class ArticleService {
       needPassword: !!article.password,
     });
     await this.articleRepository.save(newArticle);
-    return newArticle;
+    
+    return ;
   }
 
   /**
@@ -59,7 +58,6 @@ export class ArticleService {
   async findAll(queryParams: any = {}): Promise<[Article[], number]> {
     const query = this.articleRepository
       .createQueryBuilder('article')
-      .leftJoinAndSelect('article.tags', 'tag')
       .leftJoinAndSelect('article.category', 'category')
       .leftJoinAndSelect('article.files', 'file')
       .orderBy('article.publishAt', 'DESC');
@@ -74,21 +72,23 @@ export class ArticleService {
     }
 
     if (otherParams) {
+      console.log(otherParams)
       Object.keys(otherParams).forEach((key) => {
-        query
+        query 
           .andWhere(`article.${key} LIKE :${key}`)
           .setParameter(`${key}`, `%${otherParams[key]}%`);
       });
     }
-
     const [data, total] = await query.getManyAndCount();
-
     data.forEach((d) => {
       if (d.needPassword) {
         delete d.content;
       }
+      Object.assign(d, {
+        createAt: dayjs(d.createAt).format('YYYY-MM-DD HH:mm:ss')
+      });
     });
-
+    // console.log(data,'?????')
     return [data, total];
   }
 
@@ -119,7 +119,7 @@ export class ArticleService {
         delete d.content;
       }
     });
-
+    
     return [data, total];
   }
 
@@ -228,7 +228,7 @@ export class ArticleService {
     const query = this.articleRepository
       .createQueryBuilder('article')
       .leftJoinAndSelect('article.category', 'category')
-      .leftJoinAndSelect('article.tags', 'tags')
+      .leftJoinAndSelect('article.files', 'files')
       .where('article.id=:id')
       .orWhere('article.title=:title')
       .setParameter('id', id)
@@ -243,7 +243,9 @@ export class ArticleService {
     if (data && data.needPassword && !isAdmin) {
       delete data.content;
     }
-
+    Object.assign(data, {
+      createAt: dayjs(data.createAt).format('YYYY-MM-DD HH:mm:ss')
+    });
     return data;
   }
 

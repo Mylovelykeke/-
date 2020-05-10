@@ -198,9 +198,9 @@
   position: relative;
   display: flex;
   flex: 1;
-  background-color: #eceaea;
+  background-color: #f1f1f1;
   padding: 10rpx 60rpx 10rpx 10rpx;
-  border-radius: 10rpx;
+  border-radius: 100rpx;
   align-items: center;
 }
 .search-bar .search-content .icon-search.data-v-1b5191ff {

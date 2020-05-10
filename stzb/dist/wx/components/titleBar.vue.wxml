@@ -1,4 +1,4 @@
-<import src="/components/slots" /><template name="544fe8ef">
+<import src="/components/slots" /><template name="484ff0ad">
   <view class="_div data-v-54d381de title"><template name="next"></template><label class="_span data-v-54d381de title_block" style=" {{('background:' + titleColor + ';')}}"></label> <label class="_span data-v-54d381de title_text">{{title}}</label>
     <view class="_div data-v-54d381de title-right"><template data="{{...$root[$p], ...$root[$k], $root}}" is="{{$slotnext || 'next'}}"></template></view>
   </view>

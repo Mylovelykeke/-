@@ -1,4 +1,4 @@
-<template name="7ad5eac3">
+<template name="71432bc5">
   <view class="_div data-v-19006a74">
     <view class="_div data-v-19006a74 header">
       <view class="_div data-v-19006a74 header_main" wx:if="{{userInfo}}">

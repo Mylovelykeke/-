@@ -200,21 +200,22 @@ export class CommentService {
    * @param articleId
    */
   async getArticleComments(hostId, queryParams) {
+    console.log(hostId)
     const query = this.commentRepository
       .createQueryBuilder('comment')
       .where('comment.hostId=:hostId')
       .andWhere('comment.pass=:pass')
       .andWhere('comment.parentCommentId is NULL')
-      .orderBy('comment.createAt', 'DESC')
+      .orderBy('comment.createAt', 'ASC')
       .setParameter('hostId', hostId)
-      .setParameter('pass', true);
+      .setParameter('pass', false);
 
     const subQuery = this.commentRepository
       .createQueryBuilder('comment')
       .andWhere('comment.pass=:pass')
       .andWhere('comment.parentCommentId=:parentCommentId')
       .orderBy('comment.createAt', 'ASC')
-      .setParameter('pass', true);
+      .setParameter('pass', false);
 
     const { page = 1, pageSize = 12 } = queryParams;
     query.skip((+page - 1) * +pageSize);
@@ -225,7 +226,10 @@ export class CommentService {
       const subComments = await subQuery
         .setParameter('parentCommentId', item.id)
         .getMany();
-      Object.assign(item, { children: subComments });
+        for(let item of subComments){
+          Object.assign(item, {createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss')});
+        }
+        Object.assign(item, { children: subComments, createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss')});
     }
 
     return [data, count];

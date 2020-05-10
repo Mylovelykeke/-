@@ -7,5 +7,6 @@ export const config = {
     password: '123456',
     database: 'tour',
     charset: 'utf8mb4',
+    timezone:'08:00'
   },
 };

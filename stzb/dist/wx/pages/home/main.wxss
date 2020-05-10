@@ -3,25 +3,16 @@
 .i-tabs .aaaaaaaa.data-v-3f0bfc00 {
   background-color: black !important;
 }
-.msg.data-v-3f0bfc00 {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 72rpx;
-  z-index: 1000;
-}
 .searchhead.data-v-3f0bfc00 {
-  margin-top: 72rpx;
   z-index: 1000;
   background-color: white;
 }
 .head .search-bar__box.data-v-3f0bfc00 {
   position: relative;
-  padding: 20rpx 20rpx 20rpx 20rpx;
+  padding: 0 20rpx 0 20rpx;
   width: 100%;
   box-sizing: border-box;
   z-index: 1;
-  border-bottom: 2rpx solid #f1f1ff;
 }
 .head .search-bar__label.data-v-3f0bfc00 {
   position: relative;
@@ -33,14 +24,12 @@
   border-radius: 100rpx;
   padding-left: 40rpx;
   color: rgba(0,0,0,0.5);
-  background: #f9f9f8;
-  line-height: 64rpx;
+  background: #f1f1f1;
 }
 .head .icon-search.data-v-3f0bfc00 {
   margin-right: 16rpx;
   font-size: 28rpx;
-  vertical-align: top;
-  margin-top: .64em;
+  margin-top: .68em;
   height: 1em;
   line-height: 1em;
 }

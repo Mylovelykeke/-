@@ -1,3 +1,3 @@
-<import src="/components/searchInput/index.vue.wxml" /><template name="15c9da00">
-  <view class="_div data-v-5b546f3c content"><template tip="请输入关键词搜索" bindconfirmResult="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'0'], $root, $for:{default:'data-v-5b546f3c-default-0',icon:'data-v-5b546f3c-icon-0'},$slotdefault:'data-v-5b546f3c-default-0',$sloticon:'data-v-5b546f3c-icon-0'}}" is="60ff0454"></template></view>
+<import src="/components/searchInput/index.vue.wxml" /><template name="18c57884">
+  <view class="_div data-v-5b546f3c content"><template tip="请输入关键词搜索" bindconfirmResult="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'0'], $root, $for:{default:'data-v-5b546f3c-default-0',icon:'data-v-5b546f3c-icon-0'},$slotdefault:'data-v-5b546f3c-default-0',$sloticon:'data-v-5b546f3c-icon-0'}}" is="3d98d256"></template></view>
 </template>
