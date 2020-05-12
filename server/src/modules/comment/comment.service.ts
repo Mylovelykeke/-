@@ -71,17 +71,17 @@ export class CommentService {
     userAgent,
     comment: Partial<Comment> & { reply?: string; createByAdmin?: boolean }
   ): Promise<Comment> {
-    const { hostId, name, email, content, createByAdmin = false } = comment;
-
+    const { hostId, name, email, content,parentCommentId, replyUserName, createByAdmin = false } = comment;
     if (!hostId || !name || !email || !content) {
       throw new HttpException('缺失参数', HttpStatus.BAD_REQUEST);
     }
-
+    if(!parentCommentId) delete comment['parentCommentId']
+    if(!replyUserName) delete comment['replyUserName']
     comment.pass = false;
     comment.userAgent = parseUserAgent(userAgent);
     const newComment = await this.commentRepository.create(comment);
     await this.commentRepository.save(comment);
-
+    console.log(createByAdmin)
     if (!createByAdmin) {
       // 发送通知邮件
       const {
@@ -151,7 +151,7 @@ export class CommentService {
           }
         });
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
     }
 
@@ -191,8 +191,24 @@ export class CommentService {
    * 获取指定评论
    * @param id
    */
-  async findById(id): Promise<Comment> {
-    return this.commentRepository.findOne(id);
+  async findById(id): Promise<any> {
+    const subQuery = this.commentRepository
+    .createQueryBuilder('comment')
+    .andWhere('comment.pass=:pass')
+    .andWhere('comment.parentCommentId=:parentCommentId')
+    .orderBy('comment.createAt', 'DESC')
+    .setParameter('pass', false);
+
+    const data = await this.commentRepository.findOne(id);
+    const subComments = await await subQuery
+    .setParameter('parentCommentId', id)
+    .getMany();
+
+    for(let item of subComments){
+      Object.assign(item, {createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss')});
+    }
+
+    return {'parent':data,'children':subComments}
   }
 
   /**
@@ -200,7 +216,6 @@ export class CommentService {
    * @param articleId
    */
   async getArticleComments(hostId, queryParams) {
-    console.log(hostId)
     const query = this.commentRepository
       .createQueryBuilder('comment')
       .where('comment.hostId=:hostId')
@@ -225,8 +240,9 @@ export class CommentService {
     for (let item of data) {
       const subComments = await subQuery
         .setParameter('parentCommentId', item.id)
-        .getMany();
-        for(let item of subComments){
+        .take(3)
+        .getManyAndCount();
+        for(let item of subComments[0]){
           Object.assign(item, {createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss')});
         }
         Object.assign(item, { children: subComments, createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss')});

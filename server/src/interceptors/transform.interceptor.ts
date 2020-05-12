@@ -33,6 +33,7 @@ export class TransformInterceptor<T>
           success: true,
           data,
         };
+        response.header('Cache-Control', 'no-cache');
         responseLogger.info(url, res);
         return res;
       })

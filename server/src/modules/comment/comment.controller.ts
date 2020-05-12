@@ -39,7 +39,7 @@ export class CommentController {
   }
 
   /**
-   * 获取指定评论
+   * 获取单个用户评论及子集
    * @param id
    */
   @Get(':id')

@@ -296,7 +296,8 @@ export class ArticleService {
     const updatedArticle = await this.articleRepository.merge(oldArticle, {
       views: oldArticle.views + 1,
     });
-    return this.articleRepository.save(updatedArticle);
+    this.articleRepository.save(updatedArticle)
+    return;
   }
 
   /**
@@ -319,6 +320,7 @@ export class ArticleService {
       .orWhere('article.summary LIKE :keyword')
       .orWhere('article.content LIKE :keyword')
       .setParameter('keyword', `%${keyword}%`)
+      .leftJoinAndSelect('article.files', 'files')
       .getMany();
 
     return res;

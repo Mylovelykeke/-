@@ -46,10 +46,20 @@ export class ArticleController {
   @Get()
   @HttpCode(HttpStatus.OK)
   findAll(@Query() queryParams) {
-    console.log(1)
     return this.articleService.findAll(queryParams);
   }
 
+  /**
+   * 关键词查找文章
+   * 
+   */
+  @Get('search')
+  @HttpCode(HttpStatus.OK)
+  findkeyword(@Query() queryParams) {
+    const { keyword } = queryParams
+    return this.articleService.search(keyword)
+  }
+  
   /**
    * 获取标签下所有文章
    */
