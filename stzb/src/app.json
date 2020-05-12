@@ -1,9 +1,11 @@
 {
   "pages": [
-    "pages/home/details/main",
     "pages/home/main",
-    "pages/home/write/main",
+    "pages/home/showdetail/main",
+    "pages/home/searchpage/main",
+    "pages/home/details/main",
     "pages/common_item_detail/main",
+    "pages/home/write/main",
     "pages/mine/main",
     "pages/mine/feedback/main",
     "pages/mine/arbitration/main",
@@ -11,8 +13,6 @@
     "pages/mine/communities/main",
     "pages/report/main",
     "pages/searchlocation/main",
-    "pages/home/searchpage/main",
-    "pages/home/showdetail/main",
     "pages/msg/systeminfo/main",
     "pages/msg/likeinfo/main",
     "pages/mine/post/main",

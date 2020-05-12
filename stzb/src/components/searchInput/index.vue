@@ -17,7 +17,7 @@
               取消
           </div>
       </div>
-      <div v-if="type&&!value" >
+      <div v-if="type" >
         <i-cell-group>
             <i-cell :title="v" v-for="(v,key) in historyArray" :key="key" @click="hSearchItem(v)">
                  <div slot='icon'>
@@ -58,6 +58,14 @@ export default {
             default:''
         }
     },
+    onLoad(){
+        Object.assign(this.$data, this.$options.data())
+        if(wx.getStorageSync("search")){
+            let str = wx.getStorageSync("search")
+            this.historyArray = str.split(',')
+            console.log(this.historyArray,'this.historyArray')
+        }
+    },
     data(){
        return{
            value:this.value,
@@ -65,15 +73,10 @@ export default {
        } 
     },
     created(){
-        if(wx.getStorageSync("search")){
-            let str = wx.getStorageSync("search")
-            this.historyArray = str.split(',')
-            console.log(this.historyArray)
-        }
     },
     methods:{
         hSearchItem(value){
-            console.log(value)
+            this.$emit('confirmResult',value)
         },
         search(){
             if(this.type){

@@ -46,7 +46,7 @@
         </swiper-item>
       </swiper> -->
       <div v-if="current==0">
-        <vue-card @getViewDetail="getViewDetail" @getViewShare='OnclickShare' :content='content' />
+        <vue-card @getViewDetail="getViewDetail"  :content='content' />
       </div>
       <div v-else-if="current==1">
           <div class="headstream" v-for="(val,index) in list" :key="index">
@@ -98,6 +98,7 @@
       
     },
     onLoad(){
+      Object.assign(this.$data, this.$options.data())
       this.OnGetList()
     },
     components: {
@@ -105,7 +106,7 @@
     },
     onPullDownRefresh() {
       wx.showNavigationBarLoading() //在标题栏中显示加载
-
+      this.OnGetList()
       //模拟加载
       setTimeout(function () {
         // complete
@@ -120,7 +121,7 @@
         }).then(res => {
            console.log(res.data[0])
            let list = res.data[0]
-           this.content.push(...list)
+           this.content = list
            console.log(this.content)
         })
       },
@@ -150,9 +151,6 @@
           url: "/pages/home/searchpage/main",
         })
       },
-      OnclickShare(){
-        this.onShareAppMessage()
-      }
     },
     onShareAppMessage(){
       console.log(11111111)

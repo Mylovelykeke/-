@@ -27,7 +27,7 @@
       </div>
       <div class="footer" v-if="footer">
         <div class="btn">
-          <button open-type='share'>
+          <button open-type='share' @touchstart="shareItem(val)">
              <i class="iconfont icon-share" style="font-size:22px"></i>
           </button>
           <i class="iconfont icon-xx"></i>
@@ -65,8 +65,8 @@
       ViewDetail(id) {
         this.$emit('getViewDetail', id)
       },
-      share(){
-         this.$emit('getViewShare', '调用url')
+      shareItem(val){
+         this.$emit('getViewShare', val)
       }
     }
   }

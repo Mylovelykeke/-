@@ -26,7 +26,8 @@
     <wx-imgPicker :imgList='ImgArray'/>
     <div>
         <i-cell-group>
-            <i-cell title="位置" :value='locationinfo.title' is-link  url="/pages/searchlocation/main"></i-cell>
+            <i-cell title="位置" v-if="!locationinfo" value='小区名称或地址'  is-link  url="/pages/searchlocation/main"></i-cell>
+            <i-cell title="位置" v-else :value='locationinfo&&locationinfo.title' is-link  url="/pages/searchlocation/main"></i-cell>
         </i-cell-group>
     </div>
     </div>
@@ -45,7 +46,7 @@ export default {
     },
     data(){
         return{
-            locationinfo:'小区名称或地址',
+            locationinfo:null,
             ImgArray:[],
             name:'',
             content:'',
@@ -64,11 +65,14 @@ export default {
             ],
         }
     },
-     onShow(){
+    onShow(){
         this.$bus.$on('updateData',res=>{
             console.log(res)
            this.locationinfo = res
         });
+    },
+    onLoad(){
+      Object.assign(this.$data, this.$options.data())
     },
     methods:{
         handleClick({name}){
@@ -120,7 +124,12 @@ export default {
                 if(res.statusCode == 200){
                    wx.switchTab({
                         url:'/pages/home/main',
-                        success:function(){}, //接口调用成功的回调函数
+                        success:function(){
+                            var page = getCurrentPages().pop();
+                            console.log('page',page)
+                            if (page == undefined || page == null) return;
+                            page.onLoad();
+                        }, //接口调用成功的回调函数
                         fail:function(){}, //接口调用失败的回调函数
                         complete:function(){} //接口调用结束的回调函数（调用成功、失败都会执行）
                     })

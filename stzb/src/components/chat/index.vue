@@ -14,8 +14,8 @@
 
 <script>
 export default {
-    props:{
-      focus:{
+    props: {
+      focus: {
         type:Boolean,
         default:true
       },
@@ -24,20 +24,26 @@ export default {
         default:'我也说一句。。。。'
       }
     },
-    data(){
+    data() {
       return{
         val:'',
       }
     },
-    methods:{
-      sendMsg(){
+    onLoad() {
+        Object.assign(this.$data, this.$options.data())
+    },
+    watch:{
+      plaVal() {
+        this.val = ''
+      }
+    },
+    methods: {
+      sendMsg() {
         if(!this.val){
           return
         }
         this.$emit('sendMsg',this.val)
-      },
-      foucus(){
-         this.$emit('a',this.val)
+        this.val= ''
       }
     }
 }

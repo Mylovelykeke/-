@@ -8,7 +8,7 @@
             </searchInput>
         </div>
         <div class="content">
-            <vue-card  :content='content' />
+            <vue-card  @getViewDetail="getViewDetail" @getViewShare='OnclickShare' :content='content' />
         </div>
     </div>
 </template>
@@ -22,24 +22,67 @@ export default {
         vueCard
     },
     onLoad(options){
-        this.val = options.search
+        Object.assign(this.$data, this.$options.data())
+        this.val = options.search ||3
+        this.OnGetSearch()
     },
     data(){
-        let a = {
-        time: '2012-12-08 02.14',
-        userInfo: {
-          name: '丁香医生',
-          avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai'
-        },
-        ImgArray:[],
-        title: '安静速度快快的经开是哪个出售！！！！！',
-        brief: 'tip: 如果在 bindchange 的事件回调函数中使用 setData 改变 current 值，则有可能导致 setData 被不停地调用，因而通常情况下请在改变 current 值前检测 source 字段来判断是否是由于用户触摸引起。'
-      }
       return{
-          content: (new Array(30)).fill(a),
-          val:''
+          content: [],
+          val:'',
+          ShareAppMessage:''
       }
-    }
+    },
+    methods:{
+        OnGetSearch(){
+            let that = this
+            this.$httpWX.get({
+                url: 'http://localhost:4000/api/article/search',
+                data:{
+                    keyword:that.val
+                }
+            }).then(res => {
+                if(res.statusCode == 200){
+                    that.content = res.data
+                }
+            })
+        },
+        OnclickShare(val){
+            this.ShareAppMessage = val
+        },
+        getViewDetail(id) {
+        wx.navigateTo({
+          url: "/pages/home/details/main?id="+id,
+        })
+      },
+    },
+    onShareAppMessage(data){
+        let that =this;
+        return {
+            title: that.ShareAppMessage.title, // 转发后 所显示的title
+            path: "/pages/home/details/?id="+that.ShareAppMessage.id, // 相对的路径
+            success: (res)=>{    // 成功后要做的事情
+            console.log(res.shareTickets[0])
+            // console.log
+            
+            wx.getShareInfo({
+                shareTicket: res.shareTickets[0],
+                success: (res)=> { 
+                that.setData({
+                    isShow:true
+                }) 
+                console.log(that.setData.isShow)
+                },
+                fail: function (res) { console.log(res) },
+                complete: function (res) { console.log(res) }
+            })
+            },
+            fail: function (res) {
+            // 分享失败
+            console.log(res)
+            }
+        }
+    },
 }
 </script>
 

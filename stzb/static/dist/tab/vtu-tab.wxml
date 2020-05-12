@@ -1,3 +1,0 @@
-<view class="Vtu_Tab v-class" wx:if="{{show}}">
-    <slot></slot>
-</view>

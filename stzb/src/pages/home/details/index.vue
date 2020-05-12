@@ -81,7 +81,7 @@
             </div>
         </div>
         <div>
-            <chat-common :plaVal='plaVal' :focus='focus' @sendMsg='sendMsg'/>
+            <chat-common :plaVal='plaVal' :focus='focus'  @sendMsg='sendMsg'/>
         </div>
         <div class="all-commonents">
             <div class="commonents-title">全部评论</div>
@@ -102,62 +102,29 @@ export default {
     data(){
         return{
             hostId:'',
+            flag:true,
             parentCommentId:'',
             focus:false,
             plaVal:'我也说一句。。。。',
+            value:'',
             replyUserName:'',
             itemInfo:'',
             location:'',
             swiper:"swiper",
             payment:'',
-            title:'中国水水倒萨大零秒十六点三顶顶顶顶顶了多少水水水水水水水水水水水水',
+            title:'',
             userInfo:{
                 name:'访客',
                 avatar:'https://profile.csdnimg.cn/9/2/9/3_xiasohuai'
             },
-            content:'的撒顶顶顶顶顶顶顶顶顶顶顶顶顶顶             顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你的撒顶顶顶顶顶顶顶顶顶顶顶顶           顶顶顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你',
+            content:'',
             indicatorDots: false,
             autoplay: false,
             interval: 3000,
             duration: 500,
-            files: [
-                {
-                url:'../../../static/images/fz.jpg'
-                },
-                {
-                url:'../../../static/images/fz.jpg'
-                }
-            ],
+            files: [],
             num:'356人',
-            comment: [
-                {
-                    name: "有毒的黄同学",
-                    replyUserName:'',
-                    createAt: "2016-08-17",
-                    content: "好,讲得非常好，good",
-                    children: [
-                        {
-                            name: "有毒的黄同学",
-                            replyUserName: "傲娇的",
-                            time: "2016-09-05",
-                            content: "你说得对"
-                        },
-                        {
-                            name: "傲娇的",
-                            replyUserName: "有毒的黄同学",
-                            time: "2016-09-05",
-                            content: "很强"
-                        }
-                    ]
-                },
-                {
-                    name: "Freedom小黄",
-                    replyUserName:'',
-                    createAt: "2016-08-17",
-                    content: "好,讲得非常好，good",
-                    children: []
-                }
-            ]
+            comment: []
         }
     },
     components: {
@@ -165,16 +132,38 @@ export default {
         SwiperImg,
         commonentItem
      },
-     onLoad(options){
-         console.log(options)
-         let hostId =  '17c08ec5-6f27-443f-879a-7cf134073272'|| options.id
-         this.OnGetItemDetail(hostId)
-         this.OnGetCommonList(hostId)
-     },
+     onPullDownRefresh() {
+        wx.showNavigationBarLoading() //在标题栏中显示加载
+        console.log(11)
+        this.OnGetCommonList(this.hostId)
+        //模拟加载
+        setTimeout(function () {
+            // complete
+            wx.hideNavigationBarLoading() //完成停止加载
+            wx.stopPullDownRefresh() //停止下拉刷新
+        }, 1500);
+    },
+    onLoad(options){
+        Object.assign(this.$data, this.$options.data())
+        let hostId =  options.id
+        this.hostId = hostId
+        this.OnGetItemDetail(hostId)
+        this.OnAddViews(hostId)
+    },
+    onShow(options) {
+        console.log(options)
+        if(this.flag){
+            this.OnGetCommonList(this.hostId)
+        }else{
+            this.flag = true
+            return
+        }
+    },
      methods:{
         OnClickReplyName(val) {
             console.log(val)
             this.focus = true
+            this.value = ''
             this.replyUserName = val.name
             this.plaVal = '@'+ val.name
             this.parentCommentId = val.id
@@ -190,14 +179,15 @@ export default {
                     email:'1115796788',
                     content:val,
                     parentCommentId:that.parentCommentId,
-                    createByAdmin:true
+                    createByAdmin:false
                 }
             }).then(res => {
-                console.log(res)
+                if(res.statusCode == 200){
+                    that.OnGetCommonList(that.hostId )
+                }
             })
         },
         OnGetItemDetail(id){
-            this.hostId = id
             this.$httpWX.get({
                 url: 'http://localhost:4000/api/article/'+id,
             }).then(res => {
@@ -210,12 +200,24 @@ export default {
                this.location =JSON.parse(locationinfo)
             })
         },
+        /**
+         * 观看加1
+         *  
+         */
+        OnAddViews(id){
+            this.$httpWX.post({
+                url: 'http://localhost:4000/api/article/'+id+'/views',
+            }).then(res => {
+                console.log(res,'观看加1')
+            })
+        },
         OnGetCommonList(id){
             this.$httpWX.get({
                 url: 'http://localhost:4000/api/comment/host/'+id,
             }).then(res => {
-                console.log(res.data)
-                this.comment.push(...res.data[0])
+                let comment = []
+                comment.push(...res.data[0])
+                this.comment = comment
             })
         },
          OnclickReport(){
@@ -229,10 +231,16 @@ export default {
             }) 
          },
          previewImage(item){
+             console.log(item)
+             this.flag = false
             //图片预览
+            let urls = this.files.map(data =>{
+                return data.url
+            })
+            console.log(urls)
             wx.previewImage({
-                current: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586861056244&di=a253087f5d208e926833a1cef0ad4eee&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181003%2F0f8307fe3de6468d8b51c53b276e9e1b.jpeg", // 当前显示图片的http链接
-                urls: ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586861056244&di=a253087f5d208e926833a1cef0ad4eee&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181003%2F0f8307fe3de6468d8b51c53b276e9e1b.jpeg'],// 需要预览的图片http链接列表
+                current: item.url, // 当前显示图片的http链接
+                urls:urls,// 需要预览的图片http链接列表
                 success: function (res) { },
                 fail: function (res) {
                 console.log(res);
