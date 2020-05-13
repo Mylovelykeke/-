@@ -2,22 +2,96 @@ require("../../../common/manifest.js")
 require("../../../common/vendor.js")
 global.webpackJsonpMpvue([2],{
 
-/***/ 100:
+/***/ 111:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(112);
+
+
+
+var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a(__WEBPACK_IMPORTED_MODULE_1__index__["a" /* default */]);
+app.$mount();
+
+/***/ }),
+
+/***/ 112:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_c0ff5b1a_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(123);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(113)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-c0ff5b1a"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_c0ff5b1a_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src\\pages\\home\\details\\index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c0ff5b1a", Component.options)
+  } else {
+    hotAPI.reload("data-v-c0ff5b1a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 113:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 101:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chat_index__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_swiper_index__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_commonent_item_index__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chat_index__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_swiper_index__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_commonent_item_index__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_skeleton_index__ = __webpack_require__(30);
+
 
 //
 //
@@ -115,6 +189,8 @@ global.webpackJsonpMpvue([2],{
 //
 //
 //
+//
+
 
 
 
@@ -123,72 +199,71 @@ global.webpackJsonpMpvue([2],{
     data: function data() {
         return {
             hostId: '',
+            flag: true,
+            showSkeleton: true,
             parentCommentId: '',
             focus: false,
             plaVal: '我也说一句。。。。',
+            value: '',
             replyUserName: '',
             itemInfo: '',
             location: '',
             swiper: "swiper",
             payment: '',
-            title: '中国水水倒萨大零秒十六点三顶顶顶顶顶了多少水水水水水水水水水水水水',
+            title: '',
             userInfo: {
                 name: '访客',
                 avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai'
             },
-            content: '的撒顶顶顶顶顶顶顶顶顶顶顶顶顶顶             顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你的撒顶顶顶顶顶顶顶顶顶顶顶顶           顶顶顶顶顶大飒飒大苏打撒旦撒啊啊啊啊啊啊啊啊啊啊实打实大苏打据后期维护情况i外界保护你',
+            content: '',
             indicatorDots: false,
             autoplay: false,
             interval: 3000,
             duration: 500,
-            files: [{
-                url: '../../../static/images/fz.jpg'
-            }, {
-                url: '../../../static/images/fz.jpg'
-            }],
+            files: [],
             num: '356人',
-            comment: [{
-                name: "有毒的黄同学",
-                replyUserName: '',
-                createAt: "2016-08-17",
-                content: "好,讲得非常好，good",
-                children: [{
-                    name: "有毒的黄同学",
-                    replyUserName: "傲娇的",
-                    time: "2016-09-05",
-                    content: "你说得对"
-                }, {
-                    name: "傲娇的",
-                    replyUserName: "有毒的黄同学",
-                    time: "2016-09-05",
-                    content: "很强"
-                }]
-            }, {
-                name: "Freedom小黄",
-                replyUserName: '',
-                createAt: "2016-08-17",
-                content: "好,讲得非常好，good",
-                children: []
-            }]
+            comment: []
         };
     },
 
     components: {
-        ChatCommon: __WEBPACK_IMPORTED_MODULE_1__components_chat_index__["a" /* default */],
-        SwiperImg: __WEBPACK_IMPORTED_MODULE_2__components_swiper_index__["a" /* default */],
-        commonentItem: __WEBPACK_IMPORTED_MODULE_3__components_commonent_item_index__["a" /* default */]
+        ChatCommon: __WEBPACK_IMPORTED_MODULE_2__components_chat_index__["a" /* default */],
+        SwiperImg: __WEBPACK_IMPORTED_MODULE_3__components_swiper_index__["a" /* default */],
+        commonentItem: __WEBPACK_IMPORTED_MODULE_4__components_commonent_item_index__["a" /* default */],
+        skeleton: __WEBPACK_IMPORTED_MODULE_5__components_skeleton_index__["a" /* default */]
+    },
+    onPullDownRefresh: function onPullDownRefresh() {
+        wx.showNavigationBarLoading(); //在标题栏中显示加载
+        this.OnGetCommonList(this.hostId);
+        //模拟加载
+        setTimeout(function () {
+            // complete
+            wx.hideNavigationBarLoading(); //完成停止加载
+            wx.stopPullDownRefresh(); //停止下拉刷新
+        }, 1500);
     },
     onLoad: function onLoad(options) {
-        console.log(options);
-        var hostId = '17c08ec5-6f27-443f-879a-7cf134073272' || options.id;
+        __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default()(this.$data, this.$options.data());
+        var hostId = options.id;
+        this.hostId = hostId;
+        this.OnAddViews(hostId);
         this.OnGetItemDetail(hostId);
-        this.OnGetCommonList(hostId);
+    },
+    onShow: function onShow(options) {
+        console.log(options);
+        if (this.flag) {
+            this.OnGetCommonList(this.hostId);
+        } else {
+            this.flag = true;
+            return;
+        }
     },
 
     methods: {
         OnClickReplyName: function OnClickReplyName(val) {
             console.log(val);
             this.focus = true;
+            this.value = '';
             this.replyUserName = val.name;
             this.plaVal = '@' + val.name;
             this.parentCommentId = val.id;
@@ -204,20 +279,20 @@ global.webpackJsonpMpvue([2],{
                     email: '1115796788',
                     content: val,
                     parentCommentId: that.parentCommentId,
-                    createByAdmin: true
+                    createByAdmin: false
                 }
             }).then(function (res) {
-                console.log(res);
+                if (res.statusCode == 200) {
+                    that.OnGetCommonList(that.hostId);
+                }
             });
         },
         OnGetItemDetail: function OnGetItemDetail(id) {
             var _this = this;
 
-            this.hostId = id;
             this.$httpWX.get({
                 url: 'http://localhost:4000/api/article/' + id
             }).then(function (res) {
-                console.log(res.data);
                 var _res$data = res.data,
                     title = _res$data.title,
                     content = _res$data.content,
@@ -230,6 +305,21 @@ global.webpackJsonpMpvue([2],{
                 _this.content = content;
                 _this.files = files;
                 _this.location = JSON.parse(locationinfo);
+                setTimeout(function () {
+                    _this.showSkeleton = false;
+                }, 500);
+            });
+        },
+
+        /**
+         * 观看加1
+         *  
+         */
+        OnAddViews: function OnAddViews(id) {
+            this.$httpWX.post({
+                url: 'http://localhost:4000/api/article/' + id + '/views'
+            }).then(function (res) {
+                console.log(res, '观看加1');
             });
         },
         OnGetCommonList: function OnGetCommonList(id) {
@@ -238,10 +328,9 @@ global.webpackJsonpMpvue([2],{
             this.$httpWX.get({
                 url: 'http://localhost:4000/api/comment/host/' + id
             }).then(function (res) {
-                var _comment;
-
-                console.log(res.data);
-                (_comment = _this2.comment).push.apply(_comment, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(res.data[0]));
+                var comment = [];
+                comment.push.apply(comment, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(res.data[0]));
+                _this2.comment = comment;
             });
         },
         OnclickReport: function OnclickReport() {
@@ -255,10 +344,16 @@ global.webpackJsonpMpvue([2],{
             });
         },
         previewImage: function previewImage(item) {
+            console.log(item);
+            this.flag = false;
             //图片预览
+            var urls = this.files.map(function (data) {
+                return data.url;
+            });
+            console.log(urls);
             wx.previewImage({
-                current: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586861056244&di=a253087f5d208e926833a1cef0ad4eee&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181003%2F0f8307fe3de6468d8b51c53b276e9e1b.jpeg", // 当前显示图片的http链接
-                urls: ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586861056244&di=a253087f5d208e926833a1cef0ad4eee&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181003%2F0f8307fe3de6468d8b51c53b276e9e1b.jpeg'], // 需要预览的图片http链接列表
+                current: item.url, // 当前显示图片的http链接
+                urls: urls, // 需要预览的图片http链接列表
                 success: function success(res) {},
                 fail: function fail(res) {
                     console.log(res);
@@ -270,16 +365,16 @@ global.webpackJsonpMpvue([2],{
 
 /***/ }),
 
-/***/ 102:
+/***/ 119:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_755bac1e_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_755bac1e_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(122);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(103)
+  __webpack_require__(120)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -324,14 +419,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 103:
+/***/ 120:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 104:
+/***/ 121:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -365,7 +460,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 105:
+/***/ 122:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -407,15 +502,21 @@ if (false) {
 
 /***/ }),
 
-/***/ 106:
+/***/ 123:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "main"
-  }, [_c('div', {
-    staticClass: "nav"
+  }, [(_vm.showSkeleton) ? _c('skeleton', {
+    attrs: {
+      "selector": "skeleton",
+      "bgcolor": "#FFF",
+      "mpcomid": '0'
+    }
+  }) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "nav skeleton-rect"
   }, [_c('div', {
     staticClass: "back"
   }, [_c('i', {
@@ -438,10 +539,10 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     return _c('swiper-item', {
       key: index,
       attrs: {
-        "mpcomid": '0_' + index
+        "mpcomid": '1_' + index
       }
     }, [_c('image', {
-      staticClass: "slide-image",
+      staticClass: "slide-image  ",
       attrs: {
         "src": item.url,
         "data-src": item.url,
@@ -460,14 +561,15 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       'padding-top': _vm.files && _vm.files.length > 0 ? '' : '80px'
     })
   }, [_c('img', {
+    staticClass: "skeleton-rect",
     attrs: {
       "src": _vm.userInfo.avatar,
       "alt": ""
     }
   }), _vm._v(" "), _c('span', {
-    staticClass: "user-name"
+    staticClass: "user-name skeleton-rect"
   }, [_vm._v(_vm._s(_vm.userInfo.name))]), _vm._v(" "), _c('span', {
-    staticClass: "attest"
+    staticClass: "attest skeleton-rect"
   }, [_c('i', {
     staticClass: "iconfont icon-shimingrenzheng"
   })], 1), _vm._v(" "), _vm._l((5), function(count, index) {
@@ -495,7 +597,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('div', {
     staticClass: "title"
   }, [_vm._v("\n                  " + _vm._s(_vm.title) + "\n              ")])]), _vm._v(" "), (_vm.location) ? _c('div', {
-    staticClass: "location"
+    staticClass: "location skeleton-rect"
   }, [_c('div', {
     staticClass: "location-info"
   }, [_c('i', {
@@ -505,10 +607,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('i', {
     staticClass: "iconfont icon-youjiantou"
   })], 1)]) : _vm._e(), _vm._v(" "), _c('div', {
-    staticClass: "article"
+    staticClass: "article "
   }, [_vm._v("\n              " + _vm._s(_vm.content) + "\n          ")]), _vm._v(" "), _c('div', {
     staticClass: "content-footer"
-  }, [_c('div', [_vm._v("\n                  发表于 " + _vm._s(_vm.itemInfo && _vm.itemInfo.createAt) + "\n              ")]), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "skeleton-rect"
+  }, [_vm._v("\n                  发表于 " + _vm._s(_vm.itemInfo && _vm.itemInfo.createAt) + "\n              ")]), _vm._v(" "), _c('div', {
     staticClass: "content-phone"
   }, [_c('div', [_c('i', {
     staticClass: "iconfont icon-dianhua"
@@ -535,7 +639,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "plaVal": _vm.plaVal,
       "focus": _vm.focus,
       "eventid": '4',
-      "mpcomid": '1'
+      "mpcomid": '2'
     },
     on: {
       "sendMsg": _vm.sendMsg
@@ -548,12 +652,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "comment": _vm.comment,
       "eventid": '5',
-      "mpcomid": '2'
+      "mpcomid": '3'
     },
     on: {
       "ReplyName": _vm.OnClickReplyName
     }
-  })], 1)])
+  })], 1)], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -566,76 +670,6 @@ if (false) {
   }
 }
 
-/***/ }),
-
-/***/ 98:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(99);
-
-
-
-var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a(__WEBPACK_IMPORTED_MODULE_1__index__["a" /* default */]);
-app.$mount();
-
-/***/ }),
-
-/***/ 99:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_c0ff5b1a_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(106);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(100)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-c0ff5b1a"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_c0ff5b1a_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src\\pages\\home\\details\\index.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c0ff5b1a", Component.options)
-  } else {
-    hotAPI.reload("data-v-c0ff5b1a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
-
-
 /***/ })
 
-},[98]);
+},[111]);

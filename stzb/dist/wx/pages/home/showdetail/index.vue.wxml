@@ -1,7 +1,7 @@
 <import src="/components/searchInput/index.vue.wxml" />
-<import src="/components/card/card.vue.wxml" /><template name="2d031055">
+<import src="/components/card/card.vue.wxml" /><template name="4f2fa697">
   <view class="_div data-v-d68b885a">
-    <view class="_div data-v-d68b885a header"><template data="{{...$root[$kk+'0'], $root}}" is="3d98d256"></template></view>
-    <view class="_div data-v-d68b885a content"><template data="{{...$root[$kk+'1'], $root}}" is="11cfbf3a"></template></view>
+    <view class="_div data-v-d68b885a header"><template data="{{...$root[$kk+'0'], $root}}" is="60ff0454"></template></view>
+    <view class="_div data-v-d68b885a content"><template bindgetViewDetail="handleProxy" bindgetViewShare="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'1'], $root}}" is="f4626190"></template></view>
   </view>
 </template>

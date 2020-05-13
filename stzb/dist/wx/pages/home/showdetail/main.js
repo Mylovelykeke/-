@@ -2,14 +2,14 @@ require("../../../common/manifest.js")
 require("../../../common/vendor.js")
 global.webpackJsonpMpvue([17],{
 
-/***/ 128:
+/***/ 140:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(141);
 
 
 
@@ -18,16 +18,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 129:
+/***/ 141:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_d68b885a_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_d68b885a_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(144);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(130)
+  __webpack_require__(142)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -72,19 +72,22 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 130:
+/***/ 142:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 131:
+/***/ 143:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_searchInput_index__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_card_card__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_assign__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_assign__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_searchInput_index__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_card_card__ = __webpack_require__(17);
+
 //
 //
 //
@@ -105,33 +108,82 @@ if (false) {(function () {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     components: {
-        searchInput: __WEBPACK_IMPORTED_MODULE_0__components_searchInput_index__["a" /* default */],
-        vueCard: __WEBPACK_IMPORTED_MODULE_1__components_card_card__["a" /* default */]
+        searchInput: __WEBPACK_IMPORTED_MODULE_1__components_searchInput_index__["a" /* default */],
+        vueCard: __WEBPACK_IMPORTED_MODULE_2__components_card_card__["a" /* default */]
     },
     onLoad: function onLoad(options) {
-        this.val = options.search;
+        __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_assign___default()(this.$data, this.$options.data());
+        this.val = options.search || 3;
+        this.OnGetSearch();
     },
     data: function data() {
-        var a = {
-            time: '2012-12-08 02.14',
-            userInfo: {
-                name: '丁香医生',
-                avatar: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai'
-            },
-            ImgArray: [],
-            title: '安静速度快快的经开是哪个出售！！！！！',
-            brief: 'tip: 如果在 bindchange 的事件回调函数中使用 setData 改变 current 值，则有可能导致 setData 被不停地调用，因而通常情况下请在改变 current 值前检测 source 字段来判断是否是由于用户触摸引起。'
-        };
         return {
-            content: new Array(30).fill(a),
-            val: ''
+            content: [],
+            val: '',
+            ShareAppMessage: ''
+        };
+    },
+
+    methods: {
+        OnGetSearch: function OnGetSearch() {
+            var that = this;
+            this.$httpWX.get({
+                url: 'http://localhost:4000/api/article/search',
+                data: {
+                    keyword: that.val
+                }
+            }).then(function (res) {
+                if (res.statusCode == 200) {
+                    that.content = res.data;
+                }
+            });
+        },
+        OnclickShare: function OnclickShare(val) {
+            this.ShareAppMessage = val;
+        },
+        getViewDetail: function getViewDetail(id) {
+            wx.navigateTo({
+                url: "/pages/home/details/main?id=" + id
+            });
+        }
+    },
+    onShareAppMessage: function onShareAppMessage(data) {
+        var that = this;
+        return {
+            title: that.ShareAppMessage.title, // 转发后 所显示的title
+            path: "/pages/home/details/?id=" + that.ShareAppMessage.id, // 相对的路径
+            success: function success(res) {
+                // 成功后要做的事情
+                console.log(res.shareTickets[0]);
+                // console.log
+
+                wx.getShareInfo({
+                    shareTicket: res.shareTickets[0],
+                    success: function success(res) {
+                        that.setData({
+                            isShow: true
+                        });
+                        console.log(that.setData.isShow);
+                    },
+                    fail: function fail(res) {
+                        console.log(res);
+                    },
+                    complete: function complete(res) {
+                        console.log(res);
+                    }
+                });
+            },
+            fail: function fail(res) {
+                // 分享失败
+                console.log(res);
+            }
         };
     }
 });
 
 /***/ }),
 
-/***/ 132:
+/***/ 144:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -149,7 +201,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('vue-card', {
     attrs: {
       "content": _vm.content,
+      "eventid": '0',
       "mpcomid": '1'
+    },
+    on: {
+      "getViewDetail": _vm.getViewDetail,
+      "getViewShare": _vm.OnclickShare
     }
   })], 1)])
 }
@@ -166,4 +223,4 @@ if (false) {
 
 /***/ })
 
-},[128]);
+},[140]);

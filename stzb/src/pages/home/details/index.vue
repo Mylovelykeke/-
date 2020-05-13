@@ -1,6 +1,7 @@
 <template>
   <div class="main">
-        <div class="nav">
+        <skeleton selector="skeleton" bgcolor="#FFF" v-if="showSkeleton"></skeleton>
+        <div class="nav skeleton-rect">
             <div class="back">
                 <i class="iconfont icon-fanhui" @click="back"></i>
             </div>
@@ -23,14 +24,14 @@
                     </block>
                 </swiper-item> -->
                 <swiper-item v-for="(item, index) in files" :key="index">
-                    <image :src="item.url"  :data-src='item.url' class="slide-image" mode="aspectFill" @click='previewImage(item)' />
+                    <image :src="item.url"  :data-src='item.url' class="slide-image  " mode="aspectFill" @click='previewImage(item)' />
                 </swiper-item>
             </swiper>
         </div>
         <div class="detail_userinfo" :style="{'padding-top':files&&files.length>0?'':'80px'}">
-            <img :src="userInfo.avatar" alt="">
-            <span class="user-name">{{userInfo.name}}</span>
-            <span class="attest">
+            <img class="skeleton-rect" :src="userInfo.avatar" alt="">
+            <span class="user-name skeleton-rect">{{userInfo.name}}</span>
+            <span class="attest skeleton-rect">
                 <i class="iconfont icon-shimingrenzheng"></i>
             </span>
             <span class="flower" v-for="count  in 5"  :key="count">
@@ -43,7 +44,7 @@
                     {{title}}
                 </div>
             </div>
-            <div class="location" v-if='location'>
+            <div class="location skeleton-rect" v-if='location'>
                 <div class="location-info">
                     <i class="iconfont icon-zb"></i>
                     {{location&&location.address}}
@@ -52,11 +53,11 @@
                     <i class="iconfont icon-youjiantou"></i>
                 </div>
             </div>
-            <div class="article">
+            <div class="article ">
                 {{content}}
             </div>
             <div class="content-footer">
-                <div>
+                <div class="skeleton-rect">
                     发表于 {{itemInfo&&itemInfo.createAt}}
                 </div>
                 <div class="content-phone">
@@ -98,11 +99,13 @@
 import ChatCommon from "@/components/chat/index";
 import SwiperImg from "@/components/swiper/index";
 import commonentItem from "@/components/commonent_item/index";
+import skeleton  from '@/components/skeleton/index'
 export default {
     data(){
         return{
             hostId:'',
             flag:true,
+            showSkeleton:true,
             parentCommentId:'',
             focus:false,
             plaVal:'我也说一句。。。。',
@@ -130,11 +133,11 @@ export default {
     components: {
         ChatCommon,
         SwiperImg,
-        commonentItem
+        commonentItem,
+        skeleton
      },
      onPullDownRefresh() {
         wx.showNavigationBarLoading() //在标题栏中显示加载
-        console.log(11)
         this.OnGetCommonList(this.hostId)
         //模拟加载
         setTimeout(function () {
@@ -147,8 +150,8 @@ export default {
         Object.assign(this.$data, this.$options.data())
         let hostId =  options.id
         this.hostId = hostId
-        this.OnGetItemDetail(hostId)
         this.OnAddViews(hostId)
+        this.OnGetItemDetail(hostId)
     },
     onShow(options) {
         console.log(options)
@@ -191,13 +194,15 @@ export default {
             this.$httpWX.get({
                 url: 'http://localhost:4000/api/article/'+id,
             }).then(res => {
-                console.log(res.data)
                let {title,content,files,locationinfo,createAt} = res.data
                this.itemInfo = res.data
                this.title = title
                this.content = content
                this.files = files
                this.location =JSON.parse(locationinfo)
+               setTimeout(()=>{
+                   this.showSkeleton = false
+               },500)
             })
         },
         /**

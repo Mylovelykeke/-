@@ -7,7 +7,6 @@
         "i-tabs": "../../static/dist/tabs/index",
         "i-tab": "../../static/dist/tab/index",
         "i-card": "../../static/dist/card/index",
-        "i-message": "../../static/dist/message/index",
         "vtu-navbar": "../../static/dist/navbar/vtu-navbar"
     }
 }

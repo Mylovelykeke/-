@@ -1,9 +1,11 @@
 {
   "pages": [
-    "pages/home/details/main",
     "pages/home/main",
-    "pages/home/write/main",
+    "pages/home/details/main",
     "pages/common_item_detail/main",
+    "pages/home/showdetail/main",
+    "pages/home/searchpage/main",
+    "pages/home/write/main",
     "pages/mine/main",
     "pages/mine/feedback/main",
     "pages/mine/arbitration/main",
@@ -11,8 +13,6 @@
     "pages/mine/communities/main",
     "pages/report/main",
     "pages/searchlocation/main",
-    "pages/home/searchpage/main",
-    "pages/home/showdetail/main",
     "pages/msg/systeminfo/main",
     "pages/msg/likeinfo/main",
     "pages/mine/post/main",
@@ -31,47 +31,42 @@
     "backgroundColor": "#fafafa",
     "selectedColor": "#000",
     "borderStyle": "white",
-    "list": [
-      {
-        "text": "首页",
-        "pagePath": "pages/home/main",
-        "iconPath": "static/tabs/home.png",
-        "selectedIconPath": "static/tabs/home-active.png"
-      },
-      {
-        "text": "消息",
-        "pagePath": "pages/msg/main",
-        "iconPath": "static/tabs/orders.png",
-        "selectedIconPath": "static/tabs/orders-active.png"
-      },
-      {
-        "text": "我的",
-        "pagePath": "pages/mine/main",
-        "iconPath": "static/tabs/mine.png",
-        "selectedIconPath": "static/tabs/mine-active.png"
-      }
-    ],
-    "items": [
-      {
-        "name": "首页",
-        "pagePath": "pages/home/main",
-        "icon": "static/tabs/home.png",
-        "activeIcon": "static/tabs/home-active.png"
-      },
-      {
-        "text": "消息",
-        "pagePath": "pages/msg/main",
-        "iconPath": "static/tabs/orders.png",
-        "selectedIconPath": "static/tabs/orders-active.png"
-      },
-      {
-        "name": "我的",
-        "pagePath": "pages/mine/main",
-        "icon": "static/tabs/mine.png",
-        "activeIcon": "static/tabs/mine-active.png"
-      }
-    ],
+
+    "list": [{
+      "text": "首页",
+      "pagePath": "pages/home/main",
+      "iconPath": "static/tabs/home.png",
+      "selectedIconPath": "static/tabs/home-active.png"
+    }, {
+      "text": "消息",
+      "pagePath": "pages/msg/main",
+      "iconPath": "static/tabs/orders.png",
+      "selectedIconPath": "static/tabs/orders-active.png"
+    },{
+      "text": "我的",
+      "pagePath": "pages/mine/main",
+      "iconPath": "static/tabs/mine.png",
+      "selectedIconPath": "static/tabs/mine-active.png"
+    }],
+
+    "items": [{
+      "name": "首页",
+      "pagePath": "pages/home/main",
+      "icon": "static/tabs/home.png",
+      "activeIcon": "static/tabs/home-active.png"
+    },
+    {
+      "text": "消息",
+      "pagePath": "pages/msg/main",
+      "iconPath": "static/tabs/orders.png",
+      "selectedIconPath": "static/tabs/orders-active.png"
+    },
+    {
+      "name": "我的",
+      "pagePath": "pages/mine/main",
+      "icon": "static/tabs/mine.png",
+      "activeIcon": "static/tabs/mine-active.png"
+    }],
     "position": "bottom"
-  },
-  "sitemapLocation": "sitemap10.json"
+  }
 }

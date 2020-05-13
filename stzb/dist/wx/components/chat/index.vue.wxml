@@ -1,4 +1,4 @@
-<template name="5a561960">
+<template name="66390922">
   <view class="_div data-v-834d075e chat-footer">
     <view class="_div data-v-834d075e chat-inp"><input type="text" value="{{val}}" bindinput="handleProxy" focus="{{focus}}" placeholder="{{plaVal}}" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_input data-v-834d075e" /></view>
     <view class="_div data-v-834d075e btn-send" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}" style=" {{('background:' + (val ? '' : '#ccc') + ';')}}"> 发送 </view>

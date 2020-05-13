@@ -1,4 +1,68 @@
 
+.wrap.data-v-5fb2d406 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9998;
+  overflow: hidden;
+}
+.radius.data-v-5fb2d406 {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.chiaroscuro.data-v-5fb2d406 {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer-data-v-5fb2d406;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 1600rpx 208rpx;
+  height: 80rpx;
+  position: relative;
+}
+.main.data-v-5fb2d406 {
+  position: relative;
+  height: 60rpx;
+}
+.header.data-v-5fb2d406 {
+  position: absolute;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.name.data-v-5fb2d406 {
+  position: absolute;
+  top: 8rpx;
+  left: 80rpx;
+  width: 40%;
+  height: 40rpx;
+}
+.clearfix.data-v-5fb2d406:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix.data-v-5fb2d406 {
+  zoom: 1;
+}
+.content.data-v-5fb2d406 {
+  width: 89%;
+  float: right;
+  height: 30rpx;
+  margin: 16rpx 0;
+}
+@keyframes placeHolderShimmer-data-v-5fb2d406 {
+0% {
+    background-position: -936rpx 0;
+}
+100% {
+    background-position: 936rpx 0;
+}
+}
 .chat-footer.data-v-834d075e {
   position: fixed;
   bottom: -20rpx;
@@ -35,12 +99,14 @@
 .common-content.data-v-355ca06a {
   background-color: white;
   position: relative;
-  display: flex;
   padding: 20rpx 0;
   overflow: hidden;
 }
 .common-content.common-content-child.data-v-355ca06a {
   padding: 20rpx 10rpx;
+}
+.common-content>._div.data-v-355ca06a {
+  display: flex;
 }
 .common-content .common-author.data-v-355ca06a {
   vertical-align: top;

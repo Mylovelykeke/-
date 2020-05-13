@@ -7,11 +7,6 @@
         "i-tabs": "../../static/dist/tabs/index",
         "i-tab": "../../static/dist/tab/index",
         "i-card": "../../static/dist/card/index",
-        "i-message": "../../static/dist/message/index",
-        "vtu-navbar": "../../static/dist/navbar/vtu-navbar",
-        "vtu-swiperPanel": "../../static/dist/swiperPanel/swiper/vtu-swiperPanel",
-        "vtu-swiperPanel-item": "../../static/dist/swiperPanel/item/vtu-swiperPanel-item",
-        "vtu-btn": "../../static/dist/button/vtu-btn",
-        "vtu-empty": "../../static/dist/empty/vtu-empty"
+        "vtu-navbar": "../../static/dist/navbar/vtu-navbar"
     }
 }

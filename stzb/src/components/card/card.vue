@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <div class="content" v-for="(val,index) in content" :key="index">
       <div @click="ViewDetail(val.id)">
         <div class="card-title">
@@ -42,7 +42,11 @@
 </template>
 
 <script>
+ 
   export default {
+    components: {
+      
+    },
     props:{
         content:{
             default:[]

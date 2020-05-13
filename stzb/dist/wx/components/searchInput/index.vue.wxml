@@ -1,4 +1,4 @@
-<import src="/components/slots" /><template name="3d98d256">
+<import src="/components/slots" /><template name="60ff0454">
   <view class="_div data-v-1b5191ff"><template name="icon"></template>
     <view class="_div data-v-1b5191ff search-bar">
       <view class="_div data-v-1b5191ff search-address" wx:if="{{region}}">
@@ -11,7 +11,7 @@
       </view>
       <view class="_div data-v-1b5191ff cancel" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}"> 取消 </view>
     </view>
-    <view wx:if="{{type&&!value}}" class="_div data-v-1b5191ff">
+    <view wx:if="{{type}}" class="_div data-v-1b5191ff">
       <i-cell-group class="_i-cell-group data-v-1b5191ff">
         <i-cell title="{{v}}" wx:key="key" key="{{key}}" bindtap="handleProxy" data-eventid="{{'4_'+key}}" data-comkey="{{$k}}" wx:for="{{historyArray}}" wx:for-index="key" wx:for-item="v" class="_i-cell data-v-1b5191ff">
           <view slot="icon" class="_div data-v-1b5191ff">

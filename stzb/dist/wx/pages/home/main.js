@@ -2,14 +2,14 @@ require("../../common/manifest.js")
 require("../../common/vendor.js")
 global.webpackJsonpMpvue([19],{
 
-/***/ 107:
+/***/ 124:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(125);
 
 
 
@@ -18,16 +18,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 108:
+/***/ 125:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_3f0bfc00_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_3f0bfc00_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(131);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(109)
+  __webpack_require__(126)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -72,20 +72,23 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 109:
+/***/ 126:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 110:
+/***/ 127:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_card_card__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_card_card__ = __webpack_require__(17);
+
 
 //
 //
@@ -172,6 +175,7 @@ if (false) {(function () {
     };
     return {
       current: '0',
+      page: 1,
       clientHeight: 0,
       swiperIndex: '0',
       content: []
@@ -186,15 +190,16 @@ if (false) {(function () {
     });
   },
   onLoad: function onLoad() {
-    this.OnGetList();
+    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default()(this.$data, this.$options.data());
+    this.OnGetList(this.page);
   },
 
   components: {
-    vueCard: __WEBPACK_IMPORTED_MODULE_1__components_card_card__["a" /* default */]
+    vueCard: __WEBPACK_IMPORTED_MODULE_2__components_card_card__["a" /* default */]
   },
   onPullDownRefresh: function onPullDownRefresh() {
     wx.showNavigationBarLoading(); //在标题栏中显示加载
-
+    this.OnGetList();
     //模拟加载
     setTimeout(function () {
       // complete
@@ -203,19 +208,26 @@ if (false) {(function () {
     }, 1500);
   },
 
+  onReachBottom: function onReachBottom() {
+    this.page += 1;
+    this.OnGetList(this.page);
+  },
   methods: {
-    OnGetList: function OnGetList() {
+    OnGetList: function OnGetList(page) {
       var _this = this;
 
       this.$httpWX.get({
-        url: 'http://localhost:4000/api/article'
+        url: 'http://localhost:4000/api/article?page=' + page
       }).then(function (res) {
-        var _content;
-
         console.log(res.data[0]);
-        var list = res.data[0];
-        (_content = _this.content).push.apply(_content, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(list));
-        console.log(_this.content);
+        if (res.data[0] && res.data[0].length > 0) {
+          var _content;
+
+          var list = res.data[0];
+          (_content = _this.content).push.apply(_content, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(list));
+        } else {
+          _this.page = page > 1 ? page - 1 : 1;
+        }
       });
     },
 
@@ -244,9 +256,6 @@ if (false) {(function () {
       wx.navigateTo({
         url: "/pages/home/searchpage/main"
       });
-    },
-    OnclickShare: function OnclickShare() {
-      this.onShareAppMessage();
     }
   },
   onShareAppMessage: function onShareAppMessage() {
@@ -286,7 +295,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 119:
+/***/ 131:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -304,9 +313,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('view', [_c('div', {
     staticClass: "search-bar"
   }, [_c('div', {
-    staticClass: "search-bar__box "
+    staticClass: "search-bar__box"
   }, [_c('view', {
-    staticClass: "search-bar__label",
+    staticClass: "search-bar__label ",
     attrs: {
       "eventid": '0'
     },
@@ -321,21 +330,14 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "role": "img"
     }
   }), _vm._v(" "), _c('view', {
-    staticClass: "search-bar__text"
+    staticClass: "search-bar__text "
   }, [_vm._v("搜索")])], 1)])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "msg"
-  }, [_c('i-notice-bar', {
-    attrs: {
-      "icon": "systemprompt",
-      "mpcomid": '1'
-    }
-  }, [_vm._v("\n      点击\"•●•\"添加到我的小程序，快速寻找\n    ")])], 1), _vm._v(" "), _c('div', {
     staticClass: "searchhead"
   }, [_c('i-tabs', {
     attrs: {
       "current": _vm.current,
       "eventid": '1',
-      "mpcomid": '4'
+      "mpcomid": '3'
     },
     on: {
       "change": _vm.handleChange
@@ -344,13 +346,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     key: "0",
     attrs: {
       "title": "求租广场",
-      "mpcomid": '2'
+      "mpcomid": '1'
     }
   }), _vm._v(" "), _c('i-tab', {
     key: "1",
     attrs: {
       "title": "房源",
-      "mpcomid": '3'
+      "mpcomid": '2'
     }
   })], 1)], 1), _vm._v(" "), _c('div', {
     staticClass: "swiperAuto"
@@ -358,11 +360,10 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "content": _vm.content,
       "eventid": '2',
-      "mpcomid": '5'
+      "mpcomid": '4'
     },
     on: {
-      "getViewDetail": _vm.getViewDetail,
-      "getViewShare": _vm.OnclickShare
+      "getViewDetail": _vm.getViewDetail
     }
   })], 1) : (_vm.current == 1) ? _c('div', _vm._l((_vm.list), function(val, index) {
     return _c('div', {
@@ -375,7 +376,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "title": val.username,
         "thumb": val.avatar,
         "eventid": '3_' + index,
-        "mpcomid": '6_' + index
+        "mpcomid": '5_' + index
       },
       on: {
         "click": function($event) {
@@ -416,4 +417,4 @@ if (false) {
 
 /***/ })
 
-},[107]);
+},[124]);

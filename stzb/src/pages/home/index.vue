@@ -1,24 +1,24 @@
 <template>
-  <div>
+  <div> 
    <vtu-navbar title="Navbar" use-bar-slot bg-color='white' :goHome="false">
       <div class="head">
         <view>
           <div class="search-bar">
-            <div class="search-bar__box ">
-              <view @click="showInput" class="search-bar__label">
+            <div class="search-bar__box">
+              <view @click="showInput" class="search-bar__label ">
                 <icon class="icon-search" size="14" type="search" role="img"></icon>
-                <view class="search-bar__text">搜索</view>
+                <view class="search-bar__text ">搜索</view>
               </view>
             </div>
           </div>
         </view>
       </div>
    </vtu-navbar>
-    <div class="msg">
+    <!-- <div class="msg">
       <i-notice-bar icon="systemprompt">
         点击"•●•"添加到我的小程序，快速寻找
       </i-notice-bar>
-    </div>
+    </div> -->
     <div class="searchhead">
       
       <i-tabs :current="current" @change="handleChange">
@@ -46,7 +46,7 @@
         </swiper-item>
       </swiper> -->
       <div v-if="current==0">
-        <vue-card @getViewDetail="getViewDetail"  :content='content' />
+        <vue-card @getViewDetail="getViewDetail" :content='content' />
       </div>
       <div v-else-if="current==1">
           <div class="headstream" v-for="(val,index) in list" :key="index">
@@ -83,6 +83,7 @@
       }
       return {
         current: '0',
+        page:1,
         clientHeight: 0,
         swiperIndex: '0',
         content:[],
@@ -97,12 +98,12 @@
       })
       
     },
-    onLoad(){
+    onLoad() {
       Object.assign(this.$data, this.$options.data())
-      this.OnGetList()
+      this.OnGetList(this.page)
     },
     components: {
-      vueCard
+      vueCard,
     },
     onPullDownRefresh() {
       wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -114,15 +115,23 @@
         wx.stopPullDownRefresh() //停止下拉刷新
       }, 1500);
     },
+    onReachBottom: function () {
+      this.page += 1
+      this.OnGetList(this.page)
+    },
     methods: {
-      OnGetList(){
+      OnGetList(page){
         this.$httpWX.get({
-            url: 'http://localhost:4000/api/article',
+            url: 'http://localhost:4000/api/article?page='+ page,
         }).then(res => {
            console.log(res.data[0])
-           let list = res.data[0]
-           this.content = list
-           console.log(this.content)
+           if(res.data[0]&&res.data[0].length>0){
+              let list = res.data[0]
+              this.content.push(...list)
+           }else{
+             this.page = page > 1?page-1:1
+           }
+           
         })
       },
       //拖拽

@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="content  skeleton-radius">
         <div class="common-content" v-for="(v,index) in comment" :key="index" >
             <div>
                 <div class="common-author">
@@ -90,6 +90,9 @@ export default {
         return{
             
         }
+    },
+    components:{
+        
     },
     onLoad(){
         Object.assign(this.$data, this.$options.data())

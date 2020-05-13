@@ -1,22 +1,19 @@
-<import src="/components/card/card.vue.wxml" /><template name="d162855e">
+<import src="/components/card/card.vue.wxml" /><template name="be3d0762">
   <view class="_div data-v-3f0bfc00">
     <vtu-navbar title="Navbar" use-bar-slot bg-color="white" goHome="{{false}}" class="_vtu-navbar data-v-3f0bfc00">
       <view class="_div data-v-3f0bfc00 head">
         <view class="_view data-v-3f0bfc00">
           <view class="_div data-v-3f0bfc00 search-bar">
-            <view class="_div data-v-3f0bfc00 search-bar__box ">
-              <view bindtap="handleProxy" class="_view data-v-3f0bfc00 search-bar__label" data-eventid="{{'0'}}" data-comkey="{{$k}}">
+            <view class="_div data-v-3f0bfc00 search-bar__box">
+              <view bindtap="handleProxy" class="_view data-v-3f0bfc00 search-bar__label " data-eventid="{{'0'}}" data-comkey="{{$k}}">
                 <icon class="_icon data-v-3f0bfc00 icon-search" size="14" type="search" role="img"></icon>
-                <view class="_view data-v-3f0bfc00 search-bar__text">搜索</view>
+                <view class="_view data-v-3f0bfc00 search-bar__text ">搜索</view>
               </view>
             </view>
           </view>
         </view>
       </view>
     </vtu-navbar>
-    <view class="_div data-v-3f0bfc00 msg">
-      <i-notice-bar icon="systemprompt" class="_i-notice-bar data-v-3f0bfc00"> 点击"•●•"添加到我的小程序，快速寻找 </i-notice-bar>
-    </view>
     <view class="_div data-v-3f0bfc00 searchhead">
       <i-tabs current="{{current}}" bindchange="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_i-tabs data-v-3f0bfc00">
         <i-tab key="0" title="求租广场" class="_i-tab data-v-3f0bfc00"></i-tab>
@@ -24,7 +21,7 @@
       </i-tabs>
     </view>
     <view class="_div data-v-3f0bfc00 swiperAuto">
-      <view wx:if="{{current==0}}" class="_div data-v-3f0bfc00"><template bindgetViewDetail="handleProxy" bindgetViewShare="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'5'], $root}}" is="11cfbf3a"></template></view>
+      <view wx:if="{{current==0}}" class="_div data-v-3f0bfc00"><template bindgetViewDetail="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'4'], $root}}" is="f4626190"></template></view>
       <view wx:elif="{{current==1}}" class="_div data-v-3f0bfc00">
         <view class="_div data-v-3f0bfc00 headstream" wx:key="index" key="{{index}}" wx:for="{{list}}" wx:for-index="index" wx:for-item="val">
           <i-card i-class="card-small" full="{{true}}" title="{{val.username}}" thumb="{{val.avatar}}" bindtap="handleProxy" data-eventid="{{'3_'+index}}" data-comkey="{{$k}}" class="_i-card data-v-3f0bfc00">

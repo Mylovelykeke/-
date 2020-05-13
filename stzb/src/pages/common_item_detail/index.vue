@@ -1,10 +1,11 @@
 <template>
     <div class="main">
+        <skeleton selector="skeleton" bgcolor="#FFF" :flag='true' v-if="showSkeleton"></skeleton>
         <div class="responder">
             <commonentItem @ReplyName='OnClickReplyName' :comment='responderItem'/>
         </div>
         <div class="reviewers">
-            <div class="review-title">{{reviewersItem.length}}条回复</div>
+            <div class="review-title  skeleton-radius">{{reviewersItem.length}}条回复</div>
             <commonentItem @ReplyName='OnClickReplyName' :comment='reviewersItem'/>
         </div>
         <div>
@@ -14,16 +15,18 @@
 </template>
 
 <script>
+import skeleton  from '@/components/skeleton/index'
 import ChatCommon from "@/components/chat/index";
 import commonentItem from "@/components/commonent_item/index";
 export default {
     components: {
         commonentItem,
         ChatCommon,
+        skeleton
     },
     onLoad(options) {
         Object.assign(this.$data, this.$options.data())
-        let parentCommentId = options.id
+        let parentCommentId = '268c44d2-67d5-4602-9b92-913ed773a845' ||  options.id
         this.parentCommentId = parentCommentId
         this.OnGetCommonList(parentCommentId)
     },
@@ -31,6 +34,7 @@ export default {
         return{
             responderItem: [],
             reviewersItem:[],
+            showSkeleton:true,
             focus:false,
             plaVal:'我也说一句。。。。',
             replyUserName:'',
@@ -49,6 +53,9 @@ export default {
                     this.replyUserName = res.data.parent.name
                     this.responderItem = [res.data.parent]
                     this.reviewersItem = res.data.children
+                    setTimeout(() => {
+                        this.showSkeleton = false
+                    },500)
                   }
             })
         },
