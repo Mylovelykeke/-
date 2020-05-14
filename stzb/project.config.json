@@ -9,7 +9,7 @@
     },
     "miniprogramRoot": "dist/wx/",
     "compileType": "miniprogram",
-    "appid": "touristappid",
+    "appid": "wxee4f42b970df136c",
     "projectname": "stzb",
     "condition": {
         "search": {

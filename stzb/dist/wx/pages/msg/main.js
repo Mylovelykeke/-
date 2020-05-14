@@ -2,14 +2,14 @@ require("../../common/manifest.js")
 require("../../common/vendor.js")
 global.webpackJsonpMpvue([7],{
 
-/***/ 206:
+/***/ 211:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(212);
 
 
 
@@ -18,16 +18,16 @@ app.$mount();
 
 /***/ }),
 
-/***/ 207:
+/***/ 212:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_550d05d6_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_550d05d6_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(215);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(208)
+  __webpack_require__(213)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -72,17 +72,18 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 208:
+/***/ 213:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 209:
+/***/ 214:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_logincomponent__ = __webpack_require__(30);
 //
 //
 //
@@ -132,10 +133,13 @@ if (false) {(function () {
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
         return {
+            Flag: true,
             comment: [{
                 responder: "有毒的黄同学",
                 headeImg: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
@@ -175,6 +179,18 @@ if (false) {(function () {
             }]
         };
     },
+    onShow: function onShow() {
+        var _this = this;
+
+        this.$bus.$on('userInfo', function (res) {
+            _this.Flag = false;
+        });
+    },
+    onLoad: function onLoad() {
+        if (wx.getStorageSync("userInfo")) {
+            this.Flag = false;
+        }
+    },
 
     methods: {
         handleClickItem: function handleClickItem(e) {
@@ -184,35 +200,49 @@ if (false) {(function () {
             wx.navigateTo({
                 url: "/pages/common_item_detail/main"
             });
+        },
+        closeMask: function closeMask() {
+            this.Flag = false;
         }
+    },
+    components: {
+        loginComponent: __WEBPACK_IMPORTED_MODULE_0__components_logincomponent__["a" /* default */]
     }
 });
 
 /***/ }),
 
-/***/ 210:
+/***/ 215:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
+  return _c('div', [(_vm.Flag) ? _c('login-component', {
+    attrs: {
+      "eventid": '0',
+      "mpcomid": '0'
+    },
+    on: {
+      "closeMask": _vm.closeMask
+    }
+  }) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "header"
   }, [_c('div', {
     staticClass: "notice"
   }, [_c('i-cell-group', {
     attrs: {
-      "mpcomid": '0'
+      "mpcomid": '1'
     }
   }), _vm._v(" "), _c('i-cell-group', {
     attrs: {
-      "mpcomid": '3'
+      "mpcomid": '4'
     }
   }, [_c('i-cell', {
     attrs: {
       "title": "系统消息",
       "is-link": "",
       "url": "/pages/msg/systeminfo/main",
-      "mpcomid": '1'
+      "mpcomid": '2'
     }
   }, [_c('div', {
     slot: "icon"
@@ -227,7 +257,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "title": "点赞",
       "is-link": "",
       "url": "/pages/msg/likeinfo/main",
-      "mpcomid": '2'
+      "mpcomid": '3'
     }
   }, [_c('div', {
     slot: "icon"
@@ -247,8 +277,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "i-class": "i-swipeout-demo-item",
         "unclosable": false,
         "actions": _vm.actions,
-        "eventid": '1_' + index,
-        "mpcomid": '4_' + index
+        "eventid": '2_' + index,
+        "mpcomid": '5_' + index
       },
       on: {
         "change": _vm.handleClickItem
@@ -257,7 +287,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       slot: "content"
     }, [_c('div', {
       attrs: {
-        "eventid": '0_' + index
+        "eventid": '1_' + index
       },
       on: {
         "click": _vm.handleClick
@@ -280,9 +310,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "tip": "暂无更多数据",
       "loading": false,
-      "mpcomid": '5'
+      "mpcomid": '6'
     }
-  })], 2)])
+  })], 2)], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -297,4 +327,4 @@ if (false) {
 
 /***/ })
 
-},[206]);
+},[211]);

@@ -249,6 +249,38 @@
   font-size: 24rpx;
   color: #999;
 }
+.content.data-v-34f647a6 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main.data-v-34f647a6 {
+  width: 80%;
+  background: white;
+  border-radius: 10rpx;
+  padding: 60rpx 40rpx;
+  box-sizing: border-box;
+}
+.main ._button.data-v-34f647a6 {
+  border-radius: 2em;
+}
+.header.data-v-34f647a6 {
+  padding: 20rpx 0;
+  height: 120rpx;
+}
+.header ._img.data-v-34f647a6 {
+  width: 100%;
+  height: 100%;
+}
 .search-bar.data-v-1b5191ff {
   display: flex;
   align-items: center;

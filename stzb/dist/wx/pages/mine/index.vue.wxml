@@ -1,5 +1,5 @@
-<template name="7ad5eac3">
-  <view class="_div data-v-19006a74">
+<import src="/components/logincomponent/index.vue.wxml" /><template name="7ad5eac3">
+  <view class="_div data-v-19006a74"><template wx:if="{{Flag}}" bindcloseMask="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'0'], $root}}" is="5c918b7e"></template>
     <view class="_div data-v-19006a74 header">
       <view class="_div data-v-19006a74 header_main" wx:if="{{userInfo}}">
         <view class="_div data-v-19006a74 item_msg">
@@ -15,14 +15,16 @@
           <view class="_div data-v-19006a74">信用分</view> <label class="_span data-v-19006a74">30</label>
         </view>
       </view>
-      <view class="_div data-v-19006a74 align" wx:else><button type="primary" open-type="getUserInfo" bindgetuserinfo="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_button data-v-19006a74"> 获取微信授权</button></view>
+      <view class="_div data-v-19006a74 align" wx:else>
+        <view class="_div data-v-19006a74 auth" bindtouchend="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">获取微信授权</view>
+      </view>
     </view>
     <view class="_div data-v-19006a74 main-radius">
       <view class="_div data-v-19006a74 history_order">
-        <view bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}" class="_div data-v-19006a74">
+        <view bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}" class="_div data-v-19006a74">
           <view class="_i data-v-19006a74">24</view> 我的帖子
         </view>
-        <view bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}" class="_div data-v-19006a74">
+        <view bindtap="handleProxy" data-eventid="{{'3'}}" data-comkey="{{$k}}" class="_div data-v-19006a74">
           <view class="_i data-v-19006a74">0</view> 收藏夹
         </view>
         <view class="_div data-v-19006a74">

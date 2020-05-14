@@ -1,5 +1,6 @@
 <template>
   <div>
+    <login-component v-if='Flag' @closeMask='closeMask'/>
     <div class="header">
       <div class="header_main" v-if="userInfo">
           <div class="item_msg">
@@ -17,7 +18,7 @@
           </div>
       </div>
       <div class="align" v-else>
-          <button type="primary" open-type= 'getUserInfo' @getuserinfo='onGotUserInfo'> 获取微信授权</button>
+          <div class="auth" @touchend='onGotUserInfo'>获取微信授权</div>
       </div>
     </div>
     
@@ -77,17 +78,35 @@
 
 <script>
   import titleBar from "../../components/titleBar";
+  import loginComponent from '@/components/logincomponent'
+  import { getUserCode } from '../../utils/getuserInfo'
   export default {
     components: {
-      titleBar
+      titleBar,
+      loginComponent
     },
     data() {
       return {
         title: "我的报名",
         logs: [],
         imgUrls: 'https://profile.csdnimg.cn/9/2/9/3_xiasohuai',
-        userInfo:null
+        userInfo:null,
+        openid:'',
+        Flag:false,
       }
+    },
+    onShow(){
+      if(wx.getStorageSync("userInfo")){
+         this.userInfo = wx.getStorageSync("userInfo")
+         this.Flag = false
+      }
+        this.$bus.$on('userInfo',res=>{
+           this.userInfo = res
+           this.Flag = false
+        });
+    },
+    onLoad() {
+      
     },
     methods:{
       toPostings(){
@@ -100,32 +119,16 @@
           url: "/pages/mine/favorite/main",
         })
       },
-      onGotUserInfo(e){
-        if(e){
-          this.userInfo = e.target.userInfo
-        }
+      onGotUserInfo(){
+        this.Flag = true
+      },
+      closeMask(){
+        this.Flag = false
       }
     },
     created() {},
     mounted(){
-      let that = this
-      wx.getSetting({
-        success: (res) => {
-          if(res.authSetting['scope.userInfo']){
-            wx.getUserInfo({
-              success: function(res) {
-                that.userInfo = res.userInfo
-              }
-            })
-          }
-          /*
-          * res.authSetting = {
-          *   "scope.userInfo": true,
-          *   "scope.userLocation": true
-          * }
-          */
-        }
-      })
+        
     }
   }
 </script>

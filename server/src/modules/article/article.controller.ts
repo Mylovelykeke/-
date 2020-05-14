@@ -44,6 +44,9 @@ export class ArticleController {
    * 获取所有文章
    */
   @Get()
+  
+  @Roles('admin')
+  @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.OK)
   findAll(@Query() queryParams) {
     return this.articleService.findAll(queryParams);

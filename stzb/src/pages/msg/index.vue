@@ -1,5 +1,6 @@
 <template>
     <div>
+        <login-component v-if='Flag' @closeMask='closeMask'/>
         <div class="header">
             <div class="notice">
               <i-cell-group>
@@ -48,9 +49,11 @@
 </template>
 
 <script>
+import loginComponent from '@/components/logincomponent';
 export default {
     data(){
       return{
+          Flag:true,
           comment: [
             {
                 responder: "有毒的黄同学",
@@ -97,6 +100,16 @@ export default {
         ]
       }
     },
+    onShow(){
+        this.$bus.$on('userInfo',res=>{
+           this.Flag = false
+        });
+    },
+    onLoad() {
+      if(wx.getStorageSync("userInfo")){
+         this.Flag = false
+      }
+    },
     methods:{
         handleClickItem(e){
             console.log(e)
@@ -105,7 +118,13 @@ export default {
             wx.navigateTo({
                 url:"/pages/common_item_detail/main"
             })
+        },
+        closeMask(){
+            this.Flag = false
         }
+    },
+    components:{
+        loginComponent
     }
 }
 </script>

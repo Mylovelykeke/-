@@ -17,6 +17,14 @@
   text-align: center;
   padding: 40rpx;
 }
+.header .align .auth.data-v-19006a74 {
+  width: 60%;
+  background: #1aad19;
+  color: white;
+  padding: 20rpx 0;
+  border-radius: 10rpx;
+  margin: 0 auto;
+}
 .header .item_msg.data-v-19006a74 {
   display: flex;
 }

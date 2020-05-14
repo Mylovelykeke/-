@@ -39,7 +39,8 @@
 </template>
 
 <script>
-import WxImgPicker from '../../../components/imgPicker' 
+import WxImgPicker from '../../../components/imgPicker'
+import { getUserCode } from '../../../utils/getuserInfo' 
 export default {
     components:{
         WxImgPicker

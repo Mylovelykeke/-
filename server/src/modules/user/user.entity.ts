@@ -28,17 +28,35 @@ export class User {
   id: number;
 
   @Column({ length: 500 })
-  name: string;
+  nickName: string;
 
   @Exclude()
   @Column({ length: 500 })
   password: string;
 
+  @Column({ length: 500,default: null })
+  openid: string;
+
   @Column({ length: 500, default: null })
-  avatar: string; // 头像
+  avatarUrl: string; // 头像
 
   @Column({ length: 500, default: null })
   email: string; // 邮箱
+  
+  @Column({ length: 500, default: null })
+  province: string; // 城市
+  
+  @Column({ length: 500, default: null })
+  city: string; // 城市
+
+  @Column({ length: 500, default: null })
+  country: string; // 国家
+
+  @Column({ length: 500, default: null })
+  language:string; // 语言
+
+  @Column({default: null })
+  gender: number; // 国家
 
   @Column('simple-enum', { enum: ['admin', 'visitor'], default: 'visitor' })
   role: string; // 用户角色

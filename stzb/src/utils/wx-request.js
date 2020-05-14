@@ -6,12 +6,13 @@ function request (url, method, data, header = {}) {
     title: '加载中' // 数据请求前loading
   })
   return new Promise((resolve, reject) => {
+    console.log(wx.getStorageSync('token'))
     wx.request({
       url: url, // 仅为示例，并非真实的接口地址
       method: method,
       data: data,
-      headers: {
-        'content-type': 'application/json' // 默认值
+      header: {
+        'authorization': wx.getStorageSync('token')
       },
       success: function (res) {
         wx.hideLoading()

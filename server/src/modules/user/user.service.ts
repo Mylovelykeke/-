@@ -1,31 +1,63 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { config } from '../../config';
+import { config , wxconfig } from '../../config';
 import { User } from './user.entity';
+import { JwtService } from '@nestjs/jwt';
+const request = require('request');
 
+function wxrequest(options) {
+  return new Promise((resolve, reject) =>{
+    request(options, (error, response, body) => {
+        if(error) { //请求异常时，返回错误信息
+          reject(error)
+        }else { 
+          resolve(JSON.parse(body))
+        }
+    })
+  })
+}
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>
+    private readonly userRepository: Repository<User>,
+    private readonly jwtService: JwtService
   ) {
-    const { name, password } = config.admin;
-    this.createUser({ name, password, role: 'admin' })
+    const { nickName, password, openid } = config.admin;
+    this.createUser({ nickName, password, openid, role: 'admin' })
       .then(_ => {
         console.log();
         console.log(
-          `管理员账户创建成功，用户名：${name}，密码：${password}，请及时登录系统修改默认密码`
+          `管理员账户创建成功，用户名：${nickName}，密码：${password}，请及时登录系统修改默认密码`
         );
         console.log();
       })
       .catch(_ => {
         console.log();
         console.log(
-          `管理员账户已经存在，用户名：${name}，密码：${password}，请及时登录系统修改默认密码`
+          `管理员账户已经存在，用户名：${nickName}，密码：${password}，请及时登录系统修改默认密码`
         );
         console.log();
       });
+  }
+  createToken(User: Partial<User>) {
+    const accessToken = this.jwtService.sign(User);
+    return accessToken;
+  }
+  
+  async getLoginToken(code):Promise<any> {
+    let options = {
+      method: 'POST',
+      url: 'https://api.weixin.qq.com/sns/jscode2session?',
+      formData: {
+          appid: wxconfig.appid,
+          secret: wxconfig.secret,
+          js_code: code,
+          grant_type: 'authorization_code'
+      }
+    };
+    return await wxrequest(options)
   }
 
   async findAll(queryParams: any = {}): Promise<[User[], number]> {
@@ -57,17 +89,29 @@ export class UserService {
    * 创建用户
    * @param user
    */
-  async createUser(user: Partial<User>): Promise<User> {
-    const { name } = user;
-    const existUser = await this.userRepository.findOne({ where: { name } });
-   
+  async createUser(user: Partial<User>): Promise<any> {
+    const { nickName, openid } = user;
+    const existUser = await this.userRepository.findOne({ where: { openid } });
+    //如果存在直接返回token
     if (existUser) {
-      throw new HttpException('用户已存在', HttpStatus.BAD_REQUEST);
+      const token = this.createToken({
+        id: existUser.id,
+        nickName: existUser.nickName,
+        email: existUser.email,
+        role: existUser.role,
+      });
+      return Object.assign(existUser, { token });
+    }else{
+      const newUser = await this.userRepository.create(user);
+      await this.userRepository.save(newUser);
+      const token = this.createToken({
+        id: newUser.id,
+        nickName: newUser.nickName,
+        email: newUser.email,
+        role: newUser.role,
+      });
+      return Object.assign(newUser, { token });
     }
-
-    const newUser = await this.userRepository.create(user);
-    await this.userRepository.save(newUser);
-    return newUser;
   }
 
   /**
@@ -75,8 +119,8 @@ export class UserService {
    * @param user
    */
   async login(user: Partial<User>): Promise<User> {
-    const { name, password } = user;
-    const existUser = await this.userRepository.findOne({ where: { name } });
+    const { nickName, password,openid} = user;
+    const existUser = await this.userRepository.findOne({ where: { openid } });
 
     if (
       !existUser ||

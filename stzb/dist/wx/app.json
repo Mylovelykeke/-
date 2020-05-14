@@ -1,12 +1,12 @@
 {
   "pages": [
     "pages/home/main",
+    "pages/mine/main",
     "pages/home/details/main",
     "pages/common_item_detail/main",
     "pages/home/showdetail/main",
     "pages/home/searchpage/main",
     "pages/home/write/main",
-    "pages/mine/main",
     "pages/mine/feedback/main",
     "pages/mine/arbitration/main",
     "pages/mine/arbitration_item/main",

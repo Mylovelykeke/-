@@ -23,7 +23,7 @@ app.$mount();
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_3f0bfc00_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_template_compiler_index_id_data_v_3f0bfc00_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_fileExt_template_wxml_script_js_style_wxss_platform_wx_node_modules_mpvue_loader_2_0_1_mpvue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(134);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -83,11 +83,13 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_card_card__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_logincomponent__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_getuserInfo__ = __webpack_require__(31);
 
 
 //
@@ -157,6 +159,9 @@ if (false) {(function () {
 //
 //
 //
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -178,7 +183,8 @@ if (false) {(function () {
       page: 1,
       clientHeight: 0,
       swiperIndex: '0',
-      content: []
+      content: [],
+      Flag: false
     };
   },
   created: function created() {
@@ -190,12 +196,21 @@ if (false) {(function () {
     });
   },
   onLoad: function onLoad() {
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_getuserInfo__["a" /* getUserCode */])(this);
     __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default()(this.$data, this.$options.data());
     this.OnGetList(this.page);
   },
+  onShow: function onShow() {
+    var _this = this;
+
+    this.$bus.$on('userInfo', function (res) {
+      _this.Flag = false;
+    });
+  },
 
   components: {
-    vueCard: __WEBPACK_IMPORTED_MODULE_2__components_card_card__["a" /* default */]
+    vueCard: __WEBPACK_IMPORTED_MODULE_2__components_card_card__["a" /* default */],
+    loginComponent: __WEBPACK_IMPORTED_MODULE_3__components_logincomponent__["a" /* default */]
   },
   onPullDownRefresh: function onPullDownRefresh() {
     wx.showNavigationBarLoading(); //在标题栏中显示加载
@@ -214,7 +229,7 @@ if (false) {(function () {
   },
   methods: {
     OnGetList: function OnGetList(page) {
-      var _this = this;
+      var _this2 = this;
 
       this.$httpWX.get({
         url: 'http://localhost:4000/api/article?page=' + page
@@ -224,9 +239,9 @@ if (false) {(function () {
           var _content;
 
           var list = res.data[0];
-          (_content = _this.content).push.apply(_content, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(list));
+          (_content = _this2.content).push.apply(_content, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_toConsumableArray___default()(list));
         } else {
-          _this.page = page > 1 ? page - 1 : 1;
+          _this2.page = page > 1 ? page - 1 : 1;
         }
       });
     },
@@ -248,6 +263,10 @@ if (false) {(function () {
       });
     },
     OnReleaseArticle: function OnReleaseArticle() {
+      if (!wx.getStorageSync("userInfo")) {
+        this.Flag = true;
+        return;
+      }
       wx.navigateTo({
         url: "/pages/home/write/main"
       });
@@ -256,10 +275,12 @@ if (false) {(function () {
       wx.navigateTo({
         url: "/pages/home/searchpage/main"
       });
+    },
+    closeMask: function closeMask() {
+      this.Flag = false;
     }
   },
   onShareAppMessage: function onShareAppMessage() {
-    console.log(11111111);
     var that = this;
     return {
       title: '简直走别拐弯', // 转发后 所显示的title
@@ -295,18 +316,26 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 131:
+/***/ 134:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('vtu-navbar', {
+  return _c('div', [(_vm.Flag) ? _c('login-component', {
+    attrs: {
+      "eventid": '0',
+      "mpcomid": '0'
+    },
+    on: {
+      "closeMask": _vm.closeMask
+    }
+  }) : _vm._e(), _vm._v(" "), _c('vtu-navbar', {
     attrs: {
       "title": "Navbar",
       "use-bar-slot": "",
       "bg-color": "white",
       "goHome": false,
-      "mpcomid": '0'
+      "mpcomid": '1'
     }
   }, [_c('div', {
     staticClass: "head"
@@ -317,7 +346,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('view', {
     staticClass: "search-bar__label ",
     attrs: {
-      "eventid": '0'
+      "eventid": '1'
     },
     on: {
       "click": _vm.showInput
@@ -336,8 +365,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('i-tabs', {
     attrs: {
       "current": _vm.current,
-      "eventid": '1',
-      "mpcomid": '3'
+      "eventid": '2',
+      "mpcomid": '4'
     },
     on: {
       "change": _vm.handleChange
@@ -346,21 +375,21 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     key: "0",
     attrs: {
       "title": "求租广场",
-      "mpcomid": '1'
+      "mpcomid": '2'
     }
   }), _vm._v(" "), _c('i-tab', {
     key: "1",
     attrs: {
       "title": "房源",
-      "mpcomid": '2'
+      "mpcomid": '3'
     }
   })], 1)], 1), _vm._v(" "), _c('div', {
     staticClass: "swiperAuto"
   }, [(_vm.current == 0) ? _c('div', [_c('vue-card', {
     attrs: {
       "content": _vm.content,
-      "eventid": '2',
-      "mpcomid": '4'
+      "eventid": '3',
+      "mpcomid": '5'
     },
     on: {
       "getViewDetail": _vm.getViewDetail
@@ -375,8 +404,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "full": true,
         "title": val.username,
         "thumb": val.avatar,
-        "eventid": '3_' + index,
-        "mpcomid": '5_' + index
+        "eventid": '4_' + index,
+        "mpcomid": '6_' + index
       },
       on: {
         "click": function($event) {
@@ -395,7 +424,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   })) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "publish",
     attrs: {
-      "eventid": '4'
+      "eventid": '5'
     },
     on: {
       "click": _vm.OnReleaseArticle

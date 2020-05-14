@@ -1,5 +1,5 @@
-<template name="20501eed">
-  <view class="_div data-v-550d05d6">
+<import src="/components/logincomponent/index.vue.wxml" /><template name="20501eed">
+  <view class="_div data-v-550d05d6"><template wx:if="{{Flag}}" bindcloseMask="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" data="{{...$root[$kk+'0'], $root}}" is="5c918b7e"></template>
     <view class="_div data-v-550d05d6 header">
       <view class="_div data-v-550d05d6 notice">
         <i-cell-group class="_i-cell-group data-v-550d05d6"></i-cell-group>
@@ -19,9 +19,9 @@
     </view>
     <view class="_div data-v-550d05d6 content">
       <view wx:key="index" key="{{index}}" wx:for="{{comment}}" wx:for-index="index" wx:for-item="val" class="_div data-v-550d05d6">
-        <i-swipeout i-class="i-swipeout-demo-item" unclosable="{{false}}" actions="{{actions}}" bindchange="handleProxy" data-eventid="{{'1_'+index}}" data-comkey="{{$k}}" class="_i-swipeout data-v-550d05d6">
+        <i-swipeout i-class="i-swipeout-demo-item" unclosable="{{false}}" actions="{{actions}}" bindchange="handleProxy" data-eventid="{{'2_'+index}}" data-comkey="{{$k}}" class="_i-swipeout data-v-550d05d6">
           <view slot="content" class="_div data-v-550d05d6">
-            <view bindtap="handleProxy" data-eventid="{{'0_'+index}}" data-comkey="{{$k}}" class="_div data-v-550d05d6">
+            <view bindtap="handleProxy" data-eventid="{{'1_'+index}}" data-comkey="{{$k}}" class="_div data-v-550d05d6">
               <view class="_div data-v-550d05d6 i-swipeout-image">
                 <image src="{{val.headeImg}}" alt class="_img data-v-550d05d6"></image>
               </view>

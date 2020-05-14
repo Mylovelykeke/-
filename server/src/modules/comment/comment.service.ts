@@ -147,7 +147,7 @@ export class CommentService {
         const [users] = await this.userService.findAll({ role: 'admin' });
         users.forEach((user) => {
           if (user.email) {
-            sendEmail(user.name, user.email);
+            sendEmail(user.nickName, user.email);
           }
         });
       } catch (e) {

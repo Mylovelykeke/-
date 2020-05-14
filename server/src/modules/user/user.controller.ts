@@ -17,6 +17,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard, Roles } from '../auth/roles.guard';
 import { UserService } from './user.service';
 import { User } from './user.entity';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Controller('user')
 @UseGuards(RolesGuard)
@@ -42,8 +43,9 @@ export class UserController {
   @UseInterceptors(ClassSerializerInterceptor)
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
-  async register(@Body() user: Partial<User>): Promise<User> {
-    return await this.userService.createUser(user);
+  async register(@Body('userInfo') userInfo: Partial<User>): Promise<User> {
+    console.log(userInfo)
+    return await this.userService.createUser(userInfo);
   }
 
   async checkPermission(req, user) {
@@ -96,4 +98,12 @@ export class UserController {
     await this.checkPermission(req, user);
     return await this.userService.updatePassword(user.id, user);
   }
+
+  @Get('logintoken')
+  async logintoken(@Query() query){
+    const { code } = query
+    return await this.userService.getLoginToken(code);
+  }
 }
+
+

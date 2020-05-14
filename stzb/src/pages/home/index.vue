@@ -1,5 +1,6 @@
 <template>
   <div> 
+    <login-component v-if='Flag' @closeMask='closeMask'/>
    <vtu-navbar title="Navbar" use-bar-slot bg-color='white' :goHome="false">
       <div class="head">
         <view>
@@ -66,7 +67,9 @@
   </div>
 </template>
 <script>
-  import vueCard from '@/components/card/card'
+  import vueCard from '@/components/card/card';
+  import loginComponent from '@/components/logincomponent';
+  import { getUserCode } from '../../utils/getuserInfo';
   export default {
     data() {
       let a = {
@@ -87,6 +90,7 @@
         clientHeight: 0,
         swiperIndex: '0',
         content:[],
+        Flag:false
       }
     },
     created() {
@@ -99,11 +103,18 @@
       
     },
     onLoad() {
+      getUserCode(this)
       Object.assign(this.$data, this.$options.data())
       this.OnGetList(this.page)
     },
+    onShow(){
+      this.$bus.$on('userInfo',res=>{
+           this.Flag = false
+      });
+    },
     components: {
       vueCard,
+      loginComponent
     },
     onPullDownRefresh() {
       wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -151,6 +162,10 @@
         })
       },
       OnReleaseArticle(){
+        if(!wx.getStorageSync("userInfo")){
+          this.Flag = true
+          return
+        }
         wx.navigateTo({
           url: "/pages/home/write/main",
         })
@@ -160,9 +175,11 @@
           url: "/pages/home/searchpage/main",
         })
       },
+      closeMask(){
+        this.Flag = false
+      }
     },
     onShareAppMessage(){
-      console.log(11111111)
       let that =this;
       return {
         title: '简直走别拐弯', // 转发后 所显示的title
