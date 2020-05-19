@@ -104,7 +104,7 @@
             let that = this;
             //上传文件
             wx.uploadFile({
-                url: 'http://localhost:4000/api/file/upload',
+                url: 'http://www.superstarprogram.xyz:8081/api/file/upload',
                 filePath: imgPath[i].url,
                 name: 'file',
                 formData: {

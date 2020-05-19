@@ -25,7 +25,7 @@ export default {
             if (res.code) {
                 // 这里可以把code传给后台，后台用此获取openid及session_key
                 that.$httpWX.get({
-                url: 'http://localhost:4000/api/user/logintoken?code=' + res.code
+                url: '/user/logintoken?code=' + res.code
                 }).then(res => {
                     if(res.data&&!res.data.errcode){
                         that.openid = res.data.openid
@@ -45,7 +45,7 @@ export default {
           userInfo.openid = this.openid
           userInfo.password = '123456'
           this.$httpWX.post({
-            url:'http://localhost:4000/api/user/register',
+            url:'/user/register',
             data:{
               userInfo
             }

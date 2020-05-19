@@ -45,8 +45,6 @@ export class ArticleController {
    */
   @Get()
   
-  @Roles('admin')
-  @UseGuards(JwtAuthGuard)
   @HttpCode(HttpStatus.OK)
   findAll(@Query() queryParams) {
     return this.articleService.findAll(queryParams);

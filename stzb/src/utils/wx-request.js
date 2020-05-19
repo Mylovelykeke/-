@@ -1,5 +1,5 @@
 
-const host = ''
+const host = 'http://www.superstarprogram.xyz:8081/api'
 
 function request (url, method, data, header = {}) {
   wx.showLoading({
@@ -8,7 +8,7 @@ function request (url, method, data, header = {}) {
   return new Promise((resolve, reject) => {
     console.log(wx.getStorageSync('token'))
     wx.request({
-      url: url, // 仅为示例，并非真实的接口地址
+      url: host + url, // 仅为示例，并非真实的接口地址
       method: method,
       data: data,
       header: {

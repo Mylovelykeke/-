@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "vtu-checkbox-group": "../../../checkbox/group/vtu-checkbox-group",
-    "vtu-checkbox": "../../../checkbox/checkbox/vtu-checkbox"
-  }
-}

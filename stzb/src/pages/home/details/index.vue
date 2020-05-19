@@ -174,7 +174,7 @@ export default {
         sendMsg(val){
             let that = this
             this.$httpWX.post({
-                url: 'http://localhost:4000/api/comment',
+                url: '/comment',
                 data:{
                     hostId:that.hostId,
                     name: '垃圾人呀',
@@ -192,7 +192,7 @@ export default {
         },
         OnGetItemDetail(id){
             this.$httpWX.get({
-                url: 'http://localhost:4000/api/article/'+id,
+                url: '/article/'+id,
             }).then(res => {
                let {title,content,files,locationinfo,createAt} = res.data
                this.itemInfo = res.data
@@ -200,9 +200,7 @@ export default {
                this.content = content
                this.files = files
                this.location =JSON.parse(locationinfo)
-               setTimeout(()=>{
-                   this.showSkeleton = false
-               },500)
+               this.showSkeleton = false
             })
         },
         /**
@@ -211,14 +209,14 @@ export default {
          */
         OnAddViews(id){
             this.$httpWX.post({
-                url: 'http://localhost:4000/api/article/'+id+'/views',
+                url: '/article/'+id+'/views',
             }).then(res => {
                 console.log(res,'观看加1')
             })
         },
         OnGetCommonList(id){
             this.$httpWX.get({
-                url: 'http://localhost:4000/api/comment/host/'+id,
+                url: '/comment/host/'+id,
             }).then(res => {
                 let comment = []
                 comment.push(...res.data[0])

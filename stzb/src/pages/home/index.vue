@@ -118,7 +118,7 @@
     },
     onPullDownRefresh() {
       wx.showNavigationBarLoading() //在标题栏中显示加载
-      this.OnGetList()
+      this.OnGetList(1)
       //模拟加载
       setTimeout(function () {
         // complete
@@ -133,7 +133,7 @@
     methods: {
       OnGetList(page){
         this.$httpWX.get({
-            url: 'http://localhost:4000/api/article?page='+ page,
+            url: '/article?page='+ page,
         }).then(res => {
            console.log(res.data[0])
            if(res.data[0]&&res.data[0].length>0){

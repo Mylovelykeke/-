@@ -37,7 +37,7 @@ export default {
         OnGetSearch(){
             let that = this
             this.$httpWX.get({
-                url: 'http://localhost:4000/api/article/search',
+                url: '/article/search',
                 data:{
                     keyword:that.val
                 }

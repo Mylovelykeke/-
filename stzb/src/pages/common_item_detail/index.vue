@@ -26,7 +26,7 @@ export default {
     },
     onLoad(options) {
         Object.assign(this.$data, this.$options.data())
-        let parentCommentId = '268c44d2-67d5-4602-9b92-913ed773a845' ||  options.id
+        let parentCommentId =   options.id
         this.parentCommentId = parentCommentId
         this.OnGetCommonList(parentCommentId)
     },
@@ -45,7 +45,7 @@ export default {
     methods: {
         OnGetCommonList(id) {
             this.$httpWX.get({
-                url: 'http://localhost:4000/api/comment/'+id,
+                url: '/comment/'+id,
             }).then(res => {
                 console.log(res)
                   if(res.statusCode == 200){
@@ -53,9 +53,7 @@ export default {
                     this.replyUserName = res.data.parent.name
                     this.responderItem = [res.data.parent]
                     this.reviewersItem = res.data.children
-                    setTimeout(() => {
-                        this.showSkeleton = false
-                    },500)
+                    this.showSkeleton = false
                   }
             })
         },
@@ -70,7 +68,7 @@ export default {
         sendMsg(val) {
             let that = this
             this.$httpWX.post({
-                url: 'http://localhost:4000/api/comment',
+                url: '/comment',
                 data:{
                     hostId:that.hostId,
                     name: '垃圾人呀',
