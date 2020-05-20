@@ -96,17 +96,16 @@
       }
     },
     onShow(){
-      if(wx.getStorageSync("userInfo")){
-         this.userInfo = wx.getStorageSync("userInfo")
-         this.Flag = false
-      }
         this.$bus.$on('userInfo',res=>{
            this.userInfo = res
            this.Flag = false
         });
     },
     onLoad() {
-      
+      if(wx.getStorageSync("userInfo")){
+         this.userInfo = wx.getStorageSync("userInfo")
+         this.Flag = false
+      }
     },
     methods:{
       toPostings(){

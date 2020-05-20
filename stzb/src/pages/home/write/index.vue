@@ -112,7 +112,7 @@ export default {
             let openid = '11111111111111111111'
             let location = JSON.stringify(this.locationinfo)
             this.$httpWX.post({
-                url: 'http://localhost:4000/api/article/created',
+                url: '/article/created',
                 data: {
                     'openid': openid,
                     "summary":this.name,

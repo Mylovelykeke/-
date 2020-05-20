@@ -42,7 +42,7 @@ export class FileService {
     // });
     const writeImage = createWriteStream(path.join( 'public', `${filename}`))
     writeImage.write(buffer)
-    const  url  ='http://localhost:4000/public/' + filename ;
+    const  url  ='http://www.superstarprogram.xyz:8082/' + filename ;
     const newFile = await this.fileRepository.create({
       originalname,
       filename,

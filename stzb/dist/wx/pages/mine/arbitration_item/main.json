@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "详情",
-    "usingComponents": {
-      "i-progress": "../../static/dist/progress/index"
-    }
-  }
-  

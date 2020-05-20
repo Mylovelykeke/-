@@ -1,7 +1,8 @@
 <template>
   <div class="main">
         <skeleton selector="skeleton" bgcolor="#FFF" v-if="showSkeleton"></skeleton>
-        <div class="nav skeleton-rect">
+        <div  v-else>
+            <div class="nav skeleton-rect">
             <div class="back">
                 <i class="iconfont icon-fanhui" @click="back"></i>
             </div>
@@ -92,15 +93,23 @@
         <!-- <div>
             <SwiperImg :swiper="swiper" :images='images'/>
         </div> -->
+        </div>
   </div>
 </template>
 
 <script>
+import skeleton  from '@/components/skeleton/index'
 import ChatCommon from "@/components/chat/index";
 import SwiperImg from "@/components/swiper/index";
 import commonentItem from "@/components/commonent_item/index";
-import skeleton  from '@/components/skeleton/index'
+const  dataArr  = []
 export default {
+    components: {
+        ChatCommon,
+        SwiperImg,
+        commonentItem,
+        skeleton
+     },
     data(){
         return{
             hostId:'',
@@ -130,12 +139,6 @@ export default {
             comment: []
         }
     },
-    components: {
-        ChatCommon,
-        SwiperImg,
-        commonentItem,
-        skeleton
-     },
      onPullDownRefresh() {
         wx.showNavigationBarLoading() //在标题栏中显示加载
         this.OnGetCommonList(this.hostId)
@@ -148,19 +151,27 @@ export default {
     },
     onLoad(options){
         Object.assign(this.$data, this.$options.data())
-        let hostId =  options.id
+        // fetch some data
+        dataArr.push({ ...this.$data })
+        let hostId =  options.id 
         this.hostId = hostId
         this.OnAddViews(hostId)
         this.OnGetItemDetail(hostId)
     },
     onShow(options) {
-        console.log(options)
         if(this.flag){
             this.OnGetCommonList(this.hostId)
         }else{
             this.flag = true
             return
         }
+    },
+    onUnload() {
+        dataArr.pop()
+        const dataNum = dataArr.length
+        this.showSkeleton = true
+        if (!dataNum) return
+        Object.assign(this.$data, dataArr[dataNum - 1])
     },
      methods:{
         OnClickReplyName(val) {
@@ -174,7 +185,7 @@ export default {
         sendMsg(val){
             let that = this
             this.$httpWX.post({
-                url: 'http://localhost:4000/api/comment',
+                url: '/comment',
                 data:{
                     hostId:that.hostId,
                     name: '垃圾人呀',
@@ -192,7 +203,7 @@ export default {
         },
         OnGetItemDetail(id){
             this.$httpWX.get({
-                url: 'http://localhost:4000/api/article/'+id,
+                url: '/article/'+id,
             }).then(res => {
                let {title,content,files,locationinfo,createAt} = res.data
                this.itemInfo = res.data
@@ -200,25 +211,21 @@ export default {
                this.content = content
                this.files = files
                this.location =JSON.parse(locationinfo)
-               setTimeout(()=>{
-                   this.showSkeleton = false
-               },500)
+                setTimeout(()=>{
+                    this.showSkeleton = false
+                },500)
             })
         },
-        /**
-         * 观看加1
-         *  
-         */
         OnAddViews(id){
             this.$httpWX.post({
-                url: 'http://localhost:4000/api/article/'+id+'/views',
+                url: '/article/'+id+'/views',
             }).then(res => {
                 console.log(res,'观看加1')
             })
         },
         OnGetCommonList(id){
             this.$httpWX.get({
-                url: 'http://localhost:4000/api/comment/host/'+id,
+                url: '/comment/host/'+id,
             }).then(res => {
                 let comment = []
                 comment.push(...res.data[0])

@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "消息",
-    "usingComponents": {
-        "i-card": "../../static/dist/card/index",
-        "i-load-more": "../../static/dist/load-more/index"
-    }
-}

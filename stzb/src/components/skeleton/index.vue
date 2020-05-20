@@ -1,14 +1,21 @@
 <template>
   <div>
-    <div class="wrap"
-         :style="{'width':systemInfo.width+'px','height':systemInfo.height+'px', 'background-color':bgcolor}">
-      <div v-for="(item,index) in skeletonRectLists"
+    <div class="wrap">
+      <!-- <div v-for="(item,index) in skeletonRectLists"
            :index='index'
            :key='item'
            class="chiaroscuro"
            :class="loading=='chiaroscuro'? 'chiaroscuro':''"
            :style="{'width':item.width+'px','height':item.height+'px','background-color':'rgba(233, 2, 233,1)','position':'absolute','left':item.left+'px','top':item.top+'px'}">
-      </div>
+      </div> -->
+        <div>
+          <view class="chiaroscuro" style=" width:414px;height:264px;background-color:rgba(233, 2, 233,1);position:absolute;left:0px;top:0px;"></view>
+          <view class="chiaroscuro" style=" width:44px;height:44px;background-color:rgba(233, 2, 233,1);position:absolute;left:11px;top:269.5px;"></view>
+          <view class="chiaroscuro" style=" width:34px;height:22px;background-color:rgba(233, 2, 233,1);position:absolute;left:66px;top:280.5px;"></view>
+          <view class="chiaroscuro" style=" width:25.125px;height:24px;background-color:rgba(233, 2, 233,1);position:absolute;left:111px;top:279.5px;"></view>
+          <view class="chiaroscuro" style=" width:392px;height:47px;background-color:rgba(233, 2, 233,1);position:absolute;left:11px;top:335px;"></view>
+          <view class="chiaroscuro" style=" width:392px;height:66px;background-color:rgba(233, 2, 233,1);position:absolute;left:11px;top:408px;"></view>
+        </div>
       <!-- <div v-for="(item,index) in skeletonCircleLists"
            :index='index'
            :key='item'
@@ -17,40 +24,40 @@
            :style="{'width':item.width+'px','height':item.height+'px','background-color':'rgba(233, , 233,1)','border-radius':item.width+'px','position':'absolute','left':item.left+'px','top':item.top+'px'}">
       </div> -->
         <div v-if="flag">
-        <div class="radius">
-                <div class="main">
-                    <div class="header chiaroscuro"></div>
-                    <div class="name chiaroscuro"></div>
-                </div>
-                <div class="clearfix">
-                    <div class="chiaroscuro content">
+          <div class="radius">
+                  <div class="main">
+                      <div class="header chiaroscuro"></div>
+                      <div class="name chiaroscuro"></div>
+                  </div>
+                  <div class="clearfix">
+                      <div class="chiaroscuro content">
 
-                    </div>
-                    <div class="chiaroscuro content">
+                      </div>
+                      <div class="chiaroscuro content">
 
-                    </div>
-                    <div class="chiaroscuro content">
+                      </div>
+                      <div class="chiaroscuro content">
 
-                    </div>
-                </div>
-        </div>
-        <div class="radius">
-                <div class="main">
-                    <div class="header chiaroscuro"></div>
-                    <div class="name chiaroscuro"></div>
-                </div>
-                <div class="clearfix">
-                    <div class="chiaroscuro content">
+                      </div>
+                  </div>
+          </div>
+          <div class="radius">
+                  <div class="main">
+                      <div class="header chiaroscuro"></div>
+                      <div class="name chiaroscuro"></div>
+                  </div>
+                  <div class="clearfix">
+                      <div class="chiaroscuro content">
 
-                    </div>
-                    <div class="chiaroscuro content">
+                      </div>
+                      <div class="chiaroscuro content">
 
-                    </div>
-                    <div class="chiaroscuro content">
+                      </div>
+                      <div class="chiaroscuro content">
 
-                    </div>
-                </div>
-        </div>
+                      </div>
+                  </div>
+          </div>
         </div>
     </div>
   </div>
@@ -135,6 +142,9 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFF;
   z-index: 9998;
   overflow: hidden;
 }

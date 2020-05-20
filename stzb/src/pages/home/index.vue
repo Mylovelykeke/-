@@ -1,20 +1,20 @@
 <template>
   <div> 
     <login-component v-if='Flag' @closeMask='closeMask'/>
-   <vtu-navbar title="Navbar" use-bar-slot bg-color='white' :goHome="false">
-      <div class="head">
-        <view>
-          <div class="search-bar">
-            <div class="search-bar__box">
-              <view @click="showInput" class="search-bar__label ">
-                <icon class="icon-search" size="14" type="search" role="img"></icon>
-                <view class="search-bar__text ">搜索</view>
-              </view>
+    <vtu-navbar title="Navbar" use-bar-slot bg-color='white' :goHome="false">
+        <div class="head">
+          <view>
+            <div class="search-bar">
+              <div class="search-bar__box">
+                <view @click="showInput" class="search-bar__label ">
+                  <icon class="icon-search" size="14" type="search" role="img"></icon>
+                  <view class="search-bar__text ">搜索</view>
+                </view>
+              </div>
             </div>
-          </div>
-        </view>
-      </div>
-   </vtu-navbar>
+          </view>
+        </div>
+    </vtu-navbar>
     <!-- <div class="msg">
       <i-notice-bar icon="systemprompt">
         点击"•●•"添加到我的小程序，快速寻找
@@ -104,7 +104,6 @@
     },
     onLoad() {
       getUserCode(this)
-      Object.assign(this.$data, this.$options.data())
       this.OnGetList(this.page)
     },
     onShow(){
@@ -118,7 +117,7 @@
     },
     onPullDownRefresh() {
       wx.showNavigationBarLoading() //在标题栏中显示加载
-      this.OnGetList()
+      this.OnGetList(1)
       //模拟加载
       setTimeout(function () {
         // complete
@@ -133,7 +132,7 @@
     methods: {
       OnGetList(page){
         this.$httpWX.get({
-            url: 'http://localhost:4000/api/article?page='+ page,
+            url: '/article?page='+ page,
         }).then(res => {
            console.log(res.data[0])
            if(res.data[0]&&res.data[0].length>0){

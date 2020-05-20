@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "个人中心",
-  "navigationStyle":"custom" ,
-  "usingComponents": {
-    "i-cell-group": "../../static/dist/cell-group/index",
-    "i-cell": "../../static/dist/cell/index"
-  }
-}
