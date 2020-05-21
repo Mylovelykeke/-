@@ -25,6 +25,7 @@ export default {
         skeleton
     },
     onLoad(options) {
+        Object.assign(this.$data, this.$options.data())
         let parentCommentId =   options.id
         this.parentCommentId = parentCommentId
         this.OnGetCommonList(parentCommentId)
