@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="wrap">
+    <div class="wrap"  v-show="flag">
       <!-- <div v-for="(item,index) in skeletonRectLists"
            :index='index'
            :key='item'
@@ -23,7 +23,7 @@
            :class="loading == 'chiaroscuro' ? 'chiaroscuro' : ''"
            :style="{'width':item.width+'px','height':item.height+'px','background-color':'rgba(233, , 233,1)','border-radius':item.width+'px','position':'absolute','left':item.left+'px','top':item.top+'px'}">
       </div> -->
-        <div v-if="flag">
+        <!-- <div v-if="flag">
           <div class="radius">
                   <div class="main">
                       <div class="header chiaroscuro"></div>
@@ -58,19 +58,25 @@
                       </div>
                   </div>
           </div>
-        </div>
+        </div> -->
+    </div>
+    <div v-show="!flag">
+      <slot>
+      </slot>
     </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
+
+const dataArr = []
 export default {
   props: {
     bgcolor: { type: String, value: '#FFF' },
     selector: { type: String, value: 'skeleton' },
     loading: { type: String, value: 'spin' },
-    flag:{ type: Boolean, value: false }
+    flag:{ type: Boolean, value: true }
   },
 
   data() {
@@ -110,6 +116,9 @@ export default {
   },
 
   onLoad: function() {
+    Object.assign(this.$data, this.$options.data())
+    // fetch some data
+    dataArr.push({ ...this.$data })
     //默认的首屏宽高，防止内容闪现
     const that = this;
     const systemInfo = wx.getSystemInfoSync();
@@ -132,6 +141,12 @@ export default {
         this.skeletonRectLists = []
     }
 
+  },
+   onUnload() {
+    dataArr.pop()
+    const dataNum = dataArr.length
+    if (!dataNum) return
+    Object.assign(this.$data, dataArr[dataNum - 1])
   },
 };
 /* eslint-enable */
