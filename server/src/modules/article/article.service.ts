@@ -6,6 +6,7 @@ import { TagService } from '../tag/tag.service';
 import { FileService } from '../file/file.service';
 import { CategoryService } from '../category/category.service';
 import { Article } from './article.entity';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class ArticleService {
@@ -14,42 +15,40 @@ export class ArticleService {
     private readonly articleRepository: Repository<Article>,
     private readonly tagService: TagService,
     private readonly fileService: FileService,
-    private readonly categoryService: CategoryService
-  ) {}
+    private readonly categoryService: CategoryService,
+    private readonly userService: UserService
+  ) { }
 
   /**
    * 创建文章
    * @param article
    */
   async create(article: Partial<Article>): Promise<Article> {
-    const { title } = article;
 
-    // const exist = await this.articleRepository.findOne({ where: { title } });
-
-    // if (exist) {
-    //   throw new HttpException('文章标题已存在', HttpStatus.BAD_REQUEST);
+    let { summary, content, openid, files, status } = article;
+    if (!summary) {
+      article.summary = content.substring(0, 100)
+    }
+    // if (status === 'publish') {
+    //   Object.assign(article, {
+    //     publishAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+    //   });
     // }
 
-    let { tags, files, category, status } = article;
-
-    if (status === 'publish') {
-      Object.assign(article, {
-        publishAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-      });
-    }
-
     // tags = await this.tagService.findByIds(('' + tags).split(','));
+    // let existCategory = await this.categoryService.findById(category);
     files = await this.fileService.findByIds(('' + files).split(','));
-    let existCategory = await this.categoryService.findById(category);
+    let userInfo = await this.userService.findByopenId(openid)
+
     const newArticle = await this.articleRepository.create({
       ...article,
-      category: existCategory,
+      user: userInfo,
       files,
       needPassword: !!article.password,
     });
     await this.articleRepository.save(newArticle);
-    
-    return ;
+
+    return;
   }
 
   /**
@@ -58,7 +57,7 @@ export class ArticleService {
   async findAll(queryParams: any = {}): Promise<[Article[], number]> {
     const query = this.articleRepository
       .createQueryBuilder('article')
-      .leftJoinAndSelect('article.category', 'category')
+      .leftJoinAndSelect('article.user', 'user')
       .leftJoinAndSelect('article.files', 'file')
       .orderBy('article.publishAt', 'DESC');
 
@@ -72,9 +71,9 @@ export class ArticleService {
     }
 
     if (otherParams) {
-      console.log(otherParams)
+      console.log(Object.keys(otherParams))
       Object.keys(otherParams).forEach((key) => {
-        query 
+        query
           .andWhere(`article.${key} LIKE :${key}`)
           .setParameter(`${key}`, `%${otherParams[key]}%`);
       });
@@ -84,9 +83,9 @@ export class ArticleService {
       if (d.needPassword) {
         delete d.content;
       }
-      Object.assign(d, {
-        createAt: dayjs(d.createAt).format('YYYY-MM-DD HH:mm:ss')
-      });
+      // Object.assign(d, {
+      //   createAt: dayjs(d.createAt).format('YYYY-MM-DD HH:mm:ss')
+      // });
     });
     // console.log(data,'?????')
     return [data, total];
@@ -119,7 +118,7 @@ export class ArticleService {
         delete d.content;
       }
     });
-    
+
     return [data, total];
   }
 
@@ -227,7 +226,7 @@ export class ArticleService {
   async findById(id, status = null, isAdmin = false): Promise<Article> {
     const query = this.articleRepository
       .createQueryBuilder('article')
-      .leftJoinAndSelect('article.category', 'category')
+      .leftJoinAndSelect('article.user', 'user')
       .leftJoinAndSelect('article.files', 'files')
       .where('article.id=:id')
       .orWhere('article.title=:title')
@@ -247,6 +246,16 @@ export class ArticleService {
       createAt: dayjs(data.createAt).format('YYYY-MM-DD HH:mm:ss')
     });
     return data;
+  }
+
+  /**
+   * @param id
+   */
+  async findByUserId(id) {
+    const res = await this.articleRepository.find({
+      'openid':id
+    })
+    return res
   }
 
   /**
@@ -381,7 +390,7 @@ export class ArticleService {
           }
           query.setParameter(paramKey, `%${kw.word}%`);
         });
-      } catch (e) {}
+      } catch (e) { }
 
       const data = await query.getMany();
       return data.filter((d) => d.id !== articleId && d.status === 'publish');

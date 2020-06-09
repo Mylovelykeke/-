@@ -61,7 +61,7 @@ export class CommentService {
     private readonly smtpService: SMTPService,
     private readonly settingService: SettingService,
     private readonly userService: UserService
-  ) {}
+  ) { }
 
   /**
    * 创建评论
@@ -69,91 +69,98 @@ export class CommentService {
    */
   async create(
     userAgent,
-    comment: Partial<Comment> & { reply?: string; createByAdmin?: boolean }
+    comment: Partial<Comment> & { replyUserId?: string; createByAdmin?: boolean; openid?: string }
   ): Promise<Comment> {
-    const { hostId, name, email, content,parentCommentId, replyUserName, createByAdmin = false } = comment;
-    if (!hostId || !name || !email || !content) {
+    const { hostId, openid, content, parentCommentId, replyUserId, createByAdmin = false } = comment;
+    if (!hostId || !content) {
       throw new HttpException('缺失参数', HttpStatus.BAD_REQUEST);
     }
-    if(!parentCommentId) delete comment['parentCommentId']
-    if(!replyUserName) delete comment['replyUserName']
+    if (!parentCommentId) delete comment['parentCommentId']
     comment.pass = false;
     comment.userAgent = parseUserAgent(userAgent);
-    const newComment = await this.commentRepository.create(comment);
-    await this.commentRepository.save(comment);
-    console.log(createByAdmin)
-    if (!createByAdmin) {
-      // 发送通知邮件
-      const {
-        smtpFromUser: from,
-        systemUrl,
-        systemTitle,
-      } = await this.settingService.findAll(true);
+    let userInfo = await this.userService.findByopenId(openid)
+    let replyUser = await this.userService.findById(replyUserId)
+    console.log(replyUserId,'?')
+    console.log(userInfo)
+    const newComment = await this.commentRepository.create({
+      ...comment,
+      author: userInfo,
+      replyUser: replyUser
+    });
+    await this.commentRepository.save(newComment);
 
-      const sendEmail = (adminName, adminEmail) => {
-        const emailMessage = {
-          from,
-          to: adminEmail,
-          subject: '新评论通知',
-          html: `
-<div>
-<table cellpadding="0" align="center" style="width: 600px; margin: 0px auto; text-align: left; position: relative; font-size: 14px; font-family:微软雅黑, 黑体; line-height: 1.5; box-shadow: rgb(153, 153, 153) 0px 0px 5px; border-collapse: collapse; background-position: initial initial; background-repeat: initial initial;background:#fff;">
-    <tbody>
-    <tr>
-        <th valign="middle"
-            style="height: 25px; line-height: 25px; padding: 15px 35px; background-color: #ff0064; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">
-            <font face="微软雅黑" size="5" style="color: rgb(255, 255, 255);">新评论通知</font>
-        </th>
-    </tr>
-    <tr>
-        <td>
-            <div style="padding:25px 35px 40px; background-color:#fff;">
-                <h2 style="margin: 5px 0px; ">
-                  <font color="#333333" style="line-height: 20px; ">
-                    <font style="line-height: 22px; " size="4">
-                      亲爱的 ${adminName}
-                    </font>
-                  </font>
-                </h2>
-                <p>站点收到新评论：</p>
-                <p>评论人：<b>${comment.name}</b></p>
-                <p>评论内容：<b>${comment.content}</b></p>
-                <p align="right">${systemTitle}</p>
-                <p align="right">${dayjs(new Date()).format(
-                  'YYYY-MM-DD HH:mm:ss'
-                )}</p>
-                <div style="width:700px;margin:0 auto;">
-                    <div style="padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px;">
-                        <p>此为系统邮件，请勿回复<br>
-                            请保管好您的邮箱，避免账号被他人盗用
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
-</div>
-        `,
-        };
-        this.smtpService.create(emailMessage).catch(() => {
-          console.log('收到新评论，但发送邮件通知失败');
-        });
-      };
+    //     if (!createByAdmin) {
+    //       // 发送通知邮件
+    //       const {
+    //         smtpFromUser: from,
+    //         systemUrl,
+    //         systemTitle,
+    //       } = await this.settingService.findAll(true);
 
-      try {
-        // 通知所有管理员审核评论
-        const [users] = await this.userService.findAll({ role: 'admin' });
-        users.forEach((user) => {
-          if (user.email) {
-            sendEmail(user.nickName, user.email);
-          }
-        });
-      } catch (e) {
-        console.log(e)
-      }
-    }
+    //       const sendEmail = (adminName, adminEmail) => {
+    //         const emailMessage = {
+    //           from,
+    //           to: adminEmail,
+    //           subject: '新评论通知',
+    //           html: `
+    // <div>
+    // <table cellpadding="0" align="center" style="width: 600px; margin: 0px auto; text-align: left; position: relative; font-size: 14px; font-family:微软雅黑, 黑体; line-height: 1.5; box-shadow: rgb(153, 153, 153) 0px 0px 5px; border-collapse: collapse; background-position: initial initial; background-repeat: initial initial;background:#fff;">
+    //     <tbody>
+    //     <tr>
+    //         <th valign="middle"
+    //             style="height: 25px; line-height: 25px; padding: 15px 35px; background-color: #ff0064; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">
+    //             <font face="微软雅黑" size="5" style="color: rgb(255, 255, 255);">新评论通知</font>
+    //         </th>
+    //     </tr>
+    //     <tr>
+    //         <td>
+    //             <div style="padding:25px 35px 40px; background-color:#fff;">
+    //                 <h2 style="margin: 5px 0px; ">
+    //                   <font color="#333333" style="line-height: 20px; ">
+    //                     <font style="line-height: 22px; " size="4">
+    //                       亲爱的 ${adminName}
+    //                     </font>
+    //                   </font>
+    //                 </h2>
+    //                 <p>站点收到新评论：</p>
+    //                 <p>评论人：<b>${comment.name}</b></p>
+    //                 <p>评论内容：<b>${comment.content}</b></p>
+    //                 <p align="right">${systemTitle}</p>
+    //                 <p align="right">${dayjs(new Date()).format(
+    //             'YYYY-MM-DD HH:mm:ss'
+    //           )}</p>
+    //                 <div style="width:700px;margin:0 auto;">
+    //                     <div style="padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px;">
+    //                         <p>此为系统邮件，请勿回复<br>
+    //                             请保管好您的邮箱，避免账号被他人盗用
+    //                         </p>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </td>
+    //     </tr>
+    //     </tbody>
+    // </table>
+    // </div>
+    //         `,
+    //         };
+    //         this.smtpService.create(emailMessage).catch(() => {
+    //           console.log('收到新评论，但发送邮件通知失败');
+    //         });
+    //       };
+
+    //       try {
+    //         // 通知所有管理员审核评论
+    //         const [users] = await this.userService.findAll({ role: 'admin' });
+    //         users.forEach((user) => {
+    //           if (user.email) {
+    //             sendEmail(user.nickName, user.email);
+    //           }
+    //         });
+    //       } catch (e) {
+    //         console.log(e)
+    //       }
+    //     }
 
     return newComment;
   }
@@ -193,22 +200,22 @@ export class CommentService {
    */
   async findById(id): Promise<any> {
     const subQuery = this.commentRepository
-    .createQueryBuilder('comment')
-    .andWhere('comment.pass=:pass')
-    .andWhere('comment.parentCommentId=:parentCommentId')
-    .orderBy('comment.createAt', 'DESC')
-    .setParameter('pass', false);
-
-    const data = await this.commentRepository.findOne(id);
+      .createQueryBuilder('comment')
+      .leftJoinAndSelect('comment.user', 'user')
+      .andWhere('comment.pass=:pass')
+      .andWhere('comment.parentCommentId=:parentCommentId')
+      .orderBy('comment.createAt', 'DESC')
+      .setParameter('pass', false);
+    const data = await this.commentRepository
+      .createQueryBuilder('comment')
+      .leftJoinAndSelect('comment.user', 'user')
+      .where('comment.id=:id')
+      .setParameter('id', id)
+      .getOne();
     const subComments = await await subQuery
-    .setParameter('parentCommentId', id)
-    .getMany();
-
-    for(let item of subComments){
-      Object.assign(item, {createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss')});
-    }
-
-    return {'parent':data,'children':subComments}
+      .setParameter('parentCommentId', id)
+      .getMany();
+    return { 'parent': data, 'children': subComments }
   }
 
   /**
@@ -218,15 +225,19 @@ export class CommentService {
   async getArticleComments(hostId, queryParams) {
     const query = this.commentRepository
       .createQueryBuilder('comment')
+      .leftJoinAndSelect('comment.author', 'user')
+      .leftJoinAndSelect('comment.replyUser', 'user1')
       .where('comment.hostId=:hostId')
       .andWhere('comment.pass=:pass')
       .andWhere('comment.parentCommentId is NULL')
       .orderBy('comment.createAt', 'ASC')
       .setParameter('hostId', hostId)
-      .setParameter('pass', false);
+      .setParameter('pass', false)
 
     const subQuery = this.commentRepository
       .createQueryBuilder('comment')
+      .leftJoinAndSelect('comment.author', 'user')
+      .leftJoinAndSelect('comment.replyUser', 'user1')
       .andWhere('comment.pass=:pass')
       .andWhere('comment.parentCommentId=:parentCommentId')
       .orderBy('comment.createAt', 'ASC')
@@ -242,10 +253,10 @@ export class CommentService {
         .setParameter('parentCommentId', item.id)
         .take(3)
         .getManyAndCount();
-        for(let item of subComments[0]){
-          Object.assign(item, {createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss')});
-        }
-        Object.assign(item, { children: subComments, createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss')});
+      for (let item of subComments[0]) {
+        Object.assign(item, { createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss') });
+      }
+      Object.assign(item, { children: subComments, createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss') });
     }
 
     return [data, count];
@@ -265,77 +276,77 @@ export class CommentService {
     const newData = await this.commentRepository.merge(old, data);
 
     if (newData.pass) {
-      const { replyUserName, replyUserEmail, hostId, isHostInPage } = newData;
+      // const { replyUserName, hostId, isHostInPage } = newData;
 
-      const isReply = replyUserName && replyUserEmail;
+      // const isReply = replyUserName;
 
-      if (isReply) {
-        // 发送通知邮件
-        try {
-          const {
-            smtpFromUser: from,
-            systemUrl,
-            systemTitle,
-          } = await this.settingService.findAll(true);
-          const emailMessage = {
-            from,
-            to: replyUserEmail,
-            subject: '评论回复通知',
-            html: `
-<div>
-  <table cellpadding="0" align="center"
-          style="width: 600px; margin: 0px auto; text-align: left; position: relative; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; font-size: 14px; font-family:微软雅黑, 黑体; line-height: 1.5; box-shadow: rgb(153, 153, 153) 0px 0px 5px; border-collapse: collapse; background-position: initial initial; background-repeat: initial initial;background:#fff;">
-      <tbody>
-      <tr>
-          <th valign="middle"
-              style="height: 25px; line-height: 25px; padding: 15px 35px; background-color: #ff0064; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">
-              <font face="微软雅黑" size="5" style="color: rgb(255, 255, 255); ">评论回复通知</font>
-          </th>
-      </tr>
-      <tr>
-          <td>
-              <div style="padding:25px 35px 40px; background-color:#fff;">
-                  <h2 style="margin: 5px 0px; ">
-                    <font color="#333333" style="line-height: 20px; ">
-                      <font style="line-height: 22px; " size="4">
-                        亲爱的 ${replyUserName}
-                      </font>
-                    </font>
-                  </h2>
-                  <p>您的评论已经被他人回复。点击下方按钮前往查看。</p>
-                  <p align="center">
-                    <a href="${url.resolve(
-                      systemUrl,
-                      `/${isHostInPage ? 'page' : 'article'}/` + hostId
-                    )}" style="display: inline-block; margin: 16px auto; width: 160px; height: 32px; line-height: 32px; color: #ff0064; border: 1px solid #ff0064; background-color: #fff0f6; border-radius: 4px; text-decoration: none;">
-                    前往查看
-                    </a>
-                  </p>
-                  <p align="right">${systemTitle}</p>
-                  <p align="right">${dayjs(new Date()).format(
-                    'YYYY-MM-DD HH:mm:ss'
-                  )}</p>
-                  <div style="width:700px;margin:0 auto;">
-                      <div style="padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px;">
-                          <p>此为系统邮件，请勿回复<br>
-                              请保管好您的邮箱，避免账号被他人盗用
-                          </p>
-                      </div>
-                  </div>
-              </div>
-          </td>
-      </tr>
-      </tbody>
-  </table>
-</div>`,
-          };
-          this.smtpService.create(emailMessage).catch(() => {
-            console.log(
-              `通知用户 ${replyUserName}（${replyUserEmail}），但发送邮件通知失败`
-            );
-          });
-        } catch (e) {}
-      }
+      //       if (isReply) {
+      //         // 发送通知邮件
+      //         try {
+      //           const {
+      //             smtpFromUser: from,
+      //             systemUrl,
+      //             systemTitle,
+      //           } = await this.settingService.findAll(true);
+      //           const emailMessage = {
+      //             from,
+      //             to: replyUserEmail,
+      //             subject: '评论回复通知',
+      //             html: `
+      // <div>
+      //   <table cellpadding="0" align="center"
+      //           style="width: 600px; margin: 0px auto; text-align: left; position: relative; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; font-size: 14px; font-family:微软雅黑, 黑体; line-height: 1.5; box-shadow: rgb(153, 153, 153) 0px 0px 5px; border-collapse: collapse; background-position: initial initial; background-repeat: initial initial;background:#fff;">
+      //       <tbody>
+      //       <tr>
+      //           <th valign="middle"
+      //               style="height: 25px; line-height: 25px; padding: 15px 35px; background-color: #ff0064; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">
+      //               <font face="微软雅黑" size="5" style="color: rgb(255, 255, 255); ">评论回复通知</font>
+      //           </th>
+      //       </tr>
+      //       <tr>
+      //           <td>
+      //               <div style="padding:25px 35px 40px; background-color:#fff;">
+      //                   <h2 style="margin: 5px 0px; ">
+      //                     <font color="#333333" style="line-height: 20px; ">
+      //                       <font style="line-height: 22px; " size="4">
+      //                         亲爱的 ${replyUserName}
+      //                       </font>
+      //                     </font>
+      //                   </h2>
+      //                   <p>您的评论已经被他人回复。点击下方按钮前往查看。</p>
+      //                   <p align="center">
+      //                     <a href="${url.resolve(
+      //               systemUrl,
+      //               `/${isHostInPage ? 'page' : 'article'}/` + hostId
+      //             )}" style="display: inline-block; margin: 16px auto; width: 160px; height: 32px; line-height: 32px; color: #ff0064; border: 1px solid #ff0064; background-color: #fff0f6; border-radius: 4px; text-decoration: none;">
+      //                     前往查看
+      //                     </a>
+      //                   </p>
+      //                   <p align="right">${systemTitle}</p>
+      //                   <p align="right">${dayjs(new Date()).format(
+      //               'YYYY-MM-DD HH:mm:ss'
+      //             )}</p>
+      //                   <div style="width:700px;margin:0 auto;">
+      //                       <div style="padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px;">
+      //                           <p>此为系统邮件，请勿回复<br>
+      //                               请保管好您的邮箱，避免账号被他人盗用
+      //                           </p>
+      //                       </div>
+      //                   </div>
+      //               </div>
+      //           </td>
+      //       </tr>
+      //       </tbody>
+      //   </table>
+      // </div>`,
+      //           };
+      //           this.smtpService.create(emailMessage).catch(() => {
+      //             console.log(
+      //               `通知用户 ${replyUserName}（${replyUserEmail}），但发送邮件通知失败`
+      //             );
+      //           });
+      //         } catch (e) { }
+      //       }
     }
 
     return this.commentRepository.save(newData);

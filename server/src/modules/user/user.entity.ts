@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
@@ -8,6 +9,8 @@ import {
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import * as bcrypt from 'bcryptjs';
+import { Article } from '../article/article.entity';
+import { Comment } from '../comment/comment.entity';
 
 @Entity()
 export class User {
@@ -31,10 +34,10 @@ export class User {
   nickName: string;
 
   @Exclude()
-  @Column({ length: 500 })
+  @Column({ length: 500, select: false })
   password: string;
 
-  @Column({ length: 500,default: null })
+  @Column({ length: 500, default: null })
   openid: string;
 
   @Column({ length: 500, default: null })
@@ -42,10 +45,10 @@ export class User {
 
   @Column({ length: 500, default: null })
   email: string; // 邮箱
-  
+
   @Column({ length: 500, default: null })
   province: string; // 城市
-  
+
   @Column({ length: 500, default: null })
   city: string; // 城市
 
@@ -53,9 +56,9 @@ export class User {
   country: string; // 国家
 
   @Column({ length: 500, default: null })
-  language:string; // 语言
+  language: string; // 语言
 
-  @Column({default: null })
+  @Column({ default: null })
   gender: number; // 国家
 
   @Column('simple-enum', { enum: ['admin', 'visitor'], default: 'visitor' })
@@ -63,6 +66,24 @@ export class User {
 
   @Column('simple-enum', { enum: ['locked', 'active'], default: 'active' })
   status: string; // 用户状态
+
+  @OneToMany(
+    () => Article,
+    article => article.user
+  )
+  articles: Array<Article>;
+
+  @OneToMany(
+    () => Comment,
+    comment => comment.author
+  )
+  comment: Array<Comment>;
+
+  @OneToMany(
+    () => Comment,
+    replycomment => replycomment.replyUser
+  )
+  replycomment: Array<Comment>;
 
   @CreateDateColumn({
     type: 'datetime',

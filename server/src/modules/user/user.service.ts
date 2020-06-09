@@ -152,6 +152,14 @@ export class UserService {
     return this.userRepository.findOne(id);
   }
 
+   /**
+   * 获取指定用户
+   * @param openid
+   */
+  async findByopenId(openid): Promise<User> {
+    return this.userRepository.findOne({ where: { openid } });
+  }
+
   /**
    * 更新指定用户
    * @param id

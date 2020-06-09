@@ -103,7 +103,6 @@ export class ArticleController {
    */
   @Get(':id')
   async findById(@Request() req, @Param('id') id, @Query('status') status) {
-    console.log(id)
     let token = req.headers.authorization;
 
     if (/Bearer/.test(token)) {
@@ -153,6 +152,15 @@ export class ArticleController {
   @HttpCode(HttpStatus.OK)
   updateById(@Param('id') id, @Body() article) {
     return this.articleService.updateById(id, article);
+  }
+
+  /**
+   * 获取指定用户的所有文章
+   * @param id 
+   */
+  @Get('/userid/:id')
+  findByUserId(@Param('id') id) {
+    return this.articleService.findByUserId(id);
   }
 
   /**

@@ -11,7 +11,8 @@ import {
 import { File } from '../file/file.entity'
 import { Tag } from '../tag/tag.entity';
 import { Category } from '../category/category.entity';
-
+import { User } from '../user/user.entity';
+  
 @Entity()
 export class Article {
   @PrimaryGeneratedColumn('uuid')
@@ -44,7 +45,16 @@ export class Article {
     { cascade: true }
   )   
   @JoinTable()
-  category: Category;
+  category: Category; 
+
+  @ManyToOne(
+    () => User,
+    user => user.articles,
+    { cascade: true }
+  )  
+
+  @JoinTable()
+  user: User;
 
   @ManyToMany(
     () => Tag,

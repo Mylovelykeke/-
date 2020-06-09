@@ -28,10 +28,10 @@ export class UserController {
     private readonly jwtService: JwtService
   ) {}
 
-  @UseInterceptors(ClassSerializerInterceptor)
+  // @UseInterceptors(ClassSerializerInterceptor)
   @Get()
-  @Roles('admin')
-  @UseGuards(JwtAuthGuard)
+  // @Roles('admin')
+  // @UseGuards(JwtAuthGuard)
   findAll(@Query() query) {
     return this.userService.findAll(query);
   }
@@ -44,7 +44,6 @@ export class UserController {
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
   async register(@Body('userInfo') userInfo: Partial<User>): Promise<User> {
-    console.log(userInfo)
     return await this.userService.createUser(userInfo);
   }
 

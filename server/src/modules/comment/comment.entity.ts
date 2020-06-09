@@ -4,18 +4,15 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinTable
 } from 'typeorm';
+import { User } from '../user/user.entity';
 
 @Entity()
 export class Comment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
-  @Column()
-  name: string; // 联系方式
-
-  @Column()
-  email: string; // 联系方式
 
   @Column({ type: 'mediumtext', default: null, charset: 'utf8mb4' }) // 评论内容
   content: string;
@@ -35,11 +32,26 @@ export class Comment {
   @Column({ default: null })
   parentCommentId: string; // 父级评论 id
 
-  @Column({ default: null })
-  replyUserName: string; // 回复评论用户名
+  // @Column({ default: null })
+  // replyUserName: string; // 回复评论用户名
 
-  @Column({ default: null })
-  replyUserEmail: string; // 回复评论邮箱
+  @ManyToOne(
+    () => User,
+    author => author.comment,
+    { cascade: false }
+  )  
+
+  @JoinTable()
+  author: User;
+
+  @ManyToOne(
+    () => User,
+    replyUser => replyUser.comment,
+    { cascade: false }
+  )  
+  
+  @JoinTable()
+  replyUser: User;
 
   @CreateDateColumn({
     type: 'datetime',
