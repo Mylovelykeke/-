@@ -12,5 +12,5 @@ export const config = {
 };
 export const wxconfig = {
   appid:'wxee4f42b970df136c',
-  secret:'279e42f65c2aa4e9b03193ca487a9810'
+  secret:'264c40ce1cf67b439f7f6bea32e4e1a9'
 };

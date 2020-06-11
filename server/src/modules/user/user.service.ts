@@ -48,14 +48,7 @@ export class UserService {
   
   async getLoginToken(code):Promise<any> {
     let options = {
-      method: 'POST',
-      url: 'https://api.weixin.qq.com/sns/jscode2session?',
-      formData: {
-          appid: wxconfig.appid,
-          secret: wxconfig.secret,
-          js_code: code,
-          grant_type: 'authorization_code'
-      }
+      url: `https://api.weixin.qq.com/sns/jscode2session?appid=${wxconfig.appid}&secret=${wxconfig.secret}&js_code=${code}&grant_type=authorization_code`,
     };
     return await wxrequest(options)
   }

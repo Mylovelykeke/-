@@ -13,7 +13,6 @@ import {
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard, Roles } from '../auth/roles.guard';
 import { CommentService } from './comment.service';
-import { Comment } from './comment.entity';
 
 @Controller('comment')
 @UseGuards(RolesGuard)
@@ -48,12 +47,30 @@ export class CommentController {
   }
 
   /**
+   * 
+   * 获取用户下所有评论
+   * @param id 
+   */
+  @Get('user/:id')
+  findByUserId(@Param('id') id) {
+    return this.commentService.getUserCommonList(id);
+  }
+  /**
    * 获取文章或页面评论
    * @param hostId
    */
   @Get('host/:hostId')
   getArticleComments(@Param('hostId') hostId, @Query() qurey) {
     return this.commentService.getArticleComments(hostId, qurey);
+  }
+
+  /**
+   * 获取文章评论个数
+   * 
+   */
+  @Get('count/:hostId')
+  getArticlecount(@Param('hostId') hostId) {
+    return this.commentService.getArticleCount(hostId);
   }
 
   /**

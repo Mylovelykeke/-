@@ -35,6 +35,11 @@ import { View } from './modules/view/view.entity';
 // 搜索模块
 import { Search } from './modules/search/search.entity';
 import { SearchModule } from './modules/search/search.module';
+
+//通知模块
+
+import { Msg } from './modules/msg/msg.entity';
+import { MsgModule } from './modules/msg/msg.module';
 // 配置文件
 import { config } from './config';
 
@@ -55,6 +60,7 @@ import { config } from './config';
         Page,
         View,
         Search,
+        Msg
       ],
       synchronize: true,
     }),
@@ -70,6 +76,7 @@ import { config } from './config';
     PageModule,
     ViewModule,
     SearchModule,
+    MsgModule,
   ],
   controllers: [],
   providers: [],
