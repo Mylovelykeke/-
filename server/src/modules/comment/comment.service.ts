@@ -152,6 +152,10 @@ export class CommentService {
     const subComments = await await subQuery
       .setParameter('parentCommentId', id)
       .getMany();
+    Object.assign(data,{createAt: dayjs(data.createAt).format('YYYY-MM-DD HH:mm:ss')})
+    for(let item of subComments){
+      Object.assign(item,{createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss')})
+    }
     return { 'parent': data, 'children': subComments }
   }
 
@@ -220,7 +224,10 @@ export class CommentService {
     let [data, total] = await this.msgService.getMessage(id)
     for (let item of data) {
       const subComments = await this.findById(item.message_id)
-      Object.assign(item, { message: subComments.parent,total: total})
+      Object.assign(item, { 
+        createAt: dayjs(item.createAt).format('YYYY-MM-DD HH:mm:ss'),
+        message: subComments.parent,total: total
+      })
     }
     return data
   }

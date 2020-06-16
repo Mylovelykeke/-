@@ -36,12 +36,18 @@ import { View } from './modules/view/view.entity';
 import { Search } from './modules/search/search.entity';
 import { SearchModule } from './modules/search/search.module';
 
-//通知模块
+// 通知模块
 
 import { Msg } from './modules/msg/msg.entity';
 import { MsgModule } from './modules/msg/msg.module';
+
+// 举报模块
+import { Report } from './modules/report/report.entity';
+import { ReportModule } from './modules/report/report.module';
+
 // 配置文件
 import { config } from './config';
+import { from } from 'rxjs';
 
 @Module({
   imports: [
@@ -60,7 +66,8 @@ import { config } from './config';
         Page,
         View,
         Search,
-        Msg
+        Msg,
+        Report
       ],
       synchronize: true,
     }),
@@ -77,8 +84,9 @@ import { config } from './config';
     ViewModule,
     SearchModule,
     MsgModule,
+    ReportModule,
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
