@@ -1,48 +1,23 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import * as dayjs from 'dayjs';
-import * as nuid from 'nuid';
 import { SettingService } from '../setting/setting.service';
 import { File } from './file.entity';
-let OSS = require('ali-oss');
-let { createWriteStream } = require('fs')
-let path = require('path')
+
 @Injectable()
 export class FileService {
   constructor(
     @InjectRepository(File)
     private readonly fileRepository: Repository<File>
-  ) {}
+  ) { }
 
   /**
    * 上传文件
    * @param file
    */
   async uploadFile(file: any): Promise<any> {
-    const { originalname, mimetype, size, buffer } = file;
-    // FIXME: 使用 uuid ，无法管理，改成相应资源包名
-    const filename = `${originalname}`;
-    // const {
-    //   ossRegion,
-    //   ossAccessKeyId,
-    //   ossBucket,
-    //   ossAccessKeySecret,
-    //   ossHttps,
-    // } = await this.settingService.findAll(true);
-    // if (!ossRegion || !ossAccessKeyId || !ossBucket || !ossAccessKeySecret) {
-    //   throw new HttpException('请完善 OSS 配置', HttpStatus.BAD_REQUEST);
-    // }
-    // let client = new OSS({
-    //   region: ossRegion,
-    //   accessKeyId: ossAccessKeyId,
-    //   accessKeySecret: ossAccessKeySecret,
-    //   bucket: ossBucket,
-    //   secure: ossHttps,
-    // });
-    const writeImage = createWriteStream(path.join( 'public', `${filename}`))
-    writeImage.write(buffer)
-    const  url  ='http://www.superstarprogram.xyz:8082/' + filename ;
+    const { originalname, mimetype, size, buffer, filename } = file;
+    const url = 'http://www.superstarprogram.xyz:8082/' + filename;
     const newFile = await this.fileRepository.create({
       originalname,
       filename,

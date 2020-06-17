@@ -8,9 +8,10 @@ import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { AppModule } from './app.module';
 import { join } from 'path';
 import * as serveStatic from 'serve-static';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors();
   app.setGlobalPrefix('/api');
   app.use(
@@ -19,7 +20,7 @@ async function bootstrap() {
       max: 1000, // limit each IP to 1000 requests per windowMs
     })
   );
-  app.use('/public', serveStatic(join(__dirname, '../public'), {
+  app.use('public', serveStatic(join(__dirname, '../public'), {
     maxAge: '1d',
     extensions: ['jpg', 'jpeg', 'png', 'gif'],
    }));
