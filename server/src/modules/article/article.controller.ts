@@ -167,9 +167,9 @@ export class ArticleController {
    * 删除文章
    * @param id
    */
-  @Delete(':id')
-  @Roles('admin')
-  @UseGuards(JwtAuthGuard)
+  @Post('/delete/:id')
+  // @Roles('admin')
+  // @UseGuards(JwtAuthGuard)
   deleteById(@Param('id') id) {
     return this.articleService.deleteById(id);
   }

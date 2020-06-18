@@ -71,7 +71,6 @@ export class ArticleService {
     }
 
     if (otherParams) {
-      console.log(Object.keys(otherParams))
       Object.keys(otherParams).forEach((key) => {
         query
           .andWhere(`article.${key} LIKE :${key}`)
@@ -83,11 +82,7 @@ export class ArticleService {
       if (d.needPassword) {
         delete d.content;
       }
-      // Object.assign(d, {
-      //   createAt: dayjs(d.createAt).format('YYYY-MM-DD HH:mm:ss')
-      // });
     });
-    // console.log(data,'?????')
     return [data, total];
   }
 
@@ -253,7 +248,7 @@ export class ArticleService {
    */
   async findByUserId(id) {
     const res = await this.articleRepository.find({
-      'openid':id
+      'openid': id
     })
     return res
   }
