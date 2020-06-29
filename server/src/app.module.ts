@@ -45,10 +45,19 @@ import { MsgModule } from './modules/msg/msg.module';
 import { Report } from './modules/report/report.entity';
 import { ReportModule } from './modules/report/report.module';
 
+//收藏模块
+
+import { Like } from './modules/like/like.entity';
+import { LikeModule } from './modules/like/like.module';
+
+//历史记录
+import { HistoryModule } from './modules/history/history.module';
+import { History } from './modules/history/history.entity';
+
+
 // 配置文件
 import { config } from './config';
 import { from } from 'rxjs';
-
 
 @Module({
   imports: [
@@ -68,7 +77,9 @@ import { from } from 'rxjs';
         View,
         Search,
         Msg,
-        Report
+        Report,
+        Like,
+        History
       ],
       synchronize: true,
     }),
@@ -86,6 +97,8 @@ import { from } from 'rxjs';
     SearchModule,
     MsgModule,
     ReportModule,
+    LikeModule,
+    HistoryModule,
   ],
   controllers: [],
   providers: [],

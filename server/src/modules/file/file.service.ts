@@ -1,7 +1,6 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SettingService } from '../setting/setting.service';
 import { File } from './file.entity';
 
 @Injectable()
@@ -18,15 +17,15 @@ export class FileService {
   async uploadFile(file: any): Promise<any> {
     const { originalname, mimetype, size, buffer, filename } = file;
     const url = 'http://www.superstarprogram.xyz:8082/' + filename;
-    const newFile = await this.fileRepository.create({
-      originalname,
-      filename,
-      type: mimetype,
-      url,
-      size,
-    });
-    await this.fileRepository.save(newFile);
-    return newFile;
+    // const newFile = await this.fileRepository.create({
+    //   originalname,
+    //   filename,
+    //   type: mimetype,
+    //   url,
+    //   size,
+    // });
+    // await this.fileRepository.save(newFile);
+    // return newFile;
   }
 
   /**

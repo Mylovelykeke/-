@@ -7,6 +7,7 @@ import { FileService } from '../file/file.service';
 import { CategoryService } from '../category/category.service';
 import { Article } from './article.entity';
 import { UserService } from '../user/user.service';
+import { User } from '../user/user.entity';
 
 @Injectable()
 export class ArticleService {
@@ -60,8 +61,7 @@ export class ArticleService {
       .leftJoinAndSelect('article.user', 'user')
       .leftJoinAndSelect('article.files', 'file')
       .orderBy('article.publishAt', 'DESC');
-
-    const { page = 1, pageSize = 12, status, ...otherParams } = queryParams;
+    const { page = 1, pageSize = 12, status, ...otherParams} = queryParams;
 
     query.skip((+page - 1) * +pageSize);
     query.take(+pageSize);
@@ -73,8 +73,9 @@ export class ArticleService {
     if (otherParams) {
       Object.keys(otherParams).forEach((key) => {
         query
+          .leftJoinAndMapOne('article.like','like', 'like',`like.articleId = article.id and like.userId = "${otherParams[key]}"`)
           .andWhere(`article.${key} LIKE :${key}`)
-          .setParameter(`${key}`, `%${otherParams[key]}%`);
+          .setParameter(`${key}`, `%${otherParams[key]}%`)
       });
     }
     const [data, total] = await query.getManyAndCount();
@@ -224,22 +225,21 @@ export class ArticleService {
       .leftJoinAndSelect('article.user', 'user')
       .leftJoinAndSelect('article.files', 'files')
       .where('article.id=:id')
-      .orWhere('article.title=:title')
       .setParameter('id', id)
-      .setParameter('title', id);
 
     if (status) {
       query.andWhere('article.status=:status').setParameter('status', status);
     }
 
     const data = await query.getOne();
-
     if (data && data.needPassword && !isAdmin) {
       delete data.content;
     }
-    Object.assign(data, {
-      createAt: dayjs(data.createAt).format('YYYY-MM-DD HH:mm:ss')
-    });
+    if(data){
+      Object.assign(data, {
+        createAt: dayjs(data.createAt).format('YYYY-MM-DD HH:mm:ss')
+      });
+    }
     return data;
   }
 
@@ -247,10 +247,12 @@ export class ArticleService {
    * @param id
    */
   async findByUserId(id) {
-    const res = await this.articleRepository.find({
-      'openid': id
-    })
-    return res
+    const data = await this.articleRepository
+      .createQueryBuilder('article')
+      .where('article.openid=:openid')
+      .setParameter('openid', id)
+      .getCount()
+    return data
   }
 
   /**
@@ -312,6 +314,7 @@ export class ArticleService {
     const article = await this.articleRepository.findOne(id);
     return this.articleRepository.remove(article);
   }
+  // }
 
   /**
    * 关键词搜索文章
@@ -325,6 +328,8 @@ export class ArticleService {
       .orWhere('article.content LIKE :keyword')
       .setParameter('keyword', `%${keyword}%`)
       .leftJoinAndSelect('article.files', 'files')
+      .leftJoinAndSelect('article.user', 'user')
+      .orderBy('article.publishAt', 'DESC')
       .getMany();
 
     return res;

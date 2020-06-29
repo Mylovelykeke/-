@@ -87,13 +87,21 @@ export class UserService {
     const existUser = await this.userRepository.findOne({ where: { openid } });
     //如果存在直接返回token
     if (existUser) {
+      // const token = this.createToken({
+      //   id: existUser.id,
+      //   nickName: existUser.nickName,
+      //   email: existUser.email,
+      //   role: existUser.role,
+      // });
+      let updatedUser = await this.userRepository.merge(existUser,user)
+      await this.userRepository.save(updatedUser);
       const token = this.createToken({
-        id: existUser.id,
-        nickName: existUser.nickName,
-        email: existUser.email,
-        role: existUser.role,
+        id: updatedUser.id,
+        nickName: updatedUser.nickName,
+        email: updatedUser.email,
+        role: updatedUser.role,
       });
-      return Object.assign(existUser, { token });
+      return Object.assign(updatedUser, { token });
     }else{
       const newUser = await this.userRepository.create(user);
       await this.userRepository.save(newUser);
@@ -146,7 +154,7 @@ export class UserService {
   }
 
    /**
-   * 获取指定用户
+   * 获取指定openid
    * @param openid
    */
   async findByopenId(openid): Promise<User> {

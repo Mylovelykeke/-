@@ -1,13 +1,14 @@
-import { Controller, Get, Post, Body} from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { ReportService } from './report.service';
 
 @Controller('report')
 export class ReportController {
     constructor(
-        private readonly reportService:ReportService
-    ){}
+        private readonly reportService: ReportService
+    ) { }
+    
     @Get()
-    getInfo(){
+    getInfo() {
         return this.reportService.findList()
     }
 
@@ -16,7 +17,7 @@ export class ReportController {
      * 
      */
     @Post()
-    saveReport(@Body() reports){
+    saveReport(@Body() reports) {
         return this.reportService.saveReport(reports)
     }
 }

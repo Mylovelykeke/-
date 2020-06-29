@@ -16,6 +16,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { FileService } from './file.service';
 import multer = require('multer');
 import { join } from 'path';
+
 @Controller('file')
 @UseGuards(RolesGuard)
 export class FileController {
@@ -43,7 +44,6 @@ export class FileController {
   )
   // @UseGuards(JwtAuthGuard)
   uploadFile(@UploadedFile() file) {
-    console.log()
     return this.fileService.uploadFile(file);
   }
 
